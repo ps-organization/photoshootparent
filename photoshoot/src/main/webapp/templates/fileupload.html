@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!--<base target="_self">-->
+    <title>文件上传</title>
+</head>
+<body>
+
+<!--<form action="${basePath}file/upload" method="post" enctype="multipart/form-data">-->
+<form action="/file/upload" enctype="multipart/form-data"method="post">
+    <!--上传用户：<input type="text" name="username"><br/>-->
+    上传文件：<input type="file" name="file"><br/>
+    <!--上传文件2：<input type="file" name="file2"><br/>-->
+    <input type="submit" value="提交">
+</form>
+<img  id="preview-img" src="C:\Users\Administrator\Desktop\影约项目图片\com_15010491089757.jpg" />
+</body>
+</html>

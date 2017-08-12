@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.instrantes.dao.PsRoleDao">
+    <!--<resultMap id="result_PsRole_Map" type="PsRole">-->
+        <!--<id column="PsRole0" property="roleId"/>-->
+        <!--<result column="PsRole1" property="roleName"/>-->
+    <!--</resultMap>-->
+
+    <resultMap id="userRoleResultMap" type="PsRole" >
+        <id column="role_name" property="roleName"/>
+        <result column="PsRole1" property="roleName"/>
+        <association property="psUser" javaType="PsUser" >
+            <id column="user_name" property="userName"/>
+            <id column="user_password" property="userPassword"/>
+            <id column="user_role" property="userRole"/>
+        </association>
+    </resultMap>
+
+
+    <select id="selectUserRoleById" resultMap="userRoleResultMap">
+        SELECT
+        ps_role.role_name,
+        ps_user.user_name,
+        ps_user.user_password,
+        ps_user.user_role
+        FROM
+        ps_user
+        INNER JOIN ps_role ON ps_role.role_id = ps_user.user_role
+        WHERE user_id=#{user_id}
+
+    </select>
+
+    <!--<sql id="ps_role_Column">-->
+    <!--ps_role.role_id as PsRole0-->
+    <!--,ps_role.role_name as PsRole1-->
+    <!--</sql>-->
+
+    <!--<select id="getPsRoleRowCount" resultType="java.lang.Long">-->
+    <!--select count(role_id) from ps_role-->
+    <!--</select>-->
+
+
+    <!--<select id="selectPsRoleById" parameterType="java.lang.Integer" resultMap="result_PsRole_Map">-->
+    <!--select -->
+    <!--<include refid="ps_role_Column" /> -->
+    <!--from ps_role-->
+    <!--where ps_role.role_id = #{id}-->
+    <!--</select> -->
+
+
+    <!--<insert id="insertPsRole" parameterType="com.entity.PsRole">-->
+    <!--insert into ps_role(role_id,role_name) -->
+    <!--values(#{roleId},#{roleName})-->
+    <!--</insert>-->
+
+    <!--<insert id="insertNonEmptyPsRole" parameterType="com.entity.PsRole">-->
+    <!--insert into ps_role-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="roleId != null">role_id,</if>-->
+    <!--<if test="roleName != null">role_name,</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+    <!--<if test="roleId != null"> #{roleId},</if>-->
+    <!--<if test="roleName != null"> #{roleName},</if>-->
+    <!--</trim>-->
+    <!--</insert>-->
+
+    <!--<delete id="deletePsRoleById" parameterType="java.lang.Integer">-->
+    <!--delete from ps_role-->
+    <!--where role_id = #{id}-->
+    <!--</delete>-->
+
+    <!--<update id="updatePsRoleById" parameterType="com.entity.PsRole">-->
+    <!--update ps_role set-->
+    <!--role_name=#{roleName}-->
+    <!--where role_id=#{roleId}-->
+    <!--</update>-->
+
+    <!--<update id="updateNonEmptyPsRoleById" parameterType="com.entity.PsRole">-->
+    <!--update ps_role-->
+    <!--<set>-->
+    <!--<if test="roleName != null">-->
+    <!--role_name=#{roleName},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where role_id=#{roleId}-->
+    <!--</update>-->
+
+</mapper>

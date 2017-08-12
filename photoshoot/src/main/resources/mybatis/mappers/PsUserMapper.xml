@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.instrantes.dao.PsUserDao">
+    <resultMap id="PsUserResultMap" type="PsUser">
+        <id column="PsUser0" property="userId"/>
+        <result column="PsUser1" property="userIsDelete"/>
+        <result column="PsUser2" property="userName"/>
+        <result column="PsUser3" property="userPassword"/>
+        <result column="PsUser4" property="userNickname"/>
+        <result column="PsUser5" property="userRole"/>
+        <result column="PsUser6" property="userSex"/>
+        <result column="PsUser7" property="userAge"/>
+        <result column="PsUser8" property="userIntroduction"/>
+        <result column="PsUser9" property="userHeadphotoLocation"/>
+        <result column="PsUser10" property="userUpdatetime"/>
+        <result column="PsUser11" property="userCreatetime"/>
+    </resultMap>
+
+    <!--<sql id="ps_user_Column">-->
+    <!--ps_user.user_id as PsUser0-->
+    <!--,ps_user.user_is_delete as PsUser1-->
+    <!--,ps_user.user_name as PsUser2-->
+    <!--,ps_user.user_password as PsUser3-->
+    <!--,ps_user.user_nickname as PsUser4-->
+    <!--,ps_user.user_role as PsUser5-->
+    <!--,ps_user.user_sex as PsUser6-->
+    <!--,ps_user.user_age as PsUser7-->
+    <!--,ps_user.user_introduction as PsUser8-->
+    <!--,ps_user.user_headphoto_location as PsUser9-->
+    <!--,ps_user.user_updatetime as PsUser10-->
+    <!--,ps_user.user_createtime as PsUser11-->
+    <!--</sql>-->
+
+    <!--<select id="getPsUserRowCount" resultType="java.lang.Long">-->
+    <!--select count(user_id) from ps_user-->
+    <!--</select>-->
+    <!--<select id="selectPsUser" resultMap="result_PsUser_Map">-->
+    <!--select-->
+    <!--<include refid="ps_user_Column" />-->
+    <!--from ps_user-->
+    <!--</select>-->
+
+
+    <select id="selectPsUserById" parameterType="java.lang.Integer" resultMap="PsUserResultMap">
+        select
+        *
+        from ps_user
+        where ps_user.user_id = #{id}
+    </select>
+
+    <select id="selectPsUserByName" parameterType="java.lang.String" resultMap="PsUserResultMap">
+        SELECT
+            *
+        FROM
+            ps_user
+        WHERE
+	  ps_user.user_name =#{userName}
+    </select>
+
+
+
+
+    <insert id="insertPsUser" parameterType="PsUser">
+        INSERT INTO ps_user (user_name, user_password)
+        VALUES
+	    (#{userName},#{userPassword})
+    </insert>
+
+    <!--<insert id="insertNonEmptyPsUser" parameterType="com.entity.PsUser">-->
+    <!--insert into ps_user-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="userId != null">user_id,</if>-->
+    <!--<if test="userIsDelete != null">user_is_delete,</if>-->
+    <!--<if test="userName != null">user_name,</if>-->
+    <!--<if test="userPassword != null">user_password,</if>-->
+    <!--<if test="userNickname != null">user_nickname,</if>-->
+    <!--<if test="userRole != null">user_role,</if>-->
+    <!--<if test="userSex != null">user_sex,</if>-->
+    <!--<if test="userAge != null">user_age,</if>-->
+    <!--<if test="userIntroduction != null">user_introduction,</if>-->
+    <!--<if test="userHeadphotoLocation != null">user_headphoto_location,</if>-->
+    <!--<if test="userUpdatetime != null">user_updatetime,</if>-->
+    <!--<if test="userCreatetime != null">user_createtime,</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+    <!--<if test="userId != null"> #{userId},</if>-->
+    <!--<if test="userIsDelete != null"> #{userIsDelete},</if>-->
+    <!--<if test="userName != null"> #{userName},</if>-->
+    <!--<if test="userPassword != null"> #{userPassword},</if>-->
+    <!--<if test="userNickname != null"> #{userNickname},</if>-->
+    <!--<if test="userRole != null"> #{userRole},</if>-->
+    <!--<if test="userSex != null"> #{userSex},</if>-->
+    <!--<if test="userAge != null"> #{userAge},</if>-->
+    <!--<if test="userIntroduction != null"> #{userIntroduction},</if>-->
+    <!--<if test="userHeadphotoLocation != null"> #{userHeadphotoLocation},</if>-->
+    <!--<if test="userUpdatetime != null"> #{userUpdatetime},</if>-->
+    <!--<if test="userCreatetime != null"> #{userCreatetime},</if>-->
+    <!--</trim>-->
+    <!--</insert>-->
+
+    <!--<delete id="deletePsUserById" parameterType="java.lang.Integer">-->
+    <!--delete from ps_user-->
+    <!--where user_id = #{id}-->
+    <!--</delete>-->
+
+    <!--<update id="updatePsUserById" parameterType="com.entity.PsUser">-->
+    <!--update ps_user set-->
+    <!--user_is_delete=#{userIsDelete}-->
+    <!--,user_name=#{userName}-->
+    <!--,user_password=#{userPassword}-->
+    <!--,user_nickname=#{userNickname}-->
+    <!--,user_role=#{userRole}-->
+    <!--,user_sex=#{userSex}-->
+    <!--,user_age=#{userAge}-->
+    <!--,user_introduction=#{userIntroduction}-->
+    <!--,user_headphoto_location=#{userHeadphotoLocation}-->
+    <!--,user_updatetime=#{userUpdatetime}-->
+    <!--,user_createtime=#{userCreatetime}-->
+    <!--where user_id=#{userId}-->
+    <!--</update>-->
+
+    <!--<update id="updateNonEmptyPsUserById" parameterType="com.entity.PsUser">-->
+    <!--update ps_user-->
+    <!--<set>-->
+    <!--<if test="userIsDelete != null">-->
+    <!--user_is_delete=#{userIsDelete},-->
+    <!--</if>-->
+    <!--<if test="userName != null">-->
+    <!--user_name=#{userName},-->
+    <!--</if>-->
+    <!--<if test="userPassword != null">-->
+    <!--user_password=#{userPassword},-->
+    <!--</if>-->
+    <!--<if test="userNickname != null">-->
+    <!--user_nickname=#{userNickname},-->
+    <!--</if>-->
+    <!--<if test="userRole != null">-->
+    <!--user_role=#{userRole},-->
+    <!--</if>-->
+    <!--<if test="userSex != null">-->
+    <!--user_sex=#{userSex},-->
+    <!--</if>-->
+    <!--<if test="userAge != null">-->
+    <!--user_age=#{userAge},-->
+    <!--</if>-->
+    <!--<if test="userIntroduction != null">-->
+    <!--user_introduction=#{userIntroduction},-->
+    <!--</if>-->
+    <!--<if test="userHeadphotoLocation != null">-->
+    <!--user_headphoto_location=#{userHeadphotoLocation},-->
+    <!--</if>-->
+    <!--<if test="userUpdatetime != null">-->
+    <!--user_updatetime=#{userUpdatetime},-->
+    <!--</if>-->
+    <!--<if test="userCreatetime != null">-->
+    <!--user_createtime=#{userCreatetime},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where user_id=#{userId}-->
+    <!--</update>-->
+
+
+</mapper>

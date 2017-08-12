@@ -1,0 +1,335 @@
+/*主体*/
+.wrapper {
+    width: 1900px;
+    height: 1854px;
+
+}
+
+/*.test {*/
+/*background-image: url("../img/backg.jpg");*/
+/*background-size: 1900px 500px;*/
+/*}*/
+
+/*为图片蒙上*/
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 3;
+}
+
+/*背景图*/
+.wrapper .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*<img src="../img/stock-photo-207021477.jpg"/>*/
+    /*<img src="../img/20170802145635.jpg"/>*/
+    background: #fff url(../img/20170802145635.jpg) right 75% no-repeat;
+    background-size: cover;
+}
+
+/*头页部分,包含自适应*/
+.top_section {
+    height: -webkit-calc(100vh - 136px);
+    height: -moz-calc(100vh - 136px);
+    height: calc(100vh - 136px);
+    min-height: 320px;
+    padding-top: 0;
+    position: relative;
+    z-index: 10;
+}
+
+/*中间欢迎部分*/
+.center {
+    margin: 0 0 56px;
+    padding: 0 20px;
+    display: table;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.center .middle .wrap {
+    /*.wrap {*/
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/*.center .middle {*/
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*.center .middle .wrap h1 {*/
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #FFF;
+}
+
+/*.center .middle .wrap h2 {*/
+h2 {
+    font-size: 24px;
+    color: #FFF;
+    margin: 0;
+    font-weight: normal;
+    text-align: center;
+    max-width: 100%;
+    line-height: 1.5em;
+
+}
+
+section.content {
+    padding-top: 120px;
+}
+
+/*分割线recommend-line*/
+.recommend-line, .get-more-line {
+    position: relative;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.recommend-line:before, .recommend-line:after, .get-more-line:before, .get-more-line:after {
+
+    display: block;
+    position: absolute;
+    top: 28px;
+    width: 44%;
+    content: "";
+    border-top: 1px solid #916a35;
+}
+
+.recommend-line:before, .get-more-line:before {
+    left: 0;
+}
+
+.recommend-line:after, .get-more-line:after {
+    right: 0;
+}
+
+.recommend-line > a, .get-more-line > a {
+    display: inline-block;
+    font-size: 16px;
+    color: #999;
+}
+
+/*中间显示图像部分*/
+
+.reco {
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*display: table;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+.reco-tags {
+    text-align: center;
+    position: relative;
+    margin: auto;
+    margin-bottom: 40px;
+    max-width: 1200px;
+    padding: 0 10px;
+    overflow: visible;
+
+}
+
+.reco-tags > li {
+    /*list-style: none;*/
+    display: inline;
+    margin: 0 40px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.reco-tags > li a {
+    font-size: 19px;
+    font-weight: normal;
+    text-transform: none;
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+    margin: 0 15px;
+    padding: 15px 0;
+    /*height: 50px;*/
+    /*border-bottom: 2px solid transparent;*/
+    color: #1a2133;
+    cursor: pointer;
+}
+
+
+.reco-tags>li.active>a {
+    color: #0099e5;
+    border-bottom: 2px solid #0099e5;
+}
+
+
+
+
+.pic_con{
+    max-width: 1600px;
+    margin: 0 auto;
+    text-align: center;
+}
+.photo_row{
+    margin-bottom: 10px;
+}
+.reco-pic-thumbnail {
+    /*position: absolute;*/
+    height: 161px;
+    position: relative;
+    display: inline-block;
+}
+.pic{
+    opacity: 1;
+    width: 510px; height: 320px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+}
+.pic a{
+    display: block;
+    color: -webkit-link;
+    cursor: auto;
+    text-decoration: none;
+    outline: none;
+}
+
+/*脚页部分,包含自适应*/
+footer {
+    position: relative !important;
+    font-size: 0;
+    text-align: center;
+    padding: 96px 0 90px;
+    border-top: 1px solid #eeeff2;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.index-footer {
+
+    background: transparent url(../img/wallhaven-491315.jpg) center 60% no-repeat;
+    background-size: cover;
+    padding-bottom: 26vw;
+}
+
+footer ul {
+    width: auto;
+    display: inline-block;
+    padding: 0 50px;
+    vertical-align: top;
+}
+
+footer ul li {
+    text-align: left;
+    display: block;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+footer ul li:first-child {
+    padding-top: 0;
+}
+
+li {
+    list-style: none;
+}
+
+footer ul li a {
+    color: #71767a;
+    text-decoration: none;
+    outline: none;
+}
+
+/*a {*/
+/*text-decoration: none;*/
+/*outline: none;*/
+/*}*/
+
+/*点击显示登录样式*/
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+/*弹出框周围蒙版*/
+.login-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*此处是关闭的按钮*/
+    display: none;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    z-index: 11;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.login-dialog form {
+    padding: 40px;
+    max-height: none;
+    width: 520px;
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -155px 0 0 -260px;
+    text-align: center;
+}
+
+.login-dialog form .input-place {
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    display: inline-block;
+    padding: 0 10px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 1;
+    color: #777;
+    background: #FCFCFC;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    width: 250px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .05);
+    -webkit-transition: color .2s linear, border-color .3s linear;
+}
+
+.btn {
+    width: 250px;
+    height: 44px;
+}
+
+.login-dialog form .close {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    background: url(../img/icon_close.png) 0 0 no-repeat;
+}
