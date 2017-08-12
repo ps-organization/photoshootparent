@@ -1,0 +1,164 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    position: relative;
+    min-width: 100%;
+    height: 51px;
+    margin: 0 auto;
+    font-weight: 500;
+    z-index: 2;
+}
+
+/*主体部分*/
+.cust_container {
+    width: 100%;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.personal_banner {
+    background-color: #000;
+    -moz-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    padding: 180px 40px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #f9f9f9;
+    position: relative;
+}
+
+.personal_banner .personal_background {
+    width: 100%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(../img/personal_background.jpg) center;
+}
+
+/*显示用户*/
+.personal_banner .personal_background .user_info {
+    width: 495px;
+    margin: 180px 0px 10px 10px;
+
+    display: inline-block;
+}
+
+/*头像部分*/
+.personal_banner .personal_background .user_info .user_headpicture {
+    display: inline-block;
+    margin-right: 26px;
+    position: relative;
+}
+
+.personal_banner .personal_background .user_info .user_headpicture img {
+    width: 100px;
+    height: 100px;
+    border: solid 1px rgba(255, 255, 255, .1);
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}
+
+/*名字部分*/
+.info_name {
+    font-size: 22px;
+    line-height: 30px;
+    color: #fff;
+    font-weight: 500;
+}
+
+/*地点-关注-粉丝*/
+.personal_banner .personal_background .user_info .info_detail {
+    padding: 0;
+    margin: 12px 0;
+    line-height: 20px;
+    height: 20px;
+    list-style: none;
+    /*outline: none;*/
+}
+
+.personal_banner .personal_background .user_info .info_detail li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: -webkit-match-parent;
+}
+
+.personal_banner .personal_background .user_info .info_detail li a {
+    font-weight: inherit;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*用户选择标签行*/
+
+.user_function {
+
+}
+
+.user_function .user_tags {
+    text-align: center;
+    position: relative;
+    margin: auto;
+    margin-bottom: 40px;
+    max-width: 1200px;
+    padding: 0 10px;
+    overflow: visible;
+}
+
+.user_function .user_tags > li {
+    display: inline;
+    margin: 0 40px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.user_function .user_tags > li  a{
+    font-size: 19px;
+    font-weight: normal;
+    text-transform: none;
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+    margin: 0 15px;
+    padding: 15px 0;
+    /*height: 50px;*/
+    /*border-bottom: 2px solid transparent;*/
+    color: #00351d;
+    cursor: pointer;
+}
+
+/*显示图片处*/
+
+/*脚页部分*/
+footer {
+    width: 100%;
+    padding: 20px 40px;
+    margin: 0 auto;
+    clear: both;
+    color: #f9f9f9;
+    font-size: 12px;
+    background-color: #222;
+    margin-top: 100px;
+}

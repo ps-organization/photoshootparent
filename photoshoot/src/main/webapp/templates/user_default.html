@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>影约</title>
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="classpath:/main/webapp/js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/user_index.css">
+
+</head>
+<body>
+<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <!--图标显示-->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <img alt="影约" src="../img/psico.jpg" height="30px" width="30px"/>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/templates/photoshoot_default.html">首页 <span
+                                class="sr-only">(current)</span></a>
+                        </li>
+                        <li><a href="#">最新</a></li>
+
+                        <li><a href="#">约拍</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">发现 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">最新活动</a></li>
+                                <li><a href="#">往期活动</a></li>
+                                <li><a href="#">随便看看</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">下载APP</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">商务合作</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="javascript:;" id="loginbtn">发布</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav><!--导航栏部分-->
+    </header>
+
+
+    <main class="cust_container">
+        <div class="personal_banner">
+            <div class="personal_background"><!--显示用户背景图-->
+                <div class="user_info"><!--显示用户-->
+                    <a href="javascript:;" class="user_headpicture">
+                        <img class="img-circle" src="../img/20170726.jpg"/>
+                    </a>
+                    <div>
+                        <span class="info_name"> Amy </span>
+                    </div>
+                    <ul class="info_detail">
+                        <li>广东-珠海</li>
+                        <li>
+                            <a href="#"> 关注 999 </a>
+                        </li>
+                        <li class="slash-item">
+                            <a href="#"> 粉丝 999 </a>
+                        </li>
+                    </ul>
+                    <div class="personal-act">
+                        <!--<form class="J-bgFileForm" method="patch" enctype="multipart/form-data"-->
+                        <!--action="/rest/images/cdn">-->
+                        <!--&lt;!&ndash;<input type="hidden" name="nonce" value="3344a9a56335cb12">-->
+                        <!--<input type="hidden" name="site_id" value="2369669">&ndash;&gt;-->
+                        <!--<input type="hidden" name="MAX_FILE_SIZE" value="10485760">-->
+                        <!--<label class="file-container">-->
+                        <!--编辑封面 &gt;-->
+                        <!--<input class="bgFileInput J-bgFileInput" type="file" name="image" accept="image/*">-->
+                        <!--</label>-->
+                        <!--</form>-->
+                    </div><!--上传头像-->
+                </div>
+            </div>
+        </div>
+
+        <div class="user_function">
+            <ul class="user_tags">
+                <li class="active"><a href="javascript:;">作品</a></li>
+                <li><a href="javascript:;">喜欢</a></li>
+                <li><a href="javascript:;">相册</a></li>
+                <li><a href="javascript:;">活动</a></li>
+                <li><a href="javascript:;">风景</a></li>
+                <li><a href="javascript:;">汽车</a></li>
+            </ul>
+        </div>
+
+        <div class="pic_part">
+            <!--<ul class="pagelist-wrapper"></ul>-->
+            <!--<i class="icon-loading&#45;&#45;yellow" style="display: none;"></i>-->
+            <!--<div class="pagelist-load-more" style="display: none;">加载更多</div>-->
+            <!--<i class="icon-end" style=""></i>-->
+        </div><!--显示图片处-->
+
+    </main><!--主体部分-->
+    <footer></footer><!--脚页部分-->
+
+
+</div>
+</body>
+</html>
