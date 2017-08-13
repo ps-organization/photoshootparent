@@ -120,7 +120,7 @@ header {
     text-align: center;
     position: relative;
     margin: auto;
-    margin-bottom: 40px;
+    /*margin-bottom: 8px;*/
     max-width: 1200px;
     padding: 0 10px;
     overflow: visible;
@@ -148,8 +148,18 @@ header {
     color: #00351d;
     cursor: pointer;
 }
+/*分割线*/
+.cust_line {
+    border-bottom: 1px solid #222222;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
 
 /*显示图片处*/
+.pic_part{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
 /*脚页部分*/
 footer {
@@ -160,5 +170,29 @@ footer {
     color: #f9f9f9;
     font-size: 12px;
     background-color: #222;
-    margin-top: 100px;
+    margin-top: 30px;
+}
+
+footer .user_footer{
+    overflow: auto;
+}
+
+footer .user_footer ul{
+    display: inline-block;
+    list-style: none;
+}
+footer .user_footer ul li{
+    padding: 5px 0px 5px 0px ;
+    outline: none;
+    text-decoration: none;
+}
+
+
+footer .user_footer ul a{
+    outline: none;
+    text-decoration: none;
+}
+
+footer .user_footer_sec{
+
 }
