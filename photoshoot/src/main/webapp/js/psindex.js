@@ -6,12 +6,10 @@ $(document).ready(function () {
     $("#loginbtn").click(function () {
         $(".login-dialog").css("display", "block")
     });
-
     //    推荐标签
     $(".reco-tags li a").click(function () {
         $(this).parent().siblings().removeClass("active");
         $(this).parent().addClass("active");
-
 
         // 图片名称
         var flag = getFlag(this.innerHTML);
@@ -25,9 +23,18 @@ $(document).ready(function () {
             var uurl = "url(" + picpath + ")";
             pics[i].style.cssText = "background-image:" + uurl;
         }
-
-
     })
+
+    $('#logbtn').submit(function () {
+        alert("dsfsd");
+        var account=$("input[name='account']").val();
+        console.log(account);
+        $.get("/PsUserController/check", {userName: account}, function (data) {
+
+        });
+    });
+
+
 });
 
 

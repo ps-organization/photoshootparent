@@ -2,9 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>上传作品</title>
+    <link rel="stylesheet" href="../js/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/ps_default.css">
+    <link rel="stylesheet" href="../css/upload_picture.css">
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+
 </head>
 <body>
 
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <!--图标显示-->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <img alt="影约" src="../img/psico.jpg" height="30px" width="30px"/>
+                        </a>
+                    </div>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/templates/photoshoot_default.html">首页 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li><a href="#">最新</a></li>
+
+                        <li><a href="#">约拍</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">发现 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">最新活动</a></li>
+                                <li><a href="#">往期活动</a></li>
+                                <li><a href="#">随便看看</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">下载APP</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">商务合作</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="javascript:;" id="loginbtn">登录</a></li>
+                        <li><a href="/templates/user_register.html">注册</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav><!--导航栏部分-->
+    </header>
+
+    <main class="content">
+        <div class="left_part">
+            <ul class="photo_list">
+                <li class="photo-item" draggable="true" image-index="0" style="display: none;">
+                    <img src="https://photo.tuchong.com/2369669/l/11580415.jpg">
+                    <div class="mask" style="width: 270px; height: 165px;">
+                        <a class="icon-close"></a>
+                    </div>
+                </li>
+
+                <li class="upload_tips">
+                    <div class="upload_pic">
+                        <i class="icon-add"></i>
+                        <p>最大支持20MB的JPEG格式照片<br>不建议加画框和水印签名</p>
+                    </div>
+                    <input type="file" multiple="" accept="image/jpeg,image/jpg">
+                </li>
+            </ul>
+        </div>
+
+        <div class="right_part"></div>
+    </main>
+
+
+
+
 </body>
+
 </html>

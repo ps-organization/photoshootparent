@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../js/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../css/ps_default.css">
     <script src="../js/jquery-3.2.1.js"></script>
-    <script src="classpath:/main/webapp/js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <script src="../js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <script src="../js/finduser.js"></script>
     <script src="../js/psindex.js"></script>
@@ -85,27 +84,6 @@
         <div class="background"></div>
         <!--搜索部分-->
         <div>
-            <!--<span class="input-group col-lg-4">-->
-            <!--<div class="input-group">-->
-            <!--&lt;!&ndash; 搜索框&ndash;&gt;-->
-            <!--<input id="search" type="search" class="form-control ">-->
-            <!--&lt;!&ndash; 下拉菜单&ndash;&gt;-->
-            <!--<div class="input-group-addon dropdown-toggle " data-toggle="dropdown">-->
-            <!--<div class="glyphicon glyphicon-menu-down "></div>-->
-            <!--</div>-->
-            <!--<ul class="dropdown-menu dropdown-menu-right">-->
-            <!--<li><a href="#" id="typeuser">用户</a></li>-->
-            <!--<li><a href="#" id="typecollection">作品</a></li>-->
-            <!--<li role="separator" class="divider"></li>-->
-            <!--<li><a href="#" id="typetag">标签</a></li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--&lt;!&ndash; 按钮&ndash;&gt;-->
-            <!--<span class="input-group-btn">-->
-            <!--<button class="btn btn-default " id="searchSubmit"><span-->
-            <!--class="glyphicon glyphicon-search"></span></button>-->
-            <!--</span>-->
-            <!--</span>-->
         </div>
         <section class="content">
             <div class="center">
@@ -175,19 +153,19 @@
 
     <!--登录弹框-->
     <div class="login-dialog">
-        <form action="/check" method="post">
+        <form  method="post">
             <div class="logo">
                 <h3><img src="../img/psico.jpg" style="width: 30px"/> 影约 </h3>
             </div>
             <div class="form-group">
-                <input class="input-place" type="text" name="account" autofocus="" required="" placeholder="手机号\邮箱\用户名">
+                <input class="input-place"  name="account" autofocus="" required="" placeholder="手机号\邮箱\用户名">
             </div>
             <div class="form-group">
                 <input class="input-place" type="password" name="password" required="" placeholder="输入密码">
                 <!--<a href="//tuchong.com/account/forget/" target="_blank" class="input-tips forget-password">忘记密码？</a>-->
             </div>
             <div class="form-group text-center">
-                <button class="btn submit-btn btn-danger" href="javascript:;" type="submit">
+                <button id="logbtn" class="btn submit-btn btn-danger"  >
                     登录
                 </button>
             </div>

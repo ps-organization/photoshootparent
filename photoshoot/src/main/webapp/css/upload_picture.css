@@ -1,0 +1,65 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.content{
+    position: relative;
+    width: 100%;
+}
+
+.left_part{
+    /*margin-top: 50px;*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 340px;
+    bottom: 0;
+    height: 100%;
+    padding: 22px 30px 80px;
+    /*overflow-y: auto;*/
+}
+.left_part .photo_list li{
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+    margin-left: 40px;
+    margin-bottom: 40px;
+    vertical-align: top;
+}
+
+.upload_tips{
+
+}
+
+.left_part .photo_list .upload_tips .upload_pic {
+    height: 168px;
+    padding: 47px 0;
+    border: 2px solid #e0e0e0;
+    margin: 41px 0;
+    text-align: center;
+    color: #85888a;
+    font-size: 12px;
+}
+
+.left_part .photo_list .upload_tips input {
+    position: absolute;
+    top: 41px;
+    left: 0;
+    width: 100%;
+    height: 168px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.right_part{
+
+}

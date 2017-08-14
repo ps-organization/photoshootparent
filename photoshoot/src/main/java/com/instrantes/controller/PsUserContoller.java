@@ -1,11 +1,13 @@
 package com.instrantes.controller;
 
 import com.instrantes.dao.PsRoleDao;
+import com.instrantes.dao.PsUserDao;
 import com.instrantes.pojo.PsRole;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,9 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/PsUserController")
 public class PsUserContoller {
     @Autowired
-    private PsUserService psUserService;
+    private PsUserDao psUserDao;
     @Autowired
-    private PsRoleDao psRoleDao;
+    private PsUserService psUserService;
+
 
 
     @RequestMapping(value = "/testuser", method = RequestMethod.GET)
@@ -31,11 +34,15 @@ public class PsUserContoller {
     @ResponseBody
     public PsUser selectPsUserById(Integer id) {
         PsUser psUser = psUserService.selectPsUserById(id);
-//    测试部分
-//        PsRole psRole=psRoleDao.selectUserRoleById(1);
-//        System.out.println(psRole.getPsUser().getUserName());
-//        System.out.println(psRole.getPsUser().getUserPassword());
-//        System.out.println(psRole.getRoleName());
+        return psUser;
+    }
+
+    //    根据userName查询PsUser
+    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    @ResponseBody
+    public PsUser selectPsUserByName( String userName ) {
+        PsUser psUser = psUserDao.selectPsUserByName(userName);
+        System.out.println("--------------------------------------------------------");
         return psUser;
     }
 

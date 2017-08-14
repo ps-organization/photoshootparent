@@ -25,7 +25,6 @@ import javax.sql.DataSource;
 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Resource(name = "userDetailsServiceImpl")
     private UserDetailsServiceImpl userDetailsService;
 
@@ -54,17 +53,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()//关闭防跨站伪请求攻击，默认启用
                 .authorizeRequests()//该方法所返回的对象的方法来配置请求级别的安全细节
                 .antMatchers("/templates/photoshoot_default.html").permitAll()//对于登录路径不进行拦截
+                .antMatchers("/templates/user_default.html").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/templates/fileupload.html").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/templates/search.html").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/show").authenticated()//authenticated()表示允许过的用户访问
                 .and()//配置登录页面
                 .formLogin().loginPage("/templates/photoshoot_default.html")//登录页面的访问路径
-                .loginProcessingUrl("/check")//登录页面下表单提交的路径
+                .loginProcessingUrl("/PsUserController/check*")//登录页面下表单提交的路径
                 .usernameParameter("account").passwordParameter("password")
 //                .successHandler(new AjaxLoginSuccessHandler())
 //                .failureHandler(new AjaxLoginFailureHandler()).and()
                 .failureUrl("/templates/failure.html")//登录失败后跳转的路径
-                .defaultSuccessUrl("/templates/search.html")//登录成功后默认跳转的路径
+                .defaultSuccessUrl("/PsUserController/check")//登录成功后默认跳转的路径
                 .and()
                 .logout()//用户退出操作
                 .logoutUrl("/logout")//用户退出所访问的路径，需要使用Post方式
