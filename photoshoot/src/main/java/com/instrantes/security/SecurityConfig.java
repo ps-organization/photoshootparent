@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .successHandler(new AjaxLoginSuccessHandler())
 //                .failureHandler(new AjaxLoginFailureHandler()).and()
                 .failureUrl("/templates/failure.html")//登录失败后跳转的路径
-                .defaultSuccessUrl("/PsUserController/check")//登录成功后默认跳转的路径
+                .defaultSuccessUrl("/PsUserController/initUser")//登录成功后默认跳转的路径
                 .and()
                 .logout()//用户退出操作
                 .logoutUrl("/logout")//用户退出所访问的路径，需要使用Post方式

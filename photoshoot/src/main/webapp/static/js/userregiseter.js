@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     $('#testPic').imgAreaSelect({aspectRatio: '3:3', handles: true});
 
-
     //上传图片部分
     // $("#registerHeadPhoto").change(function () {
     // $("body").on('change', '#registerHeadPhoto', function () {

@@ -1,4 +1,20 @@
+var timeout;
 $(document).ready(function () {
+
+    $('.dropdown').mouseover(function () {
+        clearTimeout(timeout);
+        //对于服务器端进行交互延迟90ms
+        timeout = setTimeout(function () {
+            $('.dropdown').addClass("open");
+        },90);
+    }).mouseout(function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            $('.dropdown').removeClass("open");
+        },90);
+    })
+
+
     // 登录框
     $(".close").click(function () {
         $(".login-dialog").css("display", "none")
@@ -6,6 +22,15 @@ $(document).ready(function () {
     $("#loginbtn").click(function () {
         $(".login-dialog").css("display", "block")
     });
+
+    // 注册框
+    $(".close").click(function () {
+        $(".register-dialog").css("display", "none")
+    });
+    $("#registerbtn").click(function () {
+        $(".register-dialog").css("display", "block")
+    });
+
     //    推荐标签
     $(".reco-tags li a").click(function () {
         $(this).parent().siblings().removeClass("active");
@@ -24,15 +49,17 @@ $(document).ready(function () {
             pics[i].style.cssText = "background-image:" + uurl;
         }
     })
+    //鼠标悬停导航栏显示
+    // $("[data-toggle='dropdown']").popover();
 
-    $('#logbtn').submit(function () {
-        alert("dsfsd");
-        var account=$("input[name='account']").val();
-        console.log(account);
-        $.get("/PsUserController/check", {userName: account}, function (data) {
-
-        });
-    });
+    // $('#logbtn').submit(function () {
+    //     alert("dsfsd");
+    //     var account=$("input[name='account']").val();
+    //     console.log(account);
+    //     $.get("/PsUserController/check", {userName: account}, function (data) {
+    //
+    //     });
+    // });
 
 
 });

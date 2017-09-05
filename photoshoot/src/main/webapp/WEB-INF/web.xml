@@ -10,6 +10,20 @@
         <param-value>classpath:spring/applicationContext*.xml</param-value>
     </context-param>
 
+    <welcome-file-list>
+        <welcome-file>templates/photoshoot_default.html</welcome-file>
+    </welcome-file-list>
+
+    <!--默认 Servlet-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.html</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.jpeg</url-pattern>
+    </servlet-mapping>
+
     <!--enconding filter-->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -40,18 +54,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--默认 Servlet-->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.html</url-pattern>
-        <url-pattern>*.css</url-pattern>
-        <url-pattern>*.js</url-pattern>
-        <url-pattern>*.jpg</url-pattern>
-        <url-pattern>*.jpeg</url-pattern>
-    </servlet-mapping>
 
 
-    <welcome-file-list>
-        <welcome-file>templates/photoshoot_default.html</welcome-file>
-    </welcome-file-list>
+
 </web-app>

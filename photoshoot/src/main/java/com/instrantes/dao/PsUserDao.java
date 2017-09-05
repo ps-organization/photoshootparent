@@ -1,9 +1,7 @@
 package com.instrantes.dao;
 
-import java.util.List;
 
 import com.instrantes.pojo.PsUser;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository

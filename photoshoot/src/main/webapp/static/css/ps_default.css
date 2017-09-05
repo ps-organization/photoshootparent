@@ -1,14 +1,31 @@
 /*主体*/
 .wrapper {
-    width: 1900px;
+    width: 1873px;
     height: 1854px;
-
 }
 
 /*.test {*/
 /*background-image: url("../img/backg.jpg");*/
 /*background-size: 1900px 500px;*/
 /*}*/
+.cust-nav {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, .4), transparent);
+    position: fixed;
+    border-width: 0 0 0px;
+    top: 0;
+    border-radius: 0;
+}
+
+.cust-nav-bar {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.cust-nav a {
+    /*color: #f2f2f2;*/
+    text-decoration: none;
+}
 
 /*为图片蒙上*/
 .overlay {
@@ -30,7 +47,7 @@
     bottom: 0;
     /*<img src="../img/stock-photo-207021477.jpg"/>*/
     /*<img src="../img/20170802145635.jpg"/>*/
-    background: #fff url(../img/20170802145635.jpg) right 75% no-repeat;
+    background: #fff url(../../img/index/20170802145635.webp) right 75% no-repeat;
     background-size: cover;
 }
 
@@ -47,6 +64,7 @@
 
 /*中间欢迎部分*/
 .center {
+
     margin: 0 0 56px;
     padding: 0 20px;
     display: table;
@@ -169,39 +187,40 @@ section.content {
     cursor: pointer;
 }
 
-
-.reco-tags>li.active>a {
+.reco-tags > li.active > a {
     color: #0099e5;
     border-bottom: 2px solid #0099e5;
 }
 
-
-
-
-.pic_con{
+.pic_con {
     max-width: 1600px;
     margin: 0 auto;
     text-align: center;
 }
-.photo_row{
+
+.photo_row {
     margin-bottom: 10px;
 }
+
 .reco-pic-thumbnail {
     /*position: absolute;*/
     height: 161px;
     position: relative;
     display: inline-block;
 }
-.pic{
+
+.pic {
     opacity: 1;
-    width: 510px; height: 320px;
+    width: 510px;
+    height: 320px;
     background-position: center;
     background-size: cover;
     position: relative;
     display: inline-block;
     margin-right: 10px;
 }
-.pic a{
+
+.pic a {
     display: block;
     color: -webkit-link;
     cursor: auto;
@@ -226,7 +245,7 @@ footer {
 
 .index-footer {
 
-    background: transparent url(../img/wallhaven-491315.jpg) center 60% no-repeat;
+    background: transparent url(../../img/index/wallhaven-491315.webp) center 60% no-repeat;
     background-size: cover;
     padding-bottom: 26vw;
 }
@@ -290,7 +309,7 @@ footer ul li a {
 }
 
 .login-dialog form {
-    padding: 40px;
+    padding: 30px;
     max-height: none;
     width: 520px;
     background: #fff;
@@ -299,6 +318,7 @@ footer ul li a {
     left: 50%;
     margin: -155px 0 0 -260px;
     text-align: center;
+    border-radius: 7px;
 }
 
 .login-dialog form .input-place {
@@ -331,5 +351,64 @@ footer ul li a {
     right: 0;
     top: 0;
     cursor: pointer;
-    background: url(../img/icon_close.png) 0 0 no-repeat;
+    background: url(../../img/icon_close.png) 0 0 no-repeat;
+}
+
+
+/*点击显示注册样式*/
+.register-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*此处是关闭的按钮*/
+    display: none;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    z-index: 11;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.register-dialog form {
+    padding: 30px;
+    max-height: none;
+    width: 520px;
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -155px 0 0 -260px;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.register-dialog form .input-place {
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    display: inline-block;
+    padding: 0 10px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 1;
+    color: #777;
+    background: #FCFCFC;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    width: 250px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .05);
+    -webkit-transition: color .2s linear, border-color .3s linear;
+}
+
+.register-dialog form .close {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    background: url(../../img/icon_close.png) 0 0 no-repeat;
 }
