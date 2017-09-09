@@ -1,17 +1,16 @@
-//定一个计数器，统计页面上添加的li数量，即图片数量
-var count = 0;
 $(document).ready(function () {
-    
+    //定一个计数器，统计页面上添加的li数量，即图片数量
+    var count = 0;
     $("body").on('change', '#file', function () {
         var formData = new FormData();
         var ffileTags = document.getElementById('file').files;
-        console.log("lenth:"+ffileTags.length);
+        // liID为图片的id
+        liID = "li_index_" + count;
+        console.log("lenth:" + ffileTags.length);
         //判断没有文件,一个文件还是多个
         if (ffileTags.length == 0) {
             return false;
         } else if (ffileTags.length == 1) {
-            // 创建一个li,而liID为id
-            var liID = "li_index_" + count;
             formData.append("file", ffileTags[0]);
             // formData.append("token", token_value);
             // var imgurl =  ffile.getAsDataURL();
@@ -19,21 +18,24 @@ $(document).ready(function () {
             // 创建临时图片显示的url
             var src = window.URL.createObjectURL(ffileTags[0]);
             //创建图片相应的节点.为图片装上src,并显示
-            creatImage(src,liID);
-
-            // $('#test_li').css("display", "inline-block");
+            creatImage(src, count);
             //计数器count加1
             count++;
+            //多文件处理
         } else {
-            for (var i = 0; i < ffileTags.length; i++) {
+            console.log("come!");
+            for (var i = 0, ffileTagsLen = ffileTags.length; i < ffileTagsLen; i++) {
                 formData.append("file", ffileTags[i]);
+                // 创建临时图片显示的url
+                var src = window.URL.createObjectURL(ffileTags[i]);
+                // 为图片装上src和id
+                creatImage(src, count);
+                //计数器count加1
+                count++;
             }
-            // 创建临时图片显示的url
-
         }
-
         $.ajax({
-            url: "/image/upload",
+            url: "/image/uploadPic",
             type: "POST",
             data: formData,
             cache: false,
@@ -95,10 +97,12 @@ function outLucency() {
 
 }
 
-//创建图片的节点以及给图片添加，src
-function creatImage(src,liID) {
-    $('.upload_tips').before("<li class=\"photo-item\" id=\"" + liID + "\" style=\"\">\n" +
+//创建图片的节点以及给图片添加，src和id
+function creatImage(src, count) {
+    var id="li_index_"+count;
+
+    $('.upload_tips').before("<li class=\"photo-item\" id=\"" + id + "\" style=\"\">\n" +
         "<i name=\"progress\" class=\"icon-add\">已上传：</i>\n" +
-        "<img src=\""+src+"\" style=\"width: 250px;opacity: 0.4;\"/>\n" +
+        "<img src=\"" + src + "\" style=\"width: 250px;opacity: 0.4;\"/>\n" +
         "</li>");
 }

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.instrantes.dao.PsCollectionDao">
+    <resultMap id="result_PsCollection_Map" type="PsCollection">
+        <id column="PsCollection0" property="collectionId" />
+        <result column="PsCollection1" property="collectionUserid" />
+        <result column="PsCollection2" property="collectionTagid" />
+        <result column="PsCollection3" property="collectionPhotoLocation" />
+        <result column="PsCollection4" property="collectionPhotoname" />
+        <result column="PsCollection5" property="collectionPhotointroduction" />
+        <result column="PsCollection6" property="collectionPrice" />
+        <result column="PsCollection7" property="collectionPhotoinformation" />
+        <result column="PsCollection8" property="collectionAdress" />
+        <result column="PsCollection9" property="collectionFlag" />
+        <result column="PsCollection10" property="collectionCreatetime" />
+        <result column="PsCollection11" property="collectionUpdatetime" />
+    </resultMap>
+
+    <!--<sql id="ps_collection_Column">-->
+        <!--ps_collection.collection_id as PsCollection0-->
+        <!--,ps_collection.collection_userid as PsCollection1-->
+        <!--,ps_collection.collection_tagid as PsCollection2-->
+        <!--,ps_collection.collection_photo_location as PsCollection3-->
+        <!--,ps_collection.collection_photoname as PsCollection4-->
+        <!--,ps_collection.collection_photointroduction as PsCollection5-->
+        <!--,ps_collection.collection_price as PsCollection6-->
+        <!--,ps_collection.collection_photoinformation as PsCollection7-->
+        <!--,ps_collection.collection_adress as PsCollection8-->
+        <!--,ps_collection.collection_flag as PsCollection9-->
+        <!--,ps_collection.collection_createtime as PsCollection10-->
+        <!--,ps_collection.collection_updatetime as PsCollection11-->
+    <!--</sql>-->
+
+    <!--<select id="getPsCollectionRowCount" resultType="java.lang.Long">-->
+        <!--select count(collection_id) from ps_collection-->
+    <!--</select>-->
+    <!--<select id="selectPsCollection" resultMap="result_PsCollection_Map">-->
+        <!--select -->
+        <!--<include refid="ps_collection_Column" /> -->
+        <!--from ps_collection-->
+    <!--</select> -->
+
+    <!--<select id="selectPsCollectionById" parameterType="java.lang.Integer" resultMap="result_PsCollection_Map">-->
+        <!--select -->
+            <!--<include refid="ps_collection_Column" /> -->
+        <!--from ps_collection-->
+        <!--where ps_collection.collection_id = #{id}-->
+    <!--</select> -->
+
+
+    <!--<insert id="insertPsCollection" parameterType="com.entity.PsCollection">-->
+        <!--insert into ps_collection(collection_id,collection_userid,collection_tagid,collection_photo_location,collection_photoname,collection_photointroduction,collection_price,collection_photoinformation,collection_adress,collection_flag,collection_createtime,collection_updatetime) -->
+        <!--values(#{collectionId},#{collectionUserid},#{collectionTagid},#{collectionPhotoLocation},#{collectionPhotoname},#{collectionPhotointroduction},#{collectionPrice},#{collectionPhotoinformation},#{collectionAdress},#{collectionFlag},#{collectionCreatetime},#{collectionUpdatetime})-->
+    <!--</insert>-->
+
+    <!--<insert id="insertNonEmptyPsCollection" parameterType="com.entity.PsCollection">-->
+        <!--insert into ps_collection-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            <!--<if test="collectionId != null">collection_id,</if>-->
+            <!--<if test="collectionUserid != null">collection_userid,</if>-->
+            <!--<if test="collectionTagid != null">collection_tagid,</if>-->
+            <!--<if test="collectionPhotoLocation != null">collection_photo_location,</if>-->
+            <!--<if test="collectionPhotoname != null">collection_photoname,</if>-->
+            <!--<if test="collectionPhotointroduction != null">collection_photointroduction,</if>-->
+            <!--<if test="collectionPrice != null">collection_price,</if>-->
+            <!--<if test="collectionPhotoinformation != null">collection_photoinformation,</if>-->
+            <!--<if test="collectionAdress != null">collection_adress,</if>-->
+            <!--<if test="collectionFlag != null">collection_flag,</if>-->
+            <!--<if test="collectionCreatetime != null">collection_createtime,</if>-->
+            <!--<if test="collectionUpdatetime != null">collection_updatetime,</if>-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+            <!--<if test="collectionId != null"> #{collectionId},</if>-->
+            <!--<if test="collectionUserid != null"> #{collectionUserid},</if>-->
+            <!--<if test="collectionTagid != null"> #{collectionTagid},</if>-->
+            <!--<if test="collectionPhotoLocation != null"> #{collectionPhotoLocation},</if>-->
+            <!--<if test="collectionPhotoname != null"> #{collectionPhotoname},</if>-->
+            <!--<if test="collectionPhotointroduction != null"> #{collectionPhotointroduction},</if>-->
+            <!--<if test="collectionPrice != null"> #{collectionPrice},</if>-->
+            <!--<if test="collectionPhotoinformation != null"> #{collectionPhotoinformation},</if>-->
+            <!--<if test="collectionAdress != null"> #{collectionAdress},</if>-->
+            <!--<if test="collectionFlag != null"> #{collectionFlag},</if>-->
+            <!--<if test="collectionCreatetime != null"> #{collectionCreatetime},</if>-->
+            <!--<if test="collectionUpdatetime != null"> #{collectionUpdatetime},</if>-->
+        <!--</trim>-->
+    <!--</insert>-->
+
+    <!--<delete id="deletePsCollectionById" parameterType="java.lang.Integer">-->
+        <!--delete from ps_collection-->
+        <!--where collection_id = #{id}-->
+    <!--</delete>-->
+
+    <!--<update id="updatePsCollectionById" parameterType="com.entity.PsCollection">-->
+        <!--update ps_collection set-->
+            <!--collection_userid=#{collectionUserid}-->
+            <!--,collection_tagid=#{collectionTagid}-->
+            <!--,collection_photo_location=#{collectionPhotoLocation}-->
+            <!--,collection_photoname=#{collectionPhotoname}-->
+            <!--,collection_photointroduction=#{collectionPhotointroduction}-->
+            <!--,collection_price=#{collectionPrice}-->
+            <!--,collection_photoinformation=#{collectionPhotoinformation}-->
+            <!--,collection_adress=#{collectionAdress}-->
+            <!--,collection_flag=#{collectionFlag}-->
+            <!--,collection_createtime=#{collectionCreatetime}-->
+            <!--,collection_updatetime=#{collectionUpdatetime}-->
+        <!--where collection_id=#{collectionId}-->
+    <!--</update>-->
+
+    <!--<update id="updateNonEmptyPsCollectionById" parameterType="com.entity.PsCollection">-->
+        <!--update ps_collection-->
+        <!--<set>-->
+            <!--<if test="collectionUserid != null">-->
+                <!--collection_userid=#{collectionUserid},-->
+            <!--</if>-->
+            <!--<if test="collectionTagid != null">-->
+                <!--collection_tagid=#{collectionTagid},-->
+            <!--</if>-->
+            <!--<if test="collectionPhotoLocation != null">-->
+                <!--collection_photo_location=#{collectionPhotoLocation},-->
+            <!--</if>-->
+            <!--<if test="collectionPhotoname != null">-->
+                <!--collection_photoname=#{collectionPhotoname},-->
+            <!--</if>-->
+            <!--<if test="collectionPhotointroduction != null">-->
+                <!--collection_photointroduction=#{collectionPhotointroduction},-->
+            <!--</if>-->
+            <!--<if test="collectionPrice != null">-->
+                <!--collection_price=#{collectionPrice},-->
+            <!--</if>-->
+            <!--<if test="collectionPhotoinformation != null">-->
+                <!--collection_photoinformation=#{collectionPhotoinformation},-->
+            <!--</if>-->
+            <!--<if test="collectionAdress != null">-->
+                <!--collection_adress=#{collectionAdress},-->
+            <!--</if>-->
+            <!--<if test="collectionFlag != null">-->
+                <!--collection_flag=#{collectionFlag},-->
+            <!--</if>-->
+            <!--<if test="collectionCreatetime != null">-->
+                <!--collection_createtime=#{collectionCreatetime},-->
+            <!--</if>-->
+            <!--<if test="collectionUpdatetime != null">-->
+                <!--collection_updatetime=#{collectionUpdatetime},-->
+            <!--</if>-->
+        <!--</set>-->
+        <!--where collection_id=#{collectionId}-->
+    <!--</update>-->
+
+</mapper>

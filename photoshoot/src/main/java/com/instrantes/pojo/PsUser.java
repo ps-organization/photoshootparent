@@ -15,6 +15,9 @@ public class PsUser {
     private java.util.Date userCreatetime;
 
     private PsRole psRole;
+    private PsCollection psCollection;
+
+
 
     public PsRole getPsRole() {
         return psRole;
@@ -22,6 +25,14 @@ public class PsUser {
 
     public void setPsRole(PsRole psRole) {
         this.psRole = psRole;
+    }
+
+    public PsCollection getPsCollection() {
+        return psCollection;
+    }
+
+    public void setPsCollection(PsCollection psCollection) {
+        this.psCollection = psCollection;
     }
 
     public PsUser() {

@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-import org.apache.commons.fileupload.ProgressListener;
+import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
@@ -19,45 +19,57 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/image")
 public class ImageUploadController {
 
-    @RequestMapping(value="/showProcess")
+    //上传一个或多张图片
+    @RequestMapping(value = "/uploadPic")
     @ResponseBody
-    public String showProcess(HttpServletRequest request, HttpServletResponse response) {
+    public String showProcess(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //2   创建一个DiskFileItemFactory工厂
         DiskFileItemFactory factory = new DiskFileItemFactory();
         //3   创建一个文件上传解析器
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setHeaderEncoding("UTF-8");
-        //监听文件上传进度,并存放在session中
-        final HttpSession httpSession = request.getSession();
-        upload.setProgressListener(new ProgressListener() {
-            @Override
-            public void update(long pBytesRead, long pContentLength, int pItems) {
-                String show = pBytesRead + "/" + pContentLength + "byte";
-                int rate = Math.round(new Float(pBytesRead) / new Float(pContentLength) * 100);
-                httpSession.setAttribute("show", show);
-                httpSession.setAttribute("rate", rate);
+
+        List<FileItem> fileItems = upload.parseRequest(request); // 接收全部内容,此处该处理错误的
+        Iterator<FileItem> iter = fileItems.iterator();//所有的表单项
+        while (iter.hasNext()) {
+            FileItem item = iter.next();//循环获得每个表单项
+            //获得文件名,在某些操作系统上返回路径加文件名
+            String name = item.getName();
+            if (name != null) {
+                //要放的图片路径
+                String uploadPath = request.getSession().getServletContext().getRealPath("upload/images");
+                //设置格式，为创建文件夹以及图片名称做准备
+                SimpleDateFormat format = new SimpleDateFormat("/yyyy/MM/dd/,hhmmssSSS");
+                Date date = new Date();
+                String[] folderArray = format.format(date).split(",");
+
+                File fullFile = new File(name);
+                //获得文件后缀名称,因此以下再获取一次name确保正确
+                String imageType = fullFile.getName().substring(fullFile.getName().indexOf(".") + 1);
+                String fileName = folderArray[1] + "." + imageType;
+                //mkdirs()可以在不存在的目录中创建文件夹
+                String path = folderArray[0];
+                File dir = new File(uploadPath + path);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+                File savedFile = new File(dir, fileName);
+                item.write(savedFile);
             }
-        });
-        String show = (String)request.getSession().getAttribute("show");
-        int rate = (int)request.getSession().getAttribute("rate");
+        }
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("show", show);
-        map.put("rate", rate);
+//            map.put("show", show);
         return JSON.toJSONString(map);
     }
-
 
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
@@ -73,7 +85,6 @@ public class ImageUploadController {
 //            设置格式，为创建文件夹以及图片名称做准备
             SimpleDateFormat format = new SimpleDateFormat("/yyyy/MM/dd/,hhmmssSSS");
             Date date = new Date();
-//            int fileIndex = file.getOriginalFilename().lastIndexOf('.');
             String[] folderArray = format.format(date).split(",");
 
             //获得文件类型（可以判断如果不是图片，禁止上传）
