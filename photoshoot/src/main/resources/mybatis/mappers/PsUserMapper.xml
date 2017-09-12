@@ -16,6 +16,7 @@
         <result column="PsUser11" property="userCreatetime"/>
     </resultMap>
 
+
     <!--<sql id="ps_user_Column">-->
     <!--ps_user.user_id as PsUser0-->
     <!--,ps_user.user_is_delete as PsUser1-->
@@ -65,6 +66,7 @@
         VALUES
 	    (#{userName},#{userPassword})
     </insert>
+
 
     <!--<insert id="insertNonEmptyPsUser" parameterType="com.entity.PsUser">-->
     <!--insert into ps_user-->

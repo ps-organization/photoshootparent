@@ -2,19 +2,19 @@ package com.instrantes.service.Impl;
 import com.instrantes.dao.PsCollectionDao;
 import com.instrantes.pojo.PsCollection;
 import com.instrantes.service.PsCollectionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class PsCollectionServiceImpl implements PsCollectionService {
+    @Autowired
     private PsCollectionDao psCollectionDao;
     @Override
     public long getPsCollectionRowCount(){
         return psCollectionDao.getPsCollectionRowCount();
     }
-    @Override
-    public List<PsCollection> selectPsCollection(){
-        return psCollectionDao.selectPsCollection();
-    }
+
     @Override
     public PsCollection selectPsCollectionById(Integer id){
         return psCollectionDao.selectPsCollectionById(id);
@@ -38,6 +38,10 @@ public class PsCollectionServiceImpl implements PsCollectionService {
     @Override
     public int updateNonEmptyPsCollectionById(PsCollection enti){
         return psCollectionDao.updateNonEmptyPsCollectionById(enti);
+    }
+    //    根据用户id查询作品信息
+    public List<PsCollection> selectPsCollectionByUserId (Integer id){
+        return psCollectionDao.selectPsCollectionByUserId(id);
     }
 
     public PsCollectionDao getPsCollectionDao() {

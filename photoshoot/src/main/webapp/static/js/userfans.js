@@ -15,19 +15,18 @@ $(document).ready(function () {
         $.get("/PsUserController/showWatchUserCount", {id: userId}, function (data) {
             $('.info_detail li:eq(1) a').html(" 关注 " + data.watchUserid);
         });
-        //显示个人作品
-        $.post("/collection/userCollections", {id: userId}, function (data) {
+
+
+        //获取所有粉丝简略信息
+        $.post("/psWatch/psWatchFans", {id: userId}, function (data) {
+            console.log(data.length);
+            console.log(data[0].psUser.userName);
             for (var i = 0; i < data.length; i++) {
-                //创建图片格式
-                var src ="http://localhost:8080/upload/images/"+ data[i].collectionPhotolocation;
-                $('.photo_list').append("<li class=\"photo-item\" >\n" +
-                    "                    <img src=\"" + src + "\"/>\n" +
+                $('.fans-list').append("<li class=\"fans-item\">\n" +
+                    "                    <p>" + data[i].psUser.userHeadphotoLocation + "</p>\n" +
+                    "                    <p>" + data[i].psUser.userName + "</p>\n" +
                     "                </li>")
             }
         });
     });
-
-//获取所有粉丝简略信息
-    //获取所有关注简略信息
-
 });

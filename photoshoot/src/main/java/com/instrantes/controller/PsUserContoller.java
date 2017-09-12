@@ -1,7 +1,6 @@
 package com.instrantes.controller;
 
 import com.instrantes.dao.PsUserDao;
-import com.instrantes.dao.PsWatchDao;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.pojo.PsWatch;
 import com.instrantes.service.PsUserService;
@@ -9,10 +8,13 @@ import com.instrantes.service.PsWatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 @Controller
@@ -26,6 +28,12 @@ public class PsUserContoller {
     @Autowired
     private PsUserService psUserService;
 
+//    加密方法，用于对注册时用户密码加密
+    private void encryptPassword(PsUser psUser) {
+        String password = psUser.getUserPassword();
+        password = new BCryptPasswordEncoder().encode(password);
+        psUser.setUserPassword(password);
+    }
 
     @RequestMapping(value = "/testuser", method = RequestMethod.GET)
     public String setForm() {
@@ -89,4 +97,30 @@ public class PsUserContoller {
         int flag = psUserService.insertPsUser(psUser);
         return flag;
     }
+
+
+    //新插入PsUser
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseBody
+    public int newPsUser(String userName, String userPassword) {
+        PsUser psUser = new PsUser();
+        psUser.setUserName(userName);
+//        加密用户密码
+        encryptPassword(psUser);
+//        判断插入是否成功
+        int flag = psUserService.insertPsUser(psUser);
+        return flag;
+    }
+
+
+    //根据用户id查询作品的详情
+    @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
+    @ResponseBody
+    public PsUser selectPsCollectionByUserid(Integer userId) {
+        PsUser psUser=psUserService.selectPsCollectionByUserid(1);
+        System.out.println(psUser);
+        return psUser;
+    }
+
+
 }

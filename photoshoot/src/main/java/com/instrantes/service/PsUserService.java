@@ -1,5 +1,6 @@
 package com.instrantes.service;
 
+import com.instrantes.pojo.PsCollection;
 import com.instrantes.pojo.PsUser;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface PsUserService {
     PsUser selectPsUserByName(String userName) ;
 
     int insertPsUser(PsUser value);
+
+    PsUser selectPsCollectionByUserid(Integer userId);
 
     int insertNonEmptyPsUser(PsUser value);
 

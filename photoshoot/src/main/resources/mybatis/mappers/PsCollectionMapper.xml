@@ -16,6 +16,25 @@
         <result column="PsCollection11" property="collectionUpdatetime" />
     </resultMap>
 
+    <!--<resultMap id="collectionResultMap" type="PsCollection">-->
+        <!--&lt;!&ndash;定义集合的映射,property为属性,javaType为java类型，ofType为集合中的类型 &ndash;&gt;-->
+        <!--<collection property="psCollection" javaType="List" ofType="PsCollection" >-->
+            <!--<result column="collection_photo_location" property="collectionPhotolocation"/>-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+    <resultMap id="collectionResultMap" type="PsCollection">
+            <result column="collection_photo_location" property="collectionPhotolocation"/>
+    </resultMap>
+
+    <select id="selectPsCollectionByUserId" parameterType="java.lang.Integer" resultMap="collectionResultMap">
+        SELECT
+        ps_collection.collection_photo_location
+        FROM
+        ps_collection
+        INNER JOIN ps_user ON ps_collection.collection_userid = ps_user.user_id
+        WHERE
+        ps_collection.collection_userid = #{userId}
+    </select>
     <!--<sql id="ps_collection_Column">-->
         <!--ps_collection.collection_id as PsCollection0-->
         <!--,ps_collection.collection_userid as PsCollection1-->

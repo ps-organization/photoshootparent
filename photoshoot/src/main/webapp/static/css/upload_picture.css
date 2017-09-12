@@ -40,7 +40,7 @@
 .upload_tips {
 
 }
-
+/*提示用户要上传文件的样式*/
 .left_part .photo_list .upload_tips .upload_pic {
     height: 208px;
     padding: 47px 0;

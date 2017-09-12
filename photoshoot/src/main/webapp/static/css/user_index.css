@@ -160,7 +160,33 @@ header {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+/*.left_part {*/
+    /*!*margin-top: 50px;*!*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*right: 300px;*/
+    /*bottom: 0;*/
+    /*height: 100%;*/
+    /*padding: 22px 30px 80px;*/
+    /*!*overflow-y: auto;*!*/
+/*}*/
+/*图片之间的距离等*/
+ .pic_part .photo_list li {
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    height: 250px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    vertical-align: top;
+}
+/*用户图片的的样式*/
+.pic_part .photo_list li img {
+    width: 250px
 
+}
 /*脚页部分*/
 footer {
     width: 100%;

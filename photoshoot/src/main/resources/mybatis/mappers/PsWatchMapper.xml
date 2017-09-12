@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.instrantes.dao.PsWatchDao">
-    <resultMap id="result_PsWatch_Map" type="PsWatch">
-        <result column="PsWatch0" property="watchUserid"/>
-        <result column="PsWatch1" property="watchFansid"/>
-    </resultMap>
-
-
     <resultMap id="fansCountResultMap" type="PsWatch">
         <result column="fan_sum" property="watchFansid"/>
         <association property="psUser" javaType="PsUser">
@@ -22,11 +16,26 @@
             <result column="user_name" property="userName"/>
         </association>
     </resultMap>
+
+    <resultMap id="psWatchFansResultMap" type="PsWatch">
+        <association property="psUser" javaType="PsUser">
+            <id column="user_id" property="userId"/>
+            <result column="user_name" property="userName"/>
+            <result column="user_headphoto_location" property="userHeadphotoLocation"/>
+        </association>
+    </resultMap>
+    <resultMap id="psWatchUserResultMap" type="PsWatch">
+        <association property="psUser" javaType="PsUser">
+            <id column="user_id" property="userId"/>
+            <result column="user_name" property="userName"/>
+            <result column="user_headphoto_location" property="userHeadphotoLocation"/>
+        </association>
+    </resultMap>
     <!--<sql id="ps_watch_Column">-->
     <!--ps_watch.watch_userid as PsWatch0-->
     <!--,ps_watch.watch_fansid as PsWatch1-->
     <!--</sql>-->
-
+    <!--通过当前用户id,获取粉丝数-->
     <select id="getPsWatchFansCountByPsUserId" resultMap="fansCountResultMap">
         SELECT
             ps_user.user_id,
@@ -38,7 +47,7 @@
         WHERE
             ps_user.user_id = #{user.id}
     </select>
-
+    <!--通过当前用户id,获取关注数-->
     <select id="getPsWatchUserCountByPsUserId" resultMap="watchUserCount">
         SELECT
             ps_user.user_id,
@@ -51,6 +60,44 @@
             ps_user.user_id =  #{user.id}
     </select>
 
+    <!--通过当前用户id,获取所有粉丝头像姓名简略信息-->
+    <select id="getPsWatchFans" resultMap="psWatchFansResultMap">
+        SELECT
+            ps_user.user_id,
+            ps_user.user_name,
+            ps_user.user_headphoto_location
+        FROM
+            ps_user
+        WHERE
+            ps_user.user_id IN (
+                SELECT
+                    ps_watch.watch_fansid
+                FROM
+                    ps_watch
+                INNER JOIN ps_user ON ps_watch.watch_userid = ps_user.user_id
+                WHERE
+                    ps_user.user_id = #{user.id}
+            )
+    </select>
+    <!--通过当前用户id,获取所有关注头像姓名简略信息-->
+    <select id="getPsWatchUser" resultMap="psWatchUserResultMap">
+        SELECT
+            ps_user.user_id,
+            ps_user.user_name,
+            ps_user.user_headphoto_location
+        FROM
+            ps_user
+        WHERE
+            ps_user.user_id IN (
+                SELECT
+                    ps_watch.watch_userid
+                FROM
+                    ps_user
+                INNER JOIN ps_watch ON ps_user.user_id = ps_watch.watch_fansid
+                WHERE
+                    ps_user.user_id = #{user.id}
+            )
+    </select>
     <!--<select id="getPsWatchRowCount" resultType="java.lang.Long">-->
     <!--select count(*) from ps_watch-->
     <!--</select>-->

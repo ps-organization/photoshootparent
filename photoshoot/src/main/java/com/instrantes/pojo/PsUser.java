@@ -1,5 +1,7 @@
 package com.instrantes.pojo;
 
+import java.util.List;
+
 public class PsUser {
     private Integer userId;
     private String userIsDelete;
@@ -15,8 +17,6 @@ public class PsUser {
     private java.util.Date userCreatetime;
 
     private PsRole psRole;
-    private PsCollection psCollection;
-
 
 
     public PsRole getPsRole() {
@@ -27,13 +27,6 @@ public class PsUser {
         this.psRole = psRole;
     }
 
-    public PsCollection getPsCollection() {
-        return psCollection;
-    }
-
-    public void setPsCollection(PsCollection psCollection) {
-        this.psCollection = psCollection;
-    }
 
     public PsUser() {
         super();

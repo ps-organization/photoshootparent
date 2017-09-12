@@ -15,21 +15,23 @@ $(document).ready(function () {
     })
 
 
-    // 登录框
-    $(".close").click(function () {
-        $(".login-dialog").css("display", "none")
-    });
+    // 导航栏右侧登录,登录框
     $("#loginbtn").click(function () {
         $(".login-dialog").css("display", "block")
     });
-
-    // 注册框
     $(".close").click(function () {
-        $(".register-dialog").css("display", "none")
+        $(".login-dialog").css("display", "none")
     });
+
+
+    // 导航栏右侧注册,注册框
     $("#registerbtn").click(function () {
         $(".register-dialog").css("display", "block")
     });
+    $(".close").click(function () {
+        $(".register-dialog").css("display", "none")
+    });
+
 
     //    推荐标签
     $(".reco-tags li a").click(function () {
@@ -60,7 +62,6 @@ $(document).ready(function () {
     //
     //     });
     // });
-
 
 });
 

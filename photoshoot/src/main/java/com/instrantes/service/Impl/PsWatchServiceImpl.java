@@ -6,6 +6,8 @@ import com.instrantes.service.PsWatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PsWatchServiceImpl implements PsWatchService {
     @Autowired
@@ -28,4 +30,13 @@ public class PsWatchServiceImpl implements PsWatchService {
         this.psWatchDao = psWatchDao;
     }
 
+    //通过当前用户id,获取所有粉丝头像姓名简略信息
+    public List<PsWatch> getPsWatchFans(Integer id){
+        return psWatchDao.getPsWatchFans(id);
+
+    }
+    //通过当前用户id,获取所有关注头像姓名简略信息
+    public List<PsWatch> getPsWatchUser(Integer id){
+        return psWatchDao.getPsWatchUser(id);
+    }
 }

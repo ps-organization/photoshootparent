@@ -2,11 +2,13 @@ package com.instrantes.service.Impl;
 import com.instrantes.dao.PsRoleDao;
 import com.instrantes.pojo.PsRole;
 import com.instrantes.service.PsRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class PsRoleServiceImpl implements PsRoleService {
+    @Autowired
     private PsRoleDao psRoleDao;
 
 
