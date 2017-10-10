@@ -14,7 +14,6 @@ public class PsCollectionServiceImpl implements PsCollectionService {
     public long getPsCollectionRowCount(){
         return psCollectionDao.getPsCollectionRowCount();
     }
-
     @Override
     public PsCollection selectPsCollectionById(Integer id){
         return psCollectionDao.selectPsCollectionById(id);
@@ -42,6 +41,11 @@ public class PsCollectionServiceImpl implements PsCollectionService {
     //    根据用户id查询作品信息
     public List<PsCollection> selectPsCollectionByUserId (Integer id){
         return psCollectionDao.selectPsCollectionByUserId(id);
+    }
+    //    批量上传多个图片
+    @Override
+    public void batchInsertPsCollection(List<PsCollection> psCollectionList) {
+         psCollectionDao.batchInsertPsCollection(psCollectionList);
     }
 
     public PsCollectionDao getPsCollectionDao() {

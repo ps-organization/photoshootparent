@@ -6,6 +6,7 @@ import java.util.List;
 public interface PsCollectionService{
     long getPsCollectionRowCount();
     PsCollection selectPsCollectionById(Integer id);
+    void batchInsertPsCollection(List<PsCollection> psCollectionList);
     int insertPsCollection(PsCollection value);
     int insertNonEmptyPsCollection(PsCollection value);
     int deletePsCollectionById(Integer id);

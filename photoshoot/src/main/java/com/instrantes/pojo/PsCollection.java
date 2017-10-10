@@ -62,6 +62,8 @@ public class PsCollection {
         this.collectionPhotolocation = collectionPhotolocation;
     }
 
+
+
     public String getCollectionPhotoname() {
         return this.collectionPhotoname;
     }

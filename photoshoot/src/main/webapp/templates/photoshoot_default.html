@@ -9,7 +9,7 @@
     <script src="../static/js/jquery-3.2.1.js"></script>
     <script src="../static/js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="../static/js/psindex.js"></script>
-    <!--<script src="../static/js/bootstrap-3.3.7-dist/js/bootstrap-hover-dropdown.min.js"></script>-->
+    <script src="../static/js/loginstatus.js"></script>
 </head>
 
 
@@ -32,23 +32,22 @@
                         <li><a href="#">最新</a></li>
                         <li><a href="#">约拍</a></li>
                         <li><a href="#">关于我们</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" aria-expanded="false">发现 </a>
+                        <li class="dropdown" id="nav-find">
+                            <a href="#" class="dropdown-toggle" >发现 </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">最新活动</a></li>
-                                <li><a href="#">往期活动</a></li>
+                                 <li><a href="#">往期活动</a></li>
                                 <li><a href="#">随便看看</a></li>
-                                <li role="separator" class="divider"></li>
+                                <li class="divider"></li>
                                 <li><a href="#">下载APP</a></li>
-                                <li role="separator" class="divider"></li>
                                 <li><a href="#">商务合作</a></li>
                             </ul>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="javascript:;" id="loginbtn">登录</a></li>
-                        <li><a href="javascript:;" id="registerbtn">注册</a></li>
+                        <li id="login-li"><a href="javascript:;" id="loginbtn">登录</a></li>
+                        <li id="register-li"><a href="javascript:;" id="registerbtn">注册</a></li>
                     </ul>
                 </div><!-- 导航栏右侧 -->
             </div><!-- /.container-fluid -->
@@ -62,7 +61,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="wrapper"><!--主体部分-->
@@ -114,7 +112,6 @@
         </section>
     </div><!--主体部分-->
 
-
     <footer class="index-footer" id="index_footer"><!--脚页部分-->
         <!--关于我们-->
         <ul>
@@ -162,7 +159,8 @@
 
     <!--注册弹框-->
     <div class="register-dialog">
-        <form method="post" action="/PsUserController/register">
+        <!--<form method="post">-->
+         <!--<form method="post" action="/templates/user_default.html">-->
             <div class="logo">
                 <h3><img src="../img/psico.jpg" style="width: 30px"/> 影约 </h3>
             </div>
@@ -171,13 +169,13 @@
                 <!--<input class="input-place" name="account" autofocus="" required="" placeholder="手机号">-->
             <!--</div>-->
             <div class="form-group">
-                <input class="input-place" name="username" required="" placeholder="用户名">
+                <input class="input-place" id="username" name="username" required="" placeholder="用户名">
             </div>
             <div class="form-group">
-                <input class="input-place" type="password" name="password" required="" placeholder="密码">
+                <input class="input-place" type="password" id="password" name="password" required="" placeholder="密码">
             </div>
             <div class="form-group">
-                <input class="input-place" type="password" name="password" required="" placeholder="确认密码">
+                <input class="input-place" type="password" id="vpassword" name="password" required="" placeholder="确认密码">
             </div>
             <div class="form-group text-center">
                 <button id="regbtn" class="btn submit-btn btn-info">
@@ -186,7 +184,7 @@
             </div>
             <!--此处是关闭按钮-->
             <div class="close"></div>
-        </form>
+        <!--</form>-->
     </div>
 </div>
 

@@ -18,4 +18,6 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
         characterEncodingFilter.setInitParameter("forceEncoding", "true");
         characterEncodingFilter.addMappingForUrlPatterns(null, false, "/*");
     }
+
+
 }

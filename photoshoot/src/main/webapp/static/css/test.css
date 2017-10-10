@@ -1,0 +1,20 @@
+p .box {
+    width: 300px;
+    border: solid 1px #1221ff;
+    padding: 20px;
+}
+
+p.box:after {
+    border-top: 1px solid #916a35;
+    content: "";
+    height:  2px ;
+    color: #ff000c;
+    padding: 2px;
+    margin: 0 10px 0 0;
+    width: 90%;
+    display: block;
+}
+.bg{
+background-size: cover;
+background-position: center;
+}

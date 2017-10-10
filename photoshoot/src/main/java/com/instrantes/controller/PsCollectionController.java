@@ -1,14 +1,15 @@
 package com.instrantes.controller;
 
 import com.instrantes.pojo.PsCollection;
-import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsCollectionService;
+import com.instrantes.service.PsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,13 +17,43 @@ import java.util.List;
 public class PsCollectionController {
     @Autowired
     PsCollectionService psCollectionService;
+    @Autowired
+    PsUserService psUserService;
+
+    //    此处为获取当前用户id的方法
+    protected int getCurrentPsUserId() {
+        System.out.println( SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
+        return psUserService.selectPsUserUserIdByName(authentication.getName());
+    }
 
     //根据用户id查询作品的详情
     @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
     @ResponseBody
-    public List<PsCollection> selectPsCollectionByUserId (Integer id){
-        List<PsCollection> psCollectionList=psCollectionService.selectPsCollectionByUserId(1);
-        System.out.println(psCollectionList.get(1).getCollectionPhotolocation());
+    public List<PsCollection> selectPsCollectionByUserId(Integer id) {
+        List<PsCollection> psCollectionList = psCollectionService.selectPsCollectionByUserId(id);
         return psCollectionList;
     }
+
+
+    //    批量上传多个图片
+    @RequestMapping(value = "/publishPic", method = RequestMethod.POST)
+    @ResponseBody
+    public void batchInsertPsCollection(@RequestParam(value = "data") String picLocation[]) {
+
+        System.out.println("arrayList:" + picLocation);
+        System.out.println("arrayListSize:" + picLocation.length);
+        //组装成collection对象再放入集合中
+        List<PsCollection> psCollectionList = new ArrayList<>();
+        for (int i = 0, picLocationLen = picLocation.length; i < picLocationLen; i++) {
+            PsCollection psCollection = new PsCollection();
+            psCollection.setCollectionUserid(getCurrentPsUserId());
+            //此处为去掉域名存入数据库
+            String str=picLocation[i].substring(picLocation[i].length()-24);
+            psCollection.setCollectionPhotolocation(str);
+            psCollectionList.add(psCollection);
+        }
+         psCollectionService.batchInsertPsCollection(psCollectionList);
+    }
+
 }

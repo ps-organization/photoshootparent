@@ -4,7 +4,7 @@ $(document).ready(function () {
     $.get("/PsUserController/show", function (data) {
         //获取用户头像,用户名
         $('.info_name').html(data.userName);
-        $('.img-circle').attr('src', '../' + data.userHeadphotoLocation + '.jpg');
+        $('.img-circle').attr('src', '../' + data.userHeadphotoLocation);
         //此处没有var是声明全局变量
         userId = data.userId;
         //获取粉丝数目
@@ -23,8 +23,8 @@ $(document).ready(function () {
             console.log(data[0].psUser.userName);
             for (var i = 0; i < data.length; i++) {
                 $('.fans-list').append("<li class=\"fans-item\">\n" +
-                    "                    <p>" + data[i].psUser.userHeadphotoLocation + "</p>\n" +
-                    "                    <p>" + data[i].psUser.userName + "</p>\n" +
+                    "                    <p><a target='_blank' href='/templates/watchandfans.html?\"+data[i].psUser.userId+\"'><img class=\"img-circle\" src='../"+data[i].psUser.userHeadphotoLocation+"'></a></p>\n" +
+                    "                    <p><h4>" + data[i].psUser.userName + "</h4></p>\n" +
                     "                </li>")
             }
         });

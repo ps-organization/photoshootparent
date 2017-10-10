@@ -20,33 +20,28 @@ import java.util.List;
 @Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-
     @Autowired
     private PsUserDao psUserDao;
 //    private PsUserService psUserService;
-
     @Autowired
     private PsRoleDao psRoleDao;
-
 
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        PsUser psUser = null;
-        PsRole psRole=null;
-        psUser = psUserDao.selectPsUserByName(userName);
+        PsUser psUser = psUserDao.selectPsUserByName(userName);
         if (psUser == null) {
             System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
-        psRole = psRoleDao.selectUserRoleById(psUser.getUserId());
-        List<GrantedAuthority> authorities= new ArrayList<>();
+        PsRole psRole = psRoleDao.selectUserRoleById(psUser.getUserId());
+        List<GrantedAuthority> authorities = new ArrayList<>();
         System.out.println(psRole.getRoleName());
         authorities.add(new SimpleGrantedAuthority(psRole.getRoleName()));
-        System.out.println("authorities:"+authorities);
+        System.out.println("authorities:" + authorities);
 
-        return new User(psUser.getUserName(), psUser.getUserPassword(),authorities);
+        return new User(psUser.getUserName(), psUser.getUserPassword(), authorities);
 //                psUser.getUserIsDelete().equals("N"), true, true, true, authorities);
 
 //

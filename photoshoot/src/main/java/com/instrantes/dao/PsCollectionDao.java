@@ -9,6 +9,9 @@ public interface PsCollectionDao{
     long getPsCollectionRowCount();
 
     PsCollection selectPsCollectionById(Integer id);
+//    批量上传多个图片
+    void batchInsertPsCollection(@Param("psCollectionList") List<PsCollection> psCollectionList);
+
     int insertPsCollection(PsCollection value);
     int insertNonEmptyPsCollection(PsCollection value);
     int deletePsCollectionById(Integer id);

@@ -4,6 +4,7 @@ import com.instrantes.pojo.PsWatch;
 import com.instrantes.service.PsWatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,4 +30,5 @@ public class PsWatchController {
     public List<PsWatch> getPsWatchUser(Integer id) {
         return psWatchService.getPsWatchUser(id);
     }
+
 }

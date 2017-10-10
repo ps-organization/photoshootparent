@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/file")
@@ -32,8 +31,6 @@ public class FileUploadController {
     private String fildUpload(HttpServletResponse response, MultipartHttpServletRequest f,
                               HttpServletRequest request) throws Exception {
         MultipartFile file = f.getFile("file");
-
-
         //获得物理路径webapp所在路径+"/WEB-INF/upload",放在web-inf是出于安全考虑
 //        String pathRoot = request.getSession().getServletContext().getRealPath("/WEB-INF/upload/images");
 
@@ -74,7 +71,7 @@ public class FileUploadController {
             data.put("height", String.valueOf(srcHeight));
             data.put("scale", ImgUtils.imgScale(srcWidth, srcHeight, 300, 300));
             data.put("style", srcWidth >= srcHeight ? "width" : "height");/*图片等比例*/
-            ObjectMapper mapper = new ObjectMapper();
+            ObjectMapper mapper = new ObjectMapper();//用于json的转换
             String json = mapper.writeValueAsString(data);
             return json;
 //            return pic_path;

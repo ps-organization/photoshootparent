@@ -4,7 +4,6 @@ package com.instrantes.controller;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -37,7 +36,7 @@ public class ImageUploadController {
         //3   创建一个文件上传解析器
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setHeaderEncoding("UTF-8");
-
+        Map<String, Object> map = new HashMap<String, Object>(); //创建一个集合为数据存储做准备
         List<FileItem> fileItems = upload.parseRequest(request); // 接收全部内容,此处该处理错误的
         Iterator<FileItem> iter = fileItems.iterator();//所有的表单项
         while (iter.hasNext()) {
@@ -64,10 +63,19 @@ public class ImageUploadController {
                 }
                 File savedFile = new File(dir, fileName);
                 item.write(savedFile);
+
+//                此处为读取图片
+                BufferedImage bi = ImageIO.read(new File(uploadPath + path + fileName));
+                int srcWidth = bi.getWidth();
+                int srcHeight = bi.getHeight();
+                String pathRootSec = "http://localhost:8080/upload/images";
+                String pic_path = pathRootSec + path + fileName;
+//                存储数据
+                map.put("path", pic_path);
+                map.put("width", String.valueOf(srcWidth));
+                map.put("height", String.valueOf(srcHeight));
             }
         }
-        Map<String, Object> map = new HashMap<String, Object>();
-//            map.put("show", show);
         return JSON.toJSONString(map);
     }
 

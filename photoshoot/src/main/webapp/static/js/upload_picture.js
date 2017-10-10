@@ -6,7 +6,6 @@ $(document).ready(function () {
         var ffileTags = document.getElementById('file').files;
         // liID为图片的id
         liID = "li_index_" + count;
-        console.log("lenth:" + ffileTags.length);
         //判断没有文件,一个文件还是多个
         if (ffileTags.length == 0) {
             return false;
@@ -14,7 +13,6 @@ $(document).ready(function () {
             formData.append("file", ffileTags[0]);
             // formData.append("token", token_value);
             // var imgurl =  ffile.getAsDataURL();
-            console.log(count);
             // 创建临时图片显示的url
             var src = window.URL.createObjectURL(ffileTags[0]);
             //创建图片相应的节点.为图片装上src,并显示
@@ -51,11 +49,14 @@ $(document).ready(function () {
             },
             success: function (res) {
                 // 请求成功
-                console.log("upload success!")
-
-                //根据后台返回传送成功的标志此处去掉图片的透明度
-                //此时图片已上传完毕,去掉透明度
-                // $('#test_img').css("opacity", "1");
+                console.log("upload success!");
+                // 将字符串转换成对象
+                var obj = $.parseJSON(res);
+                // 此处为隐藏域，添加value(图片位置)
+                for (var i = count - ffileTags.length; i < count; i++) {
+                    var $liIndex = "li_index_" + i;
+                    $('#' + $liIndex + ' input').val(obj.path);
+                }
             },
             error: function (res) {
                 // 请求失败
@@ -67,7 +68,41 @@ $(document).ready(function () {
 //此处起初是为了清空formdata中的文件,但不起作用,其实已经通过new在事件中l解决了，但如果为空是否会被容易回收，提高性能?
 //     document.getElementById('file').value="";
 
+    // 点击发布照片按钮触发,获取所有隐藏域
+    $('#publish-pic').click(function () {
+        var $picLocation = $('.content .left_part .photo_list li input');
+        var picArray = new Array();
+        //此处需要额外注意的是，上传样式出也有一个input，因此需要减1
+        for (var i = 0; i < $picLocation.length-1; i++) {
+            picArray[i] = $picLocation[i].value;
+        }
+        console.log("a:"+picArray);
+        console.log("alen:"+picArray.length);
+        console.log("json:"+JSON.stringify(picArray));
+        $.ajax({
+            url: "/collection/publishPic",
+            type: "POST",
+            // data: picArray,
+            //阻止深度序列化
+            traditional:true,
+            data:{
+                data:picArray
+            },
+            // contentType : "application/json",
+            success: function (res) {
+                alert("上传成功");
+                setTimeout(function(){
+                    // 用replace防止用户后退
+                    window.location.replace('http://localhost:8080/templates/user_default.html');
+                }, 2000);
+            },
+            error: function (res) {
+
+            }
+        });
+    });
 });
+
 
 function uploadd(e) {       //类似这种写法 xhr.upload.onprogress=function(e){}
     if (e.lengthComputable) {
@@ -99,10 +134,11 @@ function outLucency() {
 
 //创建图片的节点以及给图片添加，src和id
 function creatImage(src, count) {
-    var id="li_index_"+count;
+    var id = "li_index_" + count;
 
     $('.upload_tips').before("<li class=\"photo-item\" id=\"" + id + "\" style=\"\">\n" +
         "<i name=\"progress\" class=\"icon-add\">已上传：</i>\n" +
         "<img src=\"" + src + "\" style=\"width: 250px;opacity: 0.4;\"/>\n" +
+        "<input type=\"hidden\" value=\"\" id=\"" + count + "\" />\n" +
         "</li>");
 }

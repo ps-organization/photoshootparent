@@ -1,21 +1,21 @@
 var timeout;
 $(document).ready(function () {
 
-    $('.dropdown').mouseover(function () {
+    $('#nav-find').mouseover(function () {
         clearTimeout(timeout);
-        //对于服务器端进行交互延迟90ms
+        //交互延迟90ms
         timeout = setTimeout(function () {
-            $('.dropdown').addClass("open");
-        },90);
+            $('#nav-find').addClass("open");
+        }, 90);
     }).mouseout(function () {
         clearTimeout(timeout);
         timeout = setTimeout(function () {
-            $('.dropdown').removeClass("open");
-        },90);
+            $('#nav-find').removeClass("open");
+        }, 90);
     })
 
 
-    // 导航栏右侧登录,登录框
+    // 导航栏右侧,打开或关闭登录框
     $("#loginbtn").click(function () {
         $(".login-dialog").css("display", "block")
     });
@@ -24,7 +24,7 @@ $(document).ready(function () {
     });
 
 
-    // 导航栏右侧注册,注册框
+    // 导航栏右侧,打开或关闭注册框
     $("#registerbtn").click(function () {
         $(".register-dialog").css("display", "block")
     });
@@ -32,6 +32,26 @@ $(document).ready(function () {
         $(".register-dialog").css("display", "none")
     });
 
+    //点击注册按钮提交表单
+    $('#regbtn').click(function () {
+        var userName = $('#username').val();
+        var userPassword = $('#vpassword').val();
+        if (userName == "" || userName == null) {
+            //跳出该函数
+            return false;
+        }
+        var user = {"userName": userName, "userPassword": userPassword};
+        $.ajax({
+            url: "/PsUserController/newuser",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify(user),
+            success: function (res) {
+                alert("upload success!");
+                window.location.href="/templates/user_default.html";
+            }
+        })
+    });
 
     //    推荐标签
     $(".reco-tags li a").click(function () {
@@ -51,18 +71,6 @@ $(document).ready(function () {
             pics[i].style.cssText = "background-image:" + uurl;
         }
     })
-    //鼠标悬停导航栏显示
-    // $("[data-toggle='dropdown']").popover();
-
-    // $('#logbtn').submit(function () {
-    //     alert("dsfsd");
-    //     var account=$("input[name='account']").val();
-    //     console.log(account);
-    //     $.get("/PsUserController/check", {userName: account}, function (data) {
-    //
-    //     });
-    // });
-
 });
 
 

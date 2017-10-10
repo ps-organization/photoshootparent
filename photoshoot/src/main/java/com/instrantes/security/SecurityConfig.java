@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -31,7 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-
 //    InMemoryAuthenticationProvider
 
     @Bean
@@ -44,7 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.inMemoryAuthentication().withUser("bill").password("abc123").roles("ADMIN");
     }
 
@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/templates/user_default.html").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/templates/fileupload.html").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/templates/search.html").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/templates/upload_picture.html").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/show").authenticated()//authenticated()表示允许过的用户访问
                 .and()//配置登录页面
                 .formLogin().loginPage("/templates/photoshoot_default.html")//登录页面的访问路径
@@ -67,9 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/PsUserController/initUser")//登录成功后默认跳转的路径
                 .and()
                 .logout()//用户退出操作
-                .logoutUrl("/logout")//用户退出所访问的路径，需要使用Post方式
-                .permitAll()
-//                .logoutSuccessUrl("/login?logout=true")
+                .logoutUrl("/logout").permitAll()//用户退出所访问的路径，需要使用Post方式,LogoutFilter拦截的路径
+                .logoutSuccessUrl("/templates/photoshoot_default.html")//用户退出后显示的界面
                 .and()
                 .authorizeRequests()
 //                    //定义路径保护的配置方法
@@ -79,8 +79,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
                 .rememberMe()//启用记住我功能
-//                .alwaysRemember(true)
+//                .alwaysRemember(true)      //开启后会造成UsernameNotFoundException，暂未处理
                 .tokenValiditySeconds(86400);
+//                .rememberMeParameter("remember-me")//登陆时是否激活记住我功能的参数名字，在登陆页面有展示
+//                .rememberMeCookieName("workspace");//cookies的名字，登陆后可以通过浏览器查看cookies名字;
     }
 
 
@@ -109,6 +111,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        auth.userDetailsService(userDetailsService);      //去掉该处，已用自定义的daoAuthenticationProvider
     }
 
+    //Override method authenticationManagerBean in WebSecurityConfigurerAdapter
+    //to expose the AuthenticationManager built using configure(AuthenticationManagerBuilder) as a Spring bean:
+    //此处我的理解是在xml中配置一个bean,或是开启一个别名为PsUser中Controller里面的AuthenticationManager注入做准备
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }
 
 

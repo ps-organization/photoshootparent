@@ -16,7 +16,6 @@
         <result column="PsUser11" property="userCreatetime"/>
     </resultMap>
 
-
     <!--<sql id="ps_user_Column">-->
     <!--ps_user.user_id as PsUser0-->
     <!--,ps_user.user_is_delete as PsUser1-->
@@ -42,23 +41,34 @@
     <!--</select>-->
 
 
-    <select id="selectPsUserById" parameterType="java.lang.Integer" resultMap="PsUserResultMap">
-        select
-        *
-        from ps_user
-        where ps_user.user_id = #{id}
+    <select id="selectPsUserById" parameterType="java.lang.Integer" resultType="PsUser">
+        SELECT
+        ps_user.user_name,
+            ps_user.user_headphoto_location
+        FROM
+            ps_user
+        WHERE
+            ps_user.user_id = #{id}
     </select>
 
-    <select id="selectPsUserByName" parameterType="java.lang.String" resultMap="PsUserResultMap">
+    <select id="selectPsUserByName" parameterType="java.lang.String" resultType="PsUser">
         SELECT
             *
         FROM
             ps_user
         WHERE
-	  ps_user.user_name =#{userName}
+	        ps_user.user_name =#{userName}
     </select>
 
-
+    <!--根据用户名只获取userId-->
+    <select id="selectPsUserUserIdByName" resultType="java.lang.Integer">
+        SELECT
+            ps_user.user_id
+        FROM
+            ps_user
+        WHERE
+            ps_user.user_name = #{userName}
+    </select>
 
 
     <insert id="insertPsUser" parameterType="PsUser">

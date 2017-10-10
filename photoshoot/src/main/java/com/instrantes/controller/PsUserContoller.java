@@ -6,14 +6,19 @@ import com.instrantes.pojo.PsWatch;
 import com.instrantes.service.PsUserService;
 import com.instrantes.service.PsWatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -27,14 +32,24 @@ public class PsUserContoller {
     private PsUserDao psUserDao;
     @Autowired
     private PsUserService psUserService;
+    //此处是用户注册后登录的关键点
+    @Autowired
+    protected AuthenticationManager authenticationManager;
 
-//    加密方法，用于对注册时用户密码加密
-    private void encryptPassword(PsUser psUser) {
-        String password = psUser.getUserPassword();
-        password = new BCryptPasswordEncoder().encode(password);
+//    加密方法，用于对注册时用户密码加密,并返回原本的密码
+    private String encryptPassword(PsUser psUser) {
+        String password ;
+        String oldPassword = psUser.getUserPassword() ;
+        password = new BCryptPasswordEncoder().encode(oldPassword);
         psUser.setUserPassword(password);
+        return oldPassword;
     }
-
+    //    此处为获取当前用户id的方法
+    protected int getCurrentPsUserId() {
+        System.out.println( SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
+        return psUserService.selectPsUserUserIdByName(authentication.getName());
+    }
     @RequestMapping(value = "/testuser", method = RequestMethod.GET)
     public String setForm() {
         return "testuser";
@@ -52,7 +67,6 @@ public class PsUserContoller {
         PsUser psUser = psUserService.selectPsUserById(id);
         return psUser;
     }
-
     //    根据userName查询PsUser
     @RequestMapping(value = "/check", method = RequestMethod.GET)
     @ResponseBody
@@ -85,6 +99,14 @@ public class PsUserContoller {
         return psWatch;
     }
 
+    //get方式，通过id来查询watch以及fan用户部分信息
+    @RequestMapping(value = "/psUser/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public PsUser getPsWatchDetail(@PathVariable("id")Integer id) {
+        PsUser psUser=psUserService.selectPsUserById(id);
+        System.out.println(psUser.getUserName());
+        return psUser;
+    }
 
     //    插入PsUser
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -98,29 +120,40 @@ public class PsUserContoller {
         return flag;
     }
 
-
     //新插入PsUser
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     @ResponseBody
-    public int newPsUser(String userName, String userPassword) {
-        PsUser psUser = new PsUser();
-        psUser.setUserName(userName);
+    public int newPsUser(@RequestBody PsUser psUser,HttpServletRequest request) {
 //        加密用户密码
-        encryptPassword(psUser);
+        String oldPassword=encryptPassword(psUser);
 //        判断插入是否成功
         int flag = psUserService.insertPsUser(psUser);
+        System.out.println("已创建用户:"+psUser.getUserName());
+        //此处用来注册后的自动登录,增加该注册用户的验证和授权
+        UsernamePasswordAuthenticationToken token=new UsernamePasswordAuthenticationToken(psUser.getUserName(),oldPassword);
+        request.getSession();
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
         return flag;
     }
 
+//    //根据用户id查询作品的详情
+//    @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
+//    @ResponseBody
+//    public PsUser selectPsCollectionByUserid(Integer userId) {
+//        PsUser psUser=psUserService.selectPsCollectionByUserid(1);
+//        System.out.println(psUser);
+//        return psUser;
+//    }
 
-    //根据用户id查询作品的详情
-    @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
-    @ResponseBody
-    public PsUser selectPsCollectionByUserid(Integer userId) {
-        PsUser psUser=psUserService.selectPsCollectionByUserid(1);
-        System.out.println(psUser);
-        return psUser;
-    }
-
-
+    //根据用户id查询关注id
+//    @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
+//    @ResponseBody
+//    public PsUser selectPsWatchIdByUserId(Integer userId) {
+//        PsUser psUser=psUserService.selectPsCollectionByUserid(1);
+//        System.out.println(psUser);
+//        return psUser;
+//    }
+    //根据用户id查询粉丝id
 }

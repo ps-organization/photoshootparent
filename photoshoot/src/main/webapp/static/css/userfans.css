@@ -1,0 +1,15 @@
+/*头像之间的距离等*/
+.pic_part .watch-list li {
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    vertical-align: top;
+}
+/*包裹在图片外的链接标签*/
+.pic_part .watch-list li a {
+    display: inline-block;
+}

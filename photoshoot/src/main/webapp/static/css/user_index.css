@@ -68,7 +68,15 @@ header {
     position: relative;
 }
 
-.personal_banner .personal_background .user_info .user_headpicture img {
+/*.personal_banner .personal_background .user_info .user_headpicture img {*/
+/*width: 100px;*/
+/*height: 100px;*/
+/*border: solid 1px rgba(255, 255, 255, .1);*/
+/*-webkit-border-radius: 50px;*/
+/*-moz-border-radius: 50px;*/
+/*border-radius: 50px;*/
+/*}*/
+.img-circle {
     width: 100px;
     height: 100px;
     border: solid 1px rgba(255, 255, 255, .1);
@@ -134,7 +142,7 @@ header {
     font-weight: bold;
 }
 
-.user_function .user_tags > li  a{
+.user_function .user_tags > li a {
     font-size: 19px;
     font-weight: normal;
     text-transform: none;
@@ -148,6 +156,7 @@ header {
     color: #00351d;
     cursor: pointer;
 }
+
 /*分割线*/
 .cust_line {
     border-bottom: 1px solid #222222;
@@ -156,23 +165,24 @@ header {
 }
 
 /*显示图片处*/
-.pic_part{
+.pic_part {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
 /*.left_part {*/
-    /*!*margin-top: 50px;*!*/
-    /*position: absolute;*/
-    /*left: 0;*/
-    /*top: 0;*/
-    /*right: 300px;*/
-    /*bottom: 0;*/
-    /*height: 100%;*/
-    /*padding: 22px 30px 80px;*/
-    /*!*overflow-y: auto;*!*/
+/*!*margin-top: 50px;*!*/
+/*position: absolute;*/
+/*left: 0;*/
+/*top: 0;*/
+/*right: 300px;*/
+/*bottom: 0;*/
+/*height: 100%;*/
+/*padding: 22px 30px 80px;*/
+/*!*overflow-y: auto;*!*/
 /*}*/
 /*图片之间的距离等*/
- .pic_part .photo_list li {
+.pic_part .photo_list li {
     list-style: none;
     position: relative;
     display: inline-block;
@@ -182,11 +192,13 @@ header {
     margin-bottom: 10px;
     vertical-align: top;
 }
+
 /*用户图片的的样式*/
 .pic_part .photo_list li img {
-    width: 250px
-
+    width: 250px;
+    /*height: 250px;*/
 }
+
 /*脚页部分*/
 footer {
     width: 100%;
@@ -199,26 +211,26 @@ footer {
     margin-top: 30px;
 }
 
-footer .user_footer{
+footer .user_footer {
     overflow: auto;
 }
 
-footer .user_footer ul{
+footer .user_footer ul {
     display: inline-block;
     list-style: none;
 }
-footer .user_footer ul li{
-    padding: 5px 0px 5px 0px ;
+
+footer .user_footer ul li {
+    padding: 5px 0px 5px 0px;
     outline: none;
     text-decoration: none;
 }
 
-
-footer .user_footer ul a{
+footer .user_footer ul a {
     outline: none;
     text-decoration: none;
 }
 
-footer .user_footer_sec{
+footer .user_footer_sec {
 
 }

@@ -3,7 +3,12 @@
     width: 1873px;
     height: 1854px;
 }
-
+.test{
+    height: 18px;
+}
+.testt{
+    height: inherit;
+}
 /*.test {*/
 /*background-image: url("../img/backg.jpg");*/
 /*background-size: 1900px 500px;*/
@@ -99,12 +104,11 @@ h1 {
 h2 {
     font-size: 24px;
     color: #FFF;
-    margin: 0;
+    margin: 10px 0px;
     font-weight: normal;
     text-align: center;
     max-width: 100%;
     line-height: 1.5em;
-
 }
 
 section.content {
@@ -119,7 +123,6 @@ section.content {
 }
 
 .recommend-line:before, .recommend-line:after, .get-more-line:before, .get-more-line:after {
-
     display: block;
     position: absolute;
     top: 28px;
@@ -244,7 +247,6 @@ footer {
 }
 
 .index-footer {
-
     background: transparent url(../../img/index/wallhaven-491315.webp) center 60% no-repeat;
     background-size: cover;
     padding-bottom: 26vw;

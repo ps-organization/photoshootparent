@@ -25,35 +25,15 @@ public class PsUserServiceImpl implements PsUserService {
         PsUser psUser=psUserDao.selectPsCollectionByUserid(userId);
         return psUser;
     }
-
-    public PsUser selectPsUserByName(String userName) {
-        return psUserDao.selectPsUserByName(userName);
-    }
-
     //    插入PsUser
     @Override
     public int insertPsUser(PsUser psUser) {
         return psUserDao.insertPsUser(psUser);
     }
 
-
+    //    根据用户名只获取userId
     @Override
-    public int insertNonEmptyPsUser(PsUser value) {
-        return 0;
-    }
-
-    @Override
-    public int deletePsUserById(Integer id) {
-        return 0;
-    }
-
-    @Override
-    public int updatePsUserById(PsUser enti) {
-        return 0;
-    }
-
-    @Override
-    public int updateNonEmptyPsUserById(PsUser enti) {
-        return 0;
-    }
+    public int selectPsUserUserIdByName(String userName) {
+        return psUserDao.selectPsUserUserIdByName(userName);
+}
 }
