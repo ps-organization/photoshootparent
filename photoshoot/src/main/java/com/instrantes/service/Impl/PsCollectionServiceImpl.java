@@ -10,34 +10,34 @@ import java.util.List;
 public class PsCollectionServiceImpl implements PsCollectionService {
     @Autowired
     private PsCollectionDao psCollectionDao;
-    @Override
-    public long getPsCollectionRowCount(){
-        return psCollectionDao.getPsCollectionRowCount();
-    }
-    @Override
-    public PsCollection selectPsCollectionById(Integer id){
-        return psCollectionDao.selectPsCollectionById(id);
-    }
-    @Override
-    public int insertPsCollection(PsCollection value){
-        return psCollectionDao.insertPsCollection(value);
-    }
-    @Override
-    public int insertNonEmptyPsCollection(PsCollection value){
-        return psCollectionDao.insertNonEmptyPsCollection(value);
-    }
-    @Override
-    public int deletePsCollectionById(Integer id){
-        return psCollectionDao.deletePsCollectionById(id);
-    }
-    @Override
-    public int updatePsCollectionById(PsCollection enti){
-        return psCollectionDao.updatePsCollectionById(enti);
-    }
-    @Override
-    public int updateNonEmptyPsCollectionById(PsCollection enti){
-        return psCollectionDao.updateNonEmptyPsCollectionById(enti);
-    }
+
+//    public long getPsCollectionRowCount(){
+//        return psCollectionDao.getPsCollectionRowCount();
+//    }
+//    @Override
+//    public PsCollection selectPsCollectionById(Integer id){
+//        return psCollectionDao.selectPsCollectionById(id);
+//    }
+//    @Override
+//    public int insertPsCollection(PsCollection value){
+//        return psCollectionDao.insertPsCollection(value);
+//    }
+//    @Override
+//    public int insertNonEmptyPsCollection(PsCollection value){
+//        return psCollectionDao.insertNonEmptyPsCollection(value);
+//    }
+//    @Override
+//    public int deletePsCollectionById(Integer id){
+//        return psCollectionDao.deletePsCollectionById(id);
+//    }
+//    @Override
+//    public int updatePsCollectionById(PsCollection enti){
+//        return psCollectionDao.updatePsCollectionById(enti);
+//    }
+
+//    public int updateNonEmptyPsCollectionById(PsCollection enti){
+//        return psCollectionDao.updateNonEmptyPsCollectionById(enti);
+//    }
     //    根据用户id查询作品信息
     public List<PsCollection> selectPsCollectionByUserId (Integer id){
         return psCollectionDao.selectPsCollectionByUserId(id);
@@ -47,11 +47,17 @@ public class PsCollectionServiceImpl implements PsCollectionService {
     public void batchInsertPsCollection(List<PsCollection> psCollectionList) {
          psCollectionDao.batchInsertPsCollection(psCollectionList);
     }
-
+    //查询所有作品信息
+    public List<PsCollection> selectAllCollection(){
+        return psCollectionDao.selectAllCollection();
+    }
+    //查询个人所有作品信息
+    public List<PsCollection> selectCollectionInfoByUserId(Integer userId) {
+        return psCollectionDao.selectCollectionInfoByUserId(userId);
+    }
     public PsCollectionDao getPsCollectionDao() {
         return this.psCollectionDao;
     }
-
     public void setPsCollectionDao(PsCollectionDao psCollectionDao) {
         this.psCollectionDao = psCollectionDao;
     }

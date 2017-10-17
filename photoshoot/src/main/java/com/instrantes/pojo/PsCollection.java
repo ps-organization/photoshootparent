@@ -1,4 +1,7 @@
 package com.instrantes.pojo;
+
+import com.instrantes.pojo.PsUser;
+
 public class PsCollection {
     private Integer collectionId;
     private Integer collectionUserid;
@@ -12,10 +15,16 @@ public class PsCollection {
     private Integer collectionFlag;
     private java.util.Date collectionCreatetime;
     private java.util.Date collectionUpdatetime;
+    //此处为新添加：作品所属用户、喜欢的总人数
+    private String userName;
+    private Integer likeCount;
+
+
     public PsCollection() {
         super();
     }
-    public PsCollection(Integer collectionId,Integer collectionUserid,Integer collectionTagid,String collectionPhotolocation,String collectionPhotoname,String collectionPhotointroduction,Object collectionPrice,String collectionPhotoinformation,String collectionAdress,Integer collectionFlag,java.util.Date collectionCreatetime,java.util.Date collectionUpdatetime) {
+
+    public PsCollection(Integer collectionId, Integer collectionUserid, Integer collectionTagid, String collectionPhotolocation, String collectionPhotoname, String collectionPhotointroduction, Object collectionPrice, String collectionPhotoinformation, String collectionAdress, Integer collectionFlag, java.util.Date collectionCreatetime, java.util.Date collectionUpdatetime) {
         super();
         this.collectionId = collectionId;
         this.collectionUserid = collectionUserid;
@@ -30,6 +39,7 @@ public class PsCollection {
         this.collectionCreatetime = collectionCreatetime;
         this.collectionUpdatetime = collectionUpdatetime;
     }
+
     public Integer getCollectionId() {
         return this.collectionId;
     }
@@ -61,7 +71,6 @@ public class PsCollection {
     public void setCollectionPhotolocation(String collectionPhotolocation) {
         this.collectionPhotolocation = collectionPhotolocation;
     }
-
 
 
     public String getCollectionPhotoname() {
@@ -128,4 +137,20 @@ public class PsCollection {
         this.collectionUpdatetime = collectionUpdatetime;
     }
 
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Integer getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
+    }
 }

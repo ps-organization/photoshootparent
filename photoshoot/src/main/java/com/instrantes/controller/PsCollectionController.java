@@ -28,7 +28,7 @@ public class PsCollectionController {
     }
 
     //根据用户id查询作品的详情
-    @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
+    @RequestMapping(value = "/userCollections/showWatchUserCount", method = RequestMethod.GET)
     @ResponseBody
     public List<PsCollection> selectPsCollectionByUserId(Integer id) {
         List<PsCollection> psCollectionList = psCollectionService.selectPsCollectionByUserId(id);
@@ -40,7 +40,6 @@ public class PsCollectionController {
     @RequestMapping(value = "/publishPic", method = RequestMethod.POST)
     @ResponseBody
     public void batchInsertPsCollection(@RequestParam(value = "data") String picLocation[]) {
-
         System.out.println("arrayList:" + picLocation);
         System.out.println("arrayListSize:" + picLocation.length);
         //组装成collection对象再放入集合中
@@ -54,6 +53,20 @@ public class PsCollectionController {
             psCollectionList.add(psCollection);
         }
          psCollectionService.batchInsertPsCollection(psCollectionList);
+    }
+
+    //查询所有作品信息
+    @RequestMapping(value = "/allCollection", method = RequestMethod.POST)
+    @ResponseBody
+    public List<PsCollection> selectAllCollection() {
+        return  psCollectionService.selectAllCollection();
+    }
+
+    //查询个人所有作品信息
+    @RequestMapping(value = "/personCollection", method = RequestMethod.POST)
+    @ResponseBody
+    public List<PsCollection> selectCollectionInfoByUserId(Integer userId) {
+        return  psCollectionService.selectCollectionInfoByUserId(userId);
     }
 
 }
