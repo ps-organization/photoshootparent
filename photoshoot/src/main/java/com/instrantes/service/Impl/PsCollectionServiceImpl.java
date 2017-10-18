@@ -11,33 +11,6 @@ public class PsCollectionServiceImpl implements PsCollectionService {
     @Autowired
     private PsCollectionDao psCollectionDao;
 
-//    public long getPsCollectionRowCount(){
-//        return psCollectionDao.getPsCollectionRowCount();
-//    }
-//    @Override
-//    public PsCollection selectPsCollectionById(Integer id){
-//        return psCollectionDao.selectPsCollectionById(id);
-//    }
-//    @Override
-//    public int insertPsCollection(PsCollection value){
-//        return psCollectionDao.insertPsCollection(value);
-//    }
-//    @Override
-//    public int insertNonEmptyPsCollection(PsCollection value){
-//        return psCollectionDao.insertNonEmptyPsCollection(value);
-//    }
-//    @Override
-//    public int deletePsCollectionById(Integer id){
-//        return psCollectionDao.deletePsCollectionById(id);
-//    }
-//    @Override
-//    public int updatePsCollectionById(PsCollection enti){
-//        return psCollectionDao.updatePsCollectionById(enti);
-//    }
-
-//    public int updateNonEmptyPsCollectionById(PsCollection enti){
-//        return psCollectionDao.updateNonEmptyPsCollectionById(enti);
-//    }
     //    根据用户id查询作品信息
     public List<PsCollection> selectPsCollectionByUserId (Integer id){
         return psCollectionDao.selectPsCollectionByUserId(id);
