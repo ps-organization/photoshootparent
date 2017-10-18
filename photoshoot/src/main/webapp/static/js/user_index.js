@@ -4,7 +4,7 @@ $(document).ready(function () {
     $.get("/PsUserController/show", function (data) {
         //获取用户头像,用户名
         $('.info_name').html(data.userName);
-        $('.img-circle').attr('src', '../../img//headpic/' + data.userHeadphotoLocation);
+        $('.img-circle').attr('src', '../upload/' + data.userHeadphotoLocation);
         //此处没有var是声明全局变量
         userId = data.userId;
         //获取粉丝数目
@@ -19,7 +19,7 @@ $(document).ready(function () {
         $.post("/collection/userCollections", {id: userId}, function (data) {
             for (var i = 0; i < data.length; i++) {
                 //创建图片格式
-                var src ="../upload/images/"+ data[i].collectionPhotolocation;
+                var src ="../upload/"+ data[i].collectionPhotolocation;
                 $('.photo_list').append("<li class='photo-item' id='pic"+i+"'>\n" +
                     "                    <img src='" + src + "'/>\n" +
                     "                </li>");
@@ -34,10 +34,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    $('')
-
-
 //获取所有粉丝简略信息
     //获取所有关注简略信息
 });

@@ -11,7 +11,7 @@ $(document).ready(function () {
             //创建一个装头像和名字 的li放在导航栏,并获取用户头像,用户名;为登录状态处添加下拉菜单
             $('.navbar-right').append("<li id='loginstatus-li' class='dropdown'>" +
                 "<a href='/templates/user_default.html' id='loginstatus-a' class='dropdown-toggle'>" +
-                "<img class='img-circle 'style='width: 30px;height:30px;margin-right: 10px;' src=../"
+                "<img class='img-circle 'style='width: 30px;height:30px;margin-right: 10px;' src=../upload/"
                 +data.userHeadphotoLocation+">"+data.userName+"</a>" +
                 "<ul class='dropdown-menu'>\n" +
                 "                <li><a href='#'>个人作品</a></li>\n" +

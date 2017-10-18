@@ -374,7 +374,7 @@ footer ul li a {
     background-color: rgba(0, 0, 0, .5);
 }
 
-.register-dialog form {
+.register-dialog .register-form {
     padding: 30px;
     max-height: none;
     width: 520px;
@@ -387,7 +387,7 @@ footer ul li a {
     border-radius: 7px;
 }
 
-.register-dialog form .input-place {
+.register-dialog .register-form .input-place {
     margin-bottom: 10px;
     box-sizing: border-box;
     width: 100%;
@@ -405,7 +405,7 @@ footer ul li a {
     -webkit-transition: color .2s linear, border-color .3s linear;
 }
 
-.register-dialog form .close {
+.register-dialog .register-form .close {
     width: 36px;
     height: 36px;
     position: absolute;

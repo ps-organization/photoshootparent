@@ -35,7 +35,6 @@ public class PsCollectionController {
         return psCollectionList;
     }
 
-
     //    批量上传多个图片
     @RequestMapping(value = "/publishPic", method = RequestMethod.POST)
     @ResponseBody
