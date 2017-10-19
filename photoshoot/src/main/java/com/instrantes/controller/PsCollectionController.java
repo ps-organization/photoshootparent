@@ -58,6 +58,13 @@ public class PsCollectionController {
     @RequestMapping(value = "/allCollection", method = RequestMethod.POST)
     @ResponseBody
     public List<PsCollection> selectAllCollection() {
+        /**
+        *
+        *@param []
+        *@return java.util.List<com.instrantes.pojo.PsCollection>
+        *@date 2017/10/19
+        */
+
         return  psCollectionService.selectAllCollection();
     }
 
