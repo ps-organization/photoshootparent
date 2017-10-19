@@ -28,7 +28,7 @@ public class PsCollectionController {
     }
 
     //根据用户id查询作品的详情
-    @RequestMapping(value = "/userCollections/showWatchUserCount", method = RequestMethod.GET)
+    @RequestMapping(value = "/userCollections/userCollections", method = RequestMethod.POST)
     @ResponseBody
     public List<PsCollection> selectPsCollectionByUserId(Integer id) {
         List<PsCollection> psCollectionList = psCollectionService.selectPsCollectionByUserId(id);
@@ -46,8 +46,8 @@ public class PsCollectionController {
         for (int i = 0, picLocationLen = picLocation.length; i < picLocationLen; i++) {
             PsCollection psCollection = new PsCollection();
             psCollection.setCollectionUserid(getCurrentPsUserId());
-            //此处为去掉域名存入数据库
-            String str=picLocation[i].substring(picLocation[i].length()-24);
+            //此处为去掉域名存入数据库，但仅限后缀为3个字母的图片
+            String str=picLocation[i].substring(picLocation[i].length()-31);
             psCollection.setCollectionPhotolocation(str);
             psCollectionList.add(psCollection);
         }

@@ -7,7 +7,12 @@
         <result column="PsCollection3" property="collectionPhotoLocation"/>
         <result column="PsCollection4" property="collectionPhotoname"/>
     </resultMap>
-    
+    <resultMap id="userCollectionResultMap" type="PsCollection">
+        <id column="PsCollection0" property="collectionId"/>
+        <result column="PsCollection3" property="collectionPhotoLocation"/>
+        <result column="PsCollection4" property="collectionPhotoname"/>
+        <result column="ps_username" property="userName" />
+    </resultMap>
     <!--<resultMap id="collectionResultMap" type="PsCollection">-->
     <!--&lt;!&ndash;定义集合的映射,property为属性,javaType为java类型，ofType为集合中的类型 &ndash;&gt;-->
     <!--<collection property="psCollection" javaType="List" ofType="PsCollection" >-->
@@ -65,7 +70,7 @@
             ps_collection.collection_flag = '1'
     </select>
     <!--查询个人作品，图片名称，位置，发布者-->
-    <select id="selectCollectionInfoByUserId" resultMap="result_PsCollection_Map">
+    <select id="selectCollectionInfoByUserId" resultMap="userCollectionResultMap">
         SELECT
             ps_collection.collection_id,
             ps_collection.collection_photo_location,

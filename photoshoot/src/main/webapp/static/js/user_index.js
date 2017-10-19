@@ -16,7 +16,7 @@ $(document).ready(function () {
             $('.info_detail li:eq(1) a').html(" 关注 " + data.watchUserid);
         });
         //显示个人作品
-        $.post("/collection/userCollections", {id: userId}, function (data) {
+        $.post("/collection/personCollection", {id: userId}, function (data) {
             for (var i = 0; i < data.length; i++) {
                 //创建图片格式
                 var src ="../upload/"+ data[i].collectionPhotolocation;
