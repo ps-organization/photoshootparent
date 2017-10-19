@@ -50,6 +50,7 @@ public class PsCollectionController {
             String str=picLocation[i].substring(picLocation[i].length()-31);
             psCollection.setCollectionPhotolocation(str);
             psCollectionList.add(psCollection);
+            System.out.println("s");
         }
          psCollectionService.batchInsertPsCollection(psCollectionList);
     }
