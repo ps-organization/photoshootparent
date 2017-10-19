@@ -51,6 +51,7 @@ public class PsCollectionController {
             psCollection.setCollectionPhotolocation(str);
             psCollectionList.add(psCollection);
             System.out.println("s");
+            System.out.println("s");
         }
          psCollectionService.batchInsertPsCollection(psCollectionList);
     }
