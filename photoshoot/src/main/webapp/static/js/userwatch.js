@@ -15,6 +15,7 @@ $(document).ready(function () {
             $('.info_detail li:eq(1) a').html(" 关注 " + data.watchUserid);
         });
         //获取所有关注简略信息
+
         $.post("/psWatch/psWatchUser", {id: userId}, function (data) {
             for (var i = 0; i < data.length; i++) {
                 $('.watch-list').append("<li class='watch-item'>\n" +

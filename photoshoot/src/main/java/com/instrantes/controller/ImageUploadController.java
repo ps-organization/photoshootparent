@@ -36,10 +36,12 @@ public class ImageUploadController {
         //3   创建一个文件上传解析器
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setHeaderEncoding("UTF-8");
-        Map<String, Object> map = new HashMap<String, Object>(); //创建一个集合为数据存储做准备
+
         List<FileItem> fileItems = upload.parseRequest(request); // 接收全部内容,此处该处理错误的
         Iterator<FileItem> iter = fileItems.iterator();//所有的表单项
+        List<Map> listMap=new ArrayList<>();
         while (iter.hasNext()) {
+            Map<String, Object> map = new HashMap<String, Object>(); //创建一个集合为数据存储做准备,此处不能放在外面，否则map每次都会改变
             FileItem item = iter.next();//循环获得每个表单项
             //获得文件名,在某些操作系统上返回路径加文件名
             String name = item.getName();
@@ -74,9 +76,11 @@ public class ImageUploadController {
                 map.put("path", pic_path);
                 map.put("width", String.valueOf(srcWidth));
                 map.put("height", String.valueOf(srcHeight));
+                listMap.add(map);
             }
         }
-        return JSON.toJSONString(map);
+//        return JSON.toJSONString(listMap);
+        return JSON.toJSONString(listMap);
     }
 
 
