@@ -48,14 +48,13 @@ $(document).ready(function () {
                 return myXhr;
             },
             success: function (res) {
-                // 请求成功
-                console.log("upload success!");
                 // 将字符串转换成对象
                 var obj = $.parseJSON(res);
+                console.log("res:"+res);
                 // 此处为隐藏域，添加value(图片位置)
                 for (var i = count - ffileTags.length; i < count; i++) {
                     var $liIndex = "li_index_" + i;
-                    $('#' + $liIndex + ' input').val(obj.path);
+                    $('#' + $liIndex + ' input').val(obj[i].path);
                 }
             },
             error: function (res) {
@@ -75,6 +74,7 @@ $(document).ready(function () {
         //此处需要额外注意的是，上传样式出也有一个input，因此需要减1
         for (var i = 0; i < $picLocation.length-1; i++) {
             picArray[i] = $picLocation[i].value;
+            console.log("picHide:"+picArray[i]);
         }
         console.log("a:"+picArray);
         console.log("alen:"+picArray.length);
