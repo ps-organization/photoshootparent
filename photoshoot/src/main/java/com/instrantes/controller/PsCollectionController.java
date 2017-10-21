@@ -1,5 +1,8 @@
 package com.instrantes.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPObject;
 import com.instrantes.pojo.PsCollection;
 import com.instrantes.service.PsCollectionService;
 import com.instrantes.service.PsUserService;
@@ -73,12 +76,21 @@ public class PsCollectionController {
         return psCollectionService.selectAllCollection();
     }
 
-    //查询个人所有作品信息
+    //查询个人所有作品信息。此处用了json，因为前端传入的是Json字符串
     @RequestMapping(value = "/personCollection", method = RequestMethod.POST)
     @ResponseBody
-    public List<PsCollection> selectCollectionInfoByUserId( Integer userId) {
-        System.out.println("----------------id:"+userId);
-        return psCollectionService.selectCollectionInfoByUserId(userId);
+
+    public List<PsCollection> selectCollectionInfoByUserId( @RequestBody String userId) { // 该方法不能用Integer接收
+        /**
+        *根据用户的ID，获取个人用户的所有作品
+        *@param [userId]
+        *@return java.util.List<com.instrantes.pojo.PsCollection>
+        *@date 2017/10/21
+        */
+
+        JSONObject array=JSONObject.parseObject(userId);
+        System.out.println("----------------id:"+array.getInteger("userId"));
+        return psCollectionService.selectCollectionInfoByUserId(array.getInteger("userId"));
     }
 
 }
