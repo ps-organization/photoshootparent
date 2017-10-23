@@ -11,7 +11,5 @@ public class Test {
         //hang
         int m = scanner.nextInt();
         //shengyu
-
-
     }
 }
