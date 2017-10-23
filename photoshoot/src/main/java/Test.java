@@ -119,6 +119,6 @@ public class Test {
                 "{\"00\":\"zhangsan\",\"11\":\"lisi\",\"22\":\"wangwu\",\"33\":\"maliu\"}}";
         // JSONArray.parse()
         System.out.println(json);
-        System.out.println();
+
     }
 }
