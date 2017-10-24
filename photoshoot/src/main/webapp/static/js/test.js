@@ -1,19 +1,34 @@
 $().ready(function () {
-    $('#rgs-get-code').on('click', function() {
-        var _this = this;
-        var loopTime = 59;
-        // 修改样式
-        $(_this).prop('disabled', true).removeClass('aui-btn-warning').html('重新获取(60s)');
-        // 定时器
-        var countDown = setInterval(function() {
-            if (loopTime == 0) {
-                $(_this).prop('disabled', false).addClass('aui-btn-warning').html('获取验证码');
-                // 清除定时器
-                window.clearInterval(countDown);
-            }else {
-                $(_this).html('重新获取(' + loopTime + 's)');
-                loopTime -= 1;
-            }
-        }, 1000);
+    console.log($('#t-img').find('img').width());
+    console.log($('#t-img img').height());
+
+    $.post("/collection/allCollection", function (data) {
+        for(var i=0;i<data.length;i++) {
+            /*console.log("id:" + data[i].collectionId + ";location:" + data[i].collectionPhotolocation);
+            console.log("userName:" + data[i].userName + ";likeCount:" + data[i].likeCount);
+            console.log("collectionPhotoname:" + data[i].collectionPhotoname);*/
+            $('ul').append("<li>\n" +
+                "            <figure>\n" +
+                "                <a href=\"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575188.png\" target=\"_new\">\n" +
+                "                    <div class=\"pic\">\n" +
+                "                        <img class='lazyload' data-src=\"../upload/"+ data[i].collectionPhotolocation +"\" alt=\"\">\n" +
+                "                    </div>\n" +
+                "                </a>\n" +
+                "                <figcaption>\n" +
+                "                    <h3><a href=\"http://www.baidu.com\" target=\"_new\">namsdffffffffffffsdfffffffffsdfsdfsdfsfffffe</a></h3>\n" +
+                "                    <div class=\"status\">\n" +
+                "                        <div class=\"author\">\n" +
+                "                            <a href=\"#\"><img src=\"../20170727.jpg\" alt=\"\"><span>author</span></a>\n" +
+                "                        </div>\n" +
+                "                        <div class=\"collection\">\n" +
+                "                            <a href=\"#\"><img src=\"../20170727.jpg\" alt=\"\"><span>author</span></a>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                </figcaption>\n" +
+                "            </figure>\n" +
+                "        </li>");
+        }
+
     });
+
 });
