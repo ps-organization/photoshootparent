@@ -20,18 +20,18 @@ $().ready(function () {
                 $('ul').append("<li>\n" +
                     "            <figure>\n" +
                     "                <a href=\"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575188.png\" target=\"_new\">\n" +
-                    "                    <div class=\"pic\">\n" +
-                    "                        <img class='lazyload' data-src=\"../upload/"+ data[i].collectionPhotolocation +"\" alt=\"\">\n" +
+                    "                    <div class='pic'>\n" +
+                    "                        <img class='lazyload' data-src='../upload/"+ data[i].collectionPhotolocation +"' alt=''>\n" +
                     "                    </div>\n" +
                     "                </a>\n" +
                     "                <figcaption>\n" +
-                    "                    <h3><a href=\"http://www.baidu.com\" target=\"_new\">namsdffffffffffffsdfffffffffsdfsdfsdfsfffffe</a></h3>\n" +
-                    "                    <div class=\"status\">\n" +
-                    "                        <div class=\"author\">\n" +
-                    "                            <a href=\"#\"><img src='' alt=\"\"><span>author</span></a>\n" +
+                    "                    <h3><a href=\"http://www.baidu.com\" target='_new'>"+data[i].collectionPhotoname+"</a></h3>\n" +
+                    "                    <div class='status'>\n" +
+                    "                        <div class='author'>\n" +
+                    "                            <a href='#'><img src='' alt=''><span>"+data[i].userName+"</span></a>\n" +
                     "                        </div>\n" +
                     "                        <div class=\"collection\">\n" +
-                    "                            <a href=\"#\"><img src='../img/common/Collection.svg' alt=\"\"><span>author</span></a>\n" +
+                    "                            <a href='#'><img src='../img/common/Collection.svg' alt=''><span>"+data[i].likeCount+"</span></a>\n" +
                     "                        </div>\n" +
                     "                    </div>\n" +
                     "                </figcaption>\n" +

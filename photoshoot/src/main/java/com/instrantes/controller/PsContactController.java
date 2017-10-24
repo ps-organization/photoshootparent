@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Controller
-@RequestMapping(value = "/contactcollection")
+@RequestMapping(value = "/contact")
 public class PsContactController {
 
     @RequestMapping("/contact")
