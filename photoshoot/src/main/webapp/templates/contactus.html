@@ -26,7 +26,8 @@
     </ul>
     <!--联系-->
     <div class="container">
-        <div id="contact"  >
+        <form id="contact"  onsubmit="return contactAjax()">
+        <!--<form id="contact" >-->
             <h3>联系我们</h3>
             <fieldset>
                 <input placeholder="姓名" type="text" tabindex="1" required autofocus>
@@ -45,9 +46,9 @@
                 <textarea placeholder="您的建议（最多120字）" maxlength="120" tabindex="5" required></textarea>
             </fieldset>
             <fieldset>
-                <button name="submit" type="submit" id="contact-submit">确定</button>
+                <button name="submit" type="submit" id="contact-submit" >确定</button>
             </fieldset>
-        </div>
+        </form>
 
     </div>
 </div>

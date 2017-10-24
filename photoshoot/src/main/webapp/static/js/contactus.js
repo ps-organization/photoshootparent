@@ -2,7 +2,7 @@ $().ready(function () {
 
 
     // $('#contact-submit').on("click",contactAjax);
-    $('#contact-submit').click(contactAjax);
+    // $('#contact-submit').submit(contactAjax);
 
 });
 
