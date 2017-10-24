@@ -26,23 +26,23 @@ public class PsContactController {
 
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
-        String Updateformat = "提交日期：" + dateFormat.format( now );
+        String Updateformat = "提交日期：" + dateFormat.format(now);
         //System.out.println(Updateformat);
 
         StringBuffer strb = new StringBuffer();
-        FileWriter fw ;
+        FileWriter fw;
         PrintWriter pw;
         Map map = JSON.parseObject(str);
         Set set = map.entrySet();
-        for (Object s: set) {
+        for (Object s : set) {
             System.out.println("  " + s);
         }
         try {
             System.out.println();
-            fw = new FileWriter(PS_PATH+"/relation.txt", true);
+            fw = new FileWriter(PS_PATH + "/relation.txt", true);
             pw = new PrintWriter(fw);
             Iterator iter = set.iterator();
-            while(iter.hasNext()) {
+            while (iter.hasNext()) {
                 Map.Entry entry = (Map.Entry) iter.next();
                 strb.append(entry.getKey() + " : " + entry.getValue());
                 strb.append("\r\n");

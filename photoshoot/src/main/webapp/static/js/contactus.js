@@ -1,11 +1,16 @@
 $().ready(function () {
-    $('#contact-submit').onclick(
-        function () {
-            console.log("success");
-            // $.post("/contactCollection/contact", function (data) {
-            //
-            // }
-        }
-    );
 
+
+    $('#contact-submit').click(
+        contactAjax
+    )
+
+});
+
+function contactAjax() {
+    console.log("ss");
+    // $.post("/contact/contact", function (data) {
+    //         console.log(data);
+    //     }
+    // )
 }

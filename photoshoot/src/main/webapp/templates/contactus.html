@@ -26,13 +26,14 @@
     </ul>
     <!--联系-->
     <div class="container">
-        <form id="contact" action="" method="post">
+        <div id="contact" >
             <h3>联系我们</h3>
             <fieldset>
                 <input placeholder="姓名" type="text" tabindex="1" required autofocus>
             </fieldset>
             <fieldset>
-                <input placeholder="电子邮箱 xx@xx.xx" type="email" tabindex="2" required pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)">
+                <input placeholder="电子邮箱 xx@xx.xx" type="email" tabindex="2" required
+                       pattern="(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)">
             </fieldset>
             <fieldset>
                 <input placeholder="手机号码 11个数字" id="tel" type="tel" tabindex="3" required pattern="^1[0-9]{10}$">
@@ -44,11 +45,9 @@
                 <textarea placeholder="您的建议（最多120字）" maxlength="120" tabindex="5" required></textarea>
             </fieldset>
             <fieldset>
-                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">确定</button>
+                <button name="submit" type="submit" id="contact-submit">确定</button>
             </fieldset>
-
-        </form>
-
+        </div>
 
     </div>
 </div>
