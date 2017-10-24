@@ -6,7 +6,6 @@ import com.instrantes.pojo.PsWatch;
 import com.instrantes.service.PsUserService;
 import com.instrantes.service.PsWatchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,16 +13,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-
 @RequestMapping("/PsUserController")
 public class PsUserContoller {
     @Autowired
@@ -75,7 +73,7 @@ public class PsUserContoller {
         return psUser;
     }
 
-    //登录后，显示用户信息
+    //用户登录功能，显示用户信息，此处实际属于登陆状态的一个判断，如果没找到，则提醒需要登录
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     @ResponseBody
     public PsUser selectPsUserByName() {
@@ -84,6 +82,22 @@ public class PsUserContoller {
         PsUser psUser = psUserDao.selectPsUserByName(userDetails.getUsername());
         return psUser;
     }
+    //用户退出功能
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        /**
+        *用户退出功能，验证授权是否存在
+        *@param [request, response]
+        *@return java.lang.String
+        *@date 2017/10/23
+        */
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/templates/user_default.html";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+    }
+
     //登录后,显示用户粉丝数量
     @RequestMapping(value = "/showFansCount", method = RequestMethod.GET)
     @ResponseBody

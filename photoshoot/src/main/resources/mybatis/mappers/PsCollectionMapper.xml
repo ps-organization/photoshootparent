@@ -81,7 +81,7 @@
             ps_user
         WHERE
             ps_collection.collection_flag = 1
-        AND ps_user.user_id = ps_collection.collection_userid = 1;
+        AND ps_user.user_id = ps_collection.collection_userid = #{userId};
     </select>
     <!--批量上传多个图片-->
     <insert id="batchInsertPsCollection">

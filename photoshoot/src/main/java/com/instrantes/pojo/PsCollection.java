@@ -24,6 +24,11 @@ public class PsCollection {
         super();
     }
 
+    public PsCollection(Integer collectionUserid, String collectionPhotolocation) {
+        this.collectionUserid = collectionUserid;
+        this.collectionPhotolocation = collectionPhotolocation;
+    }
+
     public PsCollection(Integer collectionId, Integer collectionUserid, Integer collectionTagid, String collectionPhotolocation, String collectionPhotoname, String collectionPhotointroduction, Object collectionPrice, String collectionPhotoinformation, String collectionAdress, Integer collectionFlag, java.util.Date collectionCreatetime, java.util.Date collectionUpdatetime) {
         super();
         this.collectionId = collectionId;
