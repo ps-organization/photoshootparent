@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #6e8bec;
+}
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+ul.grid {
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    li {
+        width: 400px;
+        height: 300px;
+        position: relative;
+        margin: 10px;
+        border-radius: 5px;
+        figure {
+            background: #f7f7f7 url(https://afarkas.github.io/lazysizes/assets/imgs/loader.gif) no-repeat center;
+            -webkit-transition: 600ms opacity;
+            transition: 600ms opacity;
+            width: 400px;
+            height: 300px;
+            .pic {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: block;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-position: center center;
+                background-size: cover;
+            }
+        }
+        figcaption {
+            background: #ffffff;
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            h3 {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: #999999;
+                a {
+                    color: #999999;
+                    text-decoration: none;
+                    &:hover {
+                        color: #ccc;
+                        }
+                }
+            }
+            .status {
+                white-space: nowrap;
+                .author {
+                    padding: 0 5px 0 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .collection {
+                    position: absolute;
+                    right: 10px;
+                    bottom: 3px;
+                }
+                a {
+                    text-decoration: none;
+                }
+                img {
+                    vertical-align: middle;
+                    top: -1px;
+                    border: 0;
+                    margin: 0 3px 0 0;
+                    width: 20px;
+                    height: 20px;
+                }
+                span {
+                    padding-left: 3px;
+                }
+            }
+        }
+    }
+} 
+.pic img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    
+}
+.hoverUp {
+    li {
+        overflow: hidden;
+        &:hover .pic {
+            transform: translate(0, -50px);
+        }
+        &:hover figcaption {
+            transform: translate(0, 0);
+        }
+    }
+    figure .pic {
+        transition: 0.35s ease-in-out;
+    }
+    figcaption {
+        height: 50px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 0 15px;
+        box-sizing: border-box;
+        transform: translate(0, 50px);
+        transition: 0.35s ease-in-out;
+    }
+}

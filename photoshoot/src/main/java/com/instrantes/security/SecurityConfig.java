@@ -67,10 +67,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/templates/failure.html")//登录失败后跳转的路径
                 .defaultSuccessUrl("/PsUserController/initUser")//登录成功后默认跳转的路径
                 .and()
-                .logout()//用户退出操作
-                .logoutUrl("/logout").permitAll()//用户退出所访问的路径，需要使用Post方式,LogoutFilter拦截的路径
-                .logoutSuccessUrl("/templates/photoshoot_default.html")//用户退出后显示的界面
-                .and()
+                //此处已经写在controller里面，因此不用这个内容
+//                .logout()//用户退出操作
+//                .logoutUrl("/PsUserController/logout").permitAll()//用户退出所访问的路径，需要使用Post方式,LogoutFilter拦截的路径
+////                .logoutSuccessUrl("/templates/photoshoot_default.html")//用户退出后显示的界面
+//                .and()
                 .authorizeRequests()
 //                    //定义路径保护的配置方法
 //                         .antMatchers(HttpMethod.GET,"/admin")

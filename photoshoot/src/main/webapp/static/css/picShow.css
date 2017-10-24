@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #6e8bec;
+}
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul.grid {
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+}
+ul.grid li {
+  width: 400px;
+  height: 300px;
+  position: relative;
+  margin: 10px;
+  border-radius: 5px;
+}
+ul.grid li figure {
+  background: #f7f7f7 url(https://afarkas.github.io/lazysizes/assets/imgs/loader.gif) no-repeat center;
+  -webkit-transition: 600ms opacity;
+  transition: 600ms opacity;
+  width: 400px;
+  height: 300px;
+}
+ul.grid li figure .pic {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-position: center center;
+  background-size: cover;
+}
+ul.grid li figcaption {
+  background: #ffffff;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+}
+ul.grid li figcaption h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #999999;
+}
+ul.grid li figcaption h3 a {
+  color: #999999;
+  text-decoration: none;
+}
+ul.grid li figcaption h3 a:hover {
+  color: #ccc;
+}
+ul.grid li figcaption .status {
+  white-space: nowrap;
+}
+ul.grid li figcaption .status .author {
+  padding: 0 5px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+ul.grid li figcaption .status .collection {
+  position: absolute;
+  right: 10px;
+  bottom: 3px;
+}
+ul.grid li figcaption .status a {
+  text-decoration: none;
+}
+ul.grid li figcaption .status img {
+  vertical-align: middle;
+  top: -1px;
+  border: 0;
+  margin: 0 3px 0 0;
+  width: 20px;
+  height: 20px;
+}
+ul.grid li figcaption .status span {
+  padding-left: 3px;
+}
+.pic img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.hoverUp li {
+  overflow: hidden;
+}
+.hoverUp li:hover .pic {
+  transform: translate(0, -50px);
+}
+.hoverUp li:hover figcaption {
+  transform: translate(0, 0);
+}
+.hoverUp figure .pic {
+  transition: 0.35s ease-in-out;
+}
+.hoverUp figcaption {
+  height: 50px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  transform: translate(0, 50px);
+  transition: 0.35s ease-in-out;
+}

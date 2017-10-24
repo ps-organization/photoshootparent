@@ -64,7 +64,7 @@ public class PsCollectionController {
     @ResponseBody
     public List<PsCollection> selectAllCollection() {
         /**
-         *
+         *此处应该加入随机显示功能，或者显示最新的，而且需要（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
          *@param []
          *@return java.util.List<com.instrantes.pojo.PsCollection>
          *@date 2017/10/19

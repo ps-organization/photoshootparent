@@ -16,7 +16,7 @@ $(document).ready(function () {
                 "<ul class='dropdown-menu'>\n" +
                 "                <li><a href='#'>个人作品</a></li>\n" +
                 "                <li><a href='#'>个人资料</a></li>\n" +
-                "                <li><a href='#'>登出账户</a></li>\n" +
+                "                <li><a href='/PsUserController/logout'>登出账户</a></li>\n" +
                 "            </ul></li>")
 
             $('#loginstatus-li').mouseover(function () {
