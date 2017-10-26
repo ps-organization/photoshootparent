@@ -11,13 +11,10 @@ $().ready(function () {
             imgLoad();
         }
     });*/
-    //点赞功能的实现
-    function imgLoad() {
-        $.post("/collection/allCollection", function (data) {
 
-        });
-    }
 });
+
+//此处是全部图片加载的功能
 function imgLoad() {
     $.post("/collection/allCollection", function (data) {
         for(var i=0;i<data.length;i++) {
@@ -44,6 +41,7 @@ function imgLoad() {
                 "                </figcaption>\n" +
                 "            </figure>\n" +
                 "        </li>");
+            console.log(data[i].likeStatus);
         }
     });
 }

@@ -15,9 +15,10 @@ public class PsCollection {
     private Integer collectionFlag;
     private java.util.Date collectionCreatetime;
     private java.util.Date collectionUpdatetime;
-    //此处为新添加：作品所属用户、喜欢的总人数
+    //此处为新添加：作品所属用户、喜欢的总人数、当前用户是否喜欢
     private String userName;
     private Integer likeCount;
+    private Integer likeStatus;
 
 
     public PsCollection() {
@@ -157,5 +158,13 @@ public class PsCollection {
 
     public void setLikeCount(Integer likeCount) {
         this.likeCount = likeCount;
+    }
+
+    public Integer getLikeStatus() {
+        return likeStatus;
+    }
+
+    public void setLikeStatus(Integer likeStatus) {
+        this.likeStatus = likeStatus;
     }
 }

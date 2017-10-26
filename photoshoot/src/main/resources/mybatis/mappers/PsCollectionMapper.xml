@@ -24,12 +24,13 @@
     </resultMap>
     <!--查询所有作品信息-->
     <resultMap id="selectAllCollectionResultMap" type="PsCollection">
-        <id column="PsCollection0" property="collectionId"/>
+        <id column="collection_id" property="collectionId"/>
+        <result column="collection_userid" property="collectionUserid" />
         <result column="ps_username" property="userName" />
-        <result column="like_count" property="likeCount" />
-        <result column="PsCollection2" property="collectionUserid"/>
-        <result column="PsCollection3" property="collectionPhotoLocation"/>
         <result column="PsCollection4" property="collectionPhotoname"/>
+        <result column="PsCollection3" property="collectionPhotoLocation"/>
+        <result column="like_count" property="likeCount" />
+        <result column="like_status" property="likeCount" />
     </resultMap>
     <select id="selectPsCollectionByUserId" parameterType="java.lang.Integer" resultMap="collectionResultMap">
         SELECT
@@ -44,30 +45,32 @@
     <select id="selectAllCollection" resultMap="selectAllCollectionResultMap">
         SELECT
             ps_collection.collection_id,
-            (
-                SELECT
-                    ps_user.user_name
-                FROM
-                    ps_user
-                WHERE
-                    ps_user.user_id = ps_collection.collection_id
-            ) AS ps_username,
-            (
-                SELECT
-                    Count(l.like_id)
-                FROM
-                    ps_like AS l
-                WHERE
-                    l.like_status = 1
-                AND l.like_collectionid = ps_collection.collection_id
-            ) AS like_count,
             ps_collection.collection_userid,
+            ps_user.user_name,
+            ps_collection.collection_photoname,
             ps_collection.collection_photo_location,
-            ps_collection.collection_photoname
+            (
+                SELECT
+                    Count(ps_like.like_id)
+                FROM
+                    ps_like
+                WHERE
+                    ps_like.like_status = 1
+                AND ps_like.like_collectionid = ps_collection.collection_id
+            ) AS like_count,
+            user_like_status.like_status
         FROM
             ps_collection
-        WHERE
-            ps_collection.collection_flag = '1'
+        INNER JOIN ps_user ON ps_collection.collection_userid = ps_user.user_id
+        LEFT JOIN (
+            SELECT
+                ps_like.like_collectionid,
+                ps_like.like_status
+            FROM
+                ps_like
+            WHERE
+                ps_like.like_userid = #{likeUserId}
+        ) AS user_like_status ON ps_collection.collection_id = user_like_status.like_collectionid
     </select>
     <!--查询个人作品，图片名称，位置，发布者-->
     <select id="selectCollectionInfoByUserId" resultMap="userCollectionResultMap">

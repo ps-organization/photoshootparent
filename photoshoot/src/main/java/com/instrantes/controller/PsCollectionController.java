@@ -23,9 +23,16 @@ public class PsCollectionController {
 
     //    此处为获取当前用户id的方法
     protected int getCurrentPsUserId() {
+        /**
+         *此处需要加入验证，验证是否找到用户ID
+         *@param []
+         *@return int
+         *@date 2017/10/25
+         */
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return psUserService.selectPsUserUserIdByName(authentication.getName());
+        int flag = psUserService.selectPsUserUserIdByName(authentication.getName());
+        return flag;
     }
 
     //根据用户id查询作品的详情
@@ -51,8 +58,8 @@ public class PsCollectionController {
         for (int i = 0, picLocationLen = picLocation.length; i < picLocationLen; i++) {
             //此处为去掉域名存入数据库，但仅限后缀为3个字母的图片
             String str = new String(picLocation[i].substring(picLocation[i].length() - 31));
-            System.out.println("location:"+picLocation[i]);
-            System.out.println("id:"+currentUserId);
+            System.out.println("location:" + picLocation[i]);
+            System.out.println("id:" + currentUserId);
             psCollectionList.add(new PsCollection(currentUserId, str));
 //            System.out.println("location:" + psCollection.getCollectionPhotolocation());
         }
@@ -63,29 +70,32 @@ public class PsCollectionController {
     @RequestMapping(value = "/allCollection", method = RequestMethod.POST)
     @ResponseBody
     public List<PsCollection> selectAllCollection() {
-        /**
-         *此处应该加入随机显示功能，或者显示最新的，而且需要（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
-         *@param []
-         *@return java.util.List<com.instrantes.pojo.PsCollection>
-         *@date 2017/10/19
-         */
-        return psCollectionService.selectAllCollection();
+/**
+ *此处应该加入随机显示功能，或者显示最新的，而且需要（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
+ *@param []
+ *@return java.util.List<com.instrantes.pojo.PsCollection>
+ *@date 2017/10/25
+ */
+        try {
+            return psCollectionService.selectAllCollection(getCurrentPsUserId());
+        } catch (Exception e) {
+            return psCollectionService.selectAllCollection(0);
+        }
     }
 
     //查询个人所有作品信息。此处用了json，因为前端传入的是Json字符串
     @RequestMapping(value = "/personCollection", method = RequestMethod.POST)
     @ResponseBody
-
-    public List<PsCollection> selectCollectionInfoByUserId( @RequestBody String userId) { // 该方法不能用Integer接收
+    public List<PsCollection> selectCollectionInfoByUserId(@RequestBody String userId) { // 该方法不能用Integer接收
         /**
-        *根据用户的ID，获取个人用户的所有作品
-        *@param [userId]
-        *@return java.util.List<com.instrantes.pojo.PsCollection>
-        *@date 2017/10/21
-        */
+         *根据用户的ID，获取个人用户的所有作品
+         *@param [userId]
+         *@return java.util.List<com.instrantes.pojo.PsCollection>
+         *@date 2017/10/21
+         */
 
-        JSONObject array=JSONObject.parseObject(userId);
-        System.out.println("----------------id:"+array.getInteger("userId"));
+        JSONObject array = JSONObject.parseObject(userId);
+        System.out.println("----------------id:" + array.getInteger("userId"));
         return psCollectionService.selectCollectionInfoByUserId(array.getInteger("userId"));
     }
 

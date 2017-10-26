@@ -1,15 +1,17 @@
 $().ready(function () {
-
-
-    // $('#contact-submit').on("click",contactAjax);
-    // $('#contact-submit').submit(contactAjax);
-
 });
 
 function contactAjax() {
-    console.log("ss");
-    // $.post("/contact/contact", function (data) {
-    //         console.log(data);
-    //     }
-    // )
+    $.ajax({
+        url:"/contact/contact",
+        type:"POST",
+        data:$("#contact").serialize(),
+        success:function(resut){
+            console.log(resut);
+        },
+        error:function (resut) {
+            console.log(resut);
+        }
+    });
+    return false;
 }
