@@ -77,9 +77,8 @@ public class PsUserContoller {
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     @ResponseBody
     public PsUser selectPsUserByName() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(userDetails.getUsername());
-        PsUser psUser = psUserDao.selectPsUserByName(userDetails.getUsername());
+        Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
+        PsUser psUser = psUserDao.selectPsUserByName(authentication.getName());
         return psUser;
     }
     //用户退出功能

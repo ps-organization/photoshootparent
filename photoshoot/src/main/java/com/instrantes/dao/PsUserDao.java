@@ -11,7 +11,7 @@ import java.util.List;
 public interface PsUserDao {
 
     PsUser selectPsUserById(Integer id);
-
+//查找用户所有信息*
     PsUser selectPsUserByName(String userName);
 
     int insertPsUser(PsUser value);
