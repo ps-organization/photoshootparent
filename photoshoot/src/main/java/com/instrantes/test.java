@@ -1,19 +1,26 @@
 package com.instrantes;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
+
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 public class test {
+
+    static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
     public static void main(String[] args) {
 //        String password = "admin";
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(5);
@@ -58,6 +65,15 @@ public class test {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
+        logger.trace("trace message");
+        logger.debug("debug message");
+        logger.info("info message");
+        logger.warn("warn message");
+        logger.error("error message");
+        logger.fatal("fatal message");
+        logger.info("today");
+        System.out.println("Hello World!");
+
+    }
 }

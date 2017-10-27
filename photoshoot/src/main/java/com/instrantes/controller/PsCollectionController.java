@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.instrantes.pojo.PsCollection;
 import com.instrantes.service.PsCollectionService;
 import com.instrantes.service.PsUserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +18,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/collection")
 public class PsCollectionController {
+    static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+
     @Autowired
     PsCollectionService psCollectionService;
     @Autowired
@@ -102,6 +106,13 @@ public class PsCollectionController {
     @RequestMapping(value = "/singleColletion", method = RequestMethod.POST)
     @ResponseBody
     public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId){
+        logger.info("请求处理");
+        logger.trace("trace message");
+        logger.debug("debug message");
+        logger.info("info message");
+        logger.warn("warn message");
+        logger.error("error message");
+        logger.fatal("fatal message");
         return psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
     }
 
