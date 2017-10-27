@@ -11,4 +11,5 @@ public interface PsCollectionDao{
     List<PsCollection> selectAllCollection(Integer likeUserId);    //查询所有作品信息
     List<PsCollection> selectPsCollectionByUserId ( Integer id);
     List<PsCollection> selectCollectionInfoByUserId( Integer id);    //查询所有作品信息
+    PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId);
 }

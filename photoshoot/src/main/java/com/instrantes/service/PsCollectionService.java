@@ -17,4 +17,5 @@ public interface PsCollectionService{
     List<PsCollection> selectPsCollectionByUserId (Integer id);
     //查询个人所有作品信息
     List<PsCollection> selectCollectionInfoByUserId(Integer userId);
+    PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId);
 }

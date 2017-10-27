@@ -20,7 +20,7 @@ $(document).ready(function () {
             for (var i = 0; i < data.length; i++) {
                 $('.watch-list').append("<li class='watch-item'>\n" +
                     "                    <p><a target='_blank' href='/templates/watchandfans.html?id="+data[i].psUser.userId+"'><img class='img-circle' src='../"+data[i].psUser.userHeadphotoLocation+"'></a></p>\n" +
-                    "                    <p><h4>" + data[i].psUser.userName + "</h4></p>\n" +
+                    "                    <p><h4>" + data[i].psUser.userNickname + "</h4></p>\n" +
                     "                </li>")
             }
         });

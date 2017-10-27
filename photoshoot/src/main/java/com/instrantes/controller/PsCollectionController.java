@@ -93,10 +93,16 @@ public class PsCollectionController {
          *@return java.util.List<com.instrantes.pojo.PsCollection>
          *@date 2017/10/21
          */
-
         JSONObject array = JSONObject.parseObject(userId);
         System.out.println("----------------id:" + array.getInteger("userId"));
         return psCollectionService.selectCollectionInfoByUserId(array.getInteger("userId"));
+    }
+
+    //单个作品信息
+    @RequestMapping(value = "/singleColletion", method = RequestMethod.POST)
+    @ResponseBody
+    public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId){
+        return psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
     }
 
 }

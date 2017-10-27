@@ -19,7 +19,7 @@ public class PsCollection {
     private String userName;
     private Integer likeCount;
     private Integer likeStatus;
-
+    private  PsUser psUser;
 
     public PsCollection() {
         super();
@@ -166,5 +166,13 @@ public class PsCollection {
 
     public void setLikeStatus(Integer likeStatus) {
         this.likeStatus = likeStatus;
+    }
+
+    public PsUser getPsUser() {
+        return psUser;
+    }
+
+    public void setPsUser(PsUser psUser) {
+        this.psUser = psUser;
     }
 }

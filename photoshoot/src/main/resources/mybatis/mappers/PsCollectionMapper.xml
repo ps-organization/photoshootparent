@@ -22,7 +22,7 @@
     <resultMap id="collectionResultMap" type="PsCollection">
         <result column="collection_photo_location" property="collectionPhotolocation"/>
     </resultMap>
-    <!--查询所有作品信息-->
+    <!--查询所有作品信息resultMap-->
     <resultMap id="selectAllCollectionResultMap" type="PsCollection">
         <id column="collection_id" property="collectionId"/>
         <result column="collection_userid" property="collectionUserid" />
@@ -31,6 +31,21 @@
         <result column="PsCollection3" property="collectionPhotoLocation"/>
         <result column="like_count" property="likeCount" />
         <result column="like_status" property="likeCount" />
+    </resultMap>
+    <!--查询单个作品的详细信息resultMap-->
+    <resultMap id="selectSingleCollecionInfoResultMap" type="PsCollection">
+        <id column="collection_id" property="collectionId"/>
+        <result column="collection_userid" property="collectionUserid" />
+        <result column="collection_photo_location" property="collectionPhotolocation"/>
+        <result column="collection_tagid" property="collectionTagid"/>
+        <result column="collection_photoname" property="collectionPhotoname"/>
+        <result column="collection_photointroduction" property="collectionPhotointroduction"/>
+        <result column="collection_photoinformation" property="collectionPhotoinformation"/>
+        <result column="like_count" property="likeCount" />
+        <association property="psUser" javaType="PsUser" >
+            <result column="user_nickname" property="userNickname" />
+            <result column="user_headphoto_location" property="userHeadphotoLocation" />
+        </association>
     </resultMap>
     <select id="selectPsCollectionByUserId" parameterType="java.lang.Integer" resultMap="collectionResultMap">
         SELECT
@@ -71,6 +86,32 @@
             WHERE
                 ps_like.like_userid = #{likeUserId}
         ) AS user_like_status ON ps_collection.collection_id = user_like_status.like_collectionid
+    </select>
+    <!--查询单个作品的详细信息-->
+    <select id="selectSingleCollectionInfoByCollectionId" resultMap="selectSingleCollecionInfoResultMap">
+        SELECT
+            ps_collection.collection_id,
+            ps_collection.collection_userid,
+            ps_collection.collection_photo_location,
+            ps_collection.collection_tagid,
+            ps_collection.collection_photoname,
+            ps_collection.collection_photointroduction,
+            ps_collection.collection_photoinformation,
+            ps_user.user_nickname,
+            ps_user.user_headphoto_location,
+            (
+                SELECT
+                    Count(ps_like.like_id)
+                FROM
+                    ps_like
+                WHERE
+                    ps_like.like_status = 1
+                AND ps_like.like_collectionid = ps_collection.collection_id
+            ) AS like_count
+        FROM
+            ps_collection
+        INNER JOIN ps_user ON ps_collection.collection_userid = ps_user.user_id
+        WHERE ps_collection.collection_id=#{collectionId}
     </select>
     <!--查询个人作品，图片名称，位置，发布者-->
     <select id="selectCollectionInfoByUserId" resultMap="userCollectionResultMap">

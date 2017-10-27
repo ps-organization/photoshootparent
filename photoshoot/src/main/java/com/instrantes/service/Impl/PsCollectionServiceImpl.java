@@ -35,4 +35,7 @@ public class PsCollectionServiceImpl implements PsCollectionService {
         this.psCollectionDao = psCollectionDao;
     }
 
+    public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId){
+        return psCollectionDao.selectSingleCollectionInfoByCollectionId(collectionId);
+    }
 }

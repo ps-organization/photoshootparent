@@ -21,7 +21,7 @@ body{
 #li1:before{
     content: "";
     right: 43%;
-    bottom:83px;
+    bottom:63px;
     width: 80px;
     height: 80px;
     background: white;
@@ -36,8 +36,8 @@ body{
 }
 #li2:before{
     content: "";
-    right: 40%;
-    bottom:83px;
+    right: 43%;
+    bottom:63px;
     width: 80px;
     height: 80px;
     background: white;
@@ -51,8 +51,8 @@ body{
 }
 #li3:before{
     content: "";
-    right: 40%;
-    bottom:83px;
+    right: 43%;
+    bottom:63px;
     width: 80px;
     height: 80px;
     background: white;
