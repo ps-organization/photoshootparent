@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.instrantes.dao.PsLikeDao">
-    <resultMap id="result_PsLike_Map" type="com.instrantes.pojo.PsLike">
-        <id column="PsLike0" property="likeId" />
-        <result column="PsLike1" property="likeCollectionid" />
-        <result column="PsLike2" property="likeUserid" />
-        <result column="PsLike3" property="likeCreatetime" />
-        <result column="PsLike4" property="likeStatus" />
+    <resultMap id="result_PsLike_Map" type="PsLike">
+        <id column="PsLike0" property="likeId"/>
+        <result column="PsLike1" property="likeCollectionid"/>
+        <result column="PsLike2" property="likeUserid"/>
+        <result column="PsLike3" property="likeCreatetime"/>
+        <result column="PsLike4" property="likeStatus"/>
     </resultMap>
 
     <!--点赞功能的SQL-->
@@ -33,11 +33,11 @@
             l.like_collectionid=#{collectionId}
     </select>
 
-<!--点赞设计总共有2个过程/功能-->
+    <!--点赞设计总共有2个过程/功能-->
     <!--1.显示自己是否赞.否,则要插入一条未赞记录-->
     <!--传入参数：userId,collectionId-->
     <!--返回参数：like,id,like_status-->
-    <select id="showLikeStatus" >
+    <select id="showLikeStatus">
         SELECT
             ps_like.like_id,ps_like.like_status
         FROM
@@ -66,70 +66,75 @@
     <!--已开启获取自增，可以用getter获取PsLike的id-->
     <update id="updateSingleCollectionLikeStatus" useGeneratedKeys="true" keyProperty="likeId">
         <set>
-        like_status=#{likeStatus}
+            like_status=#{likeStatus}
         </set>
         where like_id=#{likeId}
     </update>
 
     <!--点赞成功后，插入点赞记录-->
     <insert id="insertLikeRecordByUserId">
-        INSERT INTO ps_like(like_collectionid, like_userid) VALUES (#{likeCollectionid},#{likeUserid})
+    INSERT INTO ps_like (
+        like_collectionid,
+        like_userid
+    )
+    VALUES
+        (#{likeCollectionid},#{likeUserid})
     </insert>
 
     <!--<insert id="insertPsLike" parameterType="com.instrantes.pojo.PsLike">-->
-        <!--insert into ps_like(like_id,like_collectionid,like_userid,like_createtime,like_status) -->
-        <!--values(#{likeId},#{likeCollectionid},#{likeUserid},#{likeCreatetime},#{likeStatus})-->
+    <!--insert into ps_like(like_id,like_collectionid,like_userid,like_createtime,like_status) -->
+    <!--values(#{likeId},#{likeCollectionid},#{likeUserid},#{likeCreatetime},#{likeStatus})-->
     <!--</insert>-->
 
     <!--<insert id="insertNonEmptyPsLike" parameterType="com.instrantes.pojo.PsLike">-->
-        <!--insert into ps_like-->
-        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
-            <!--<if test="likeId != null">like_id,</if>-->
-            <!--<if test="likeCollectionid != null">like_collectionid,</if>-->
-            <!--<if test="likeUserid != null">like_userid,</if>-->
-            <!--<if test="likeCreatetime != null">like_createtime,</if>-->
-            <!--<if test="likeStatus != null">like_status,</if>-->
-        <!--</trim>-->
-        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
-            <!--<if test="likeId != null"> #{likeId},</if>-->
-            <!--<if test="likeCollectionid != null"> #{likeCollectionid},</if>-->
-            <!--<if test="likeUserid != null"> #{likeUserid},</if>-->
-            <!--<if test="likeCreatetime != null"> #{likeCreatetime},</if>-->
-            <!--<if test="likeStatus != null"> #{likeStatus},</if>-->
-        <!--</trim>-->
+    <!--insert into ps_like-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="likeId != null">like_id,</if>-->
+    <!--<if test="likeCollectionid != null">like_collectionid,</if>-->
+    <!--<if test="likeUserid != null">like_userid,</if>-->
+    <!--<if test="likeCreatetime != null">like_createtime,</if>-->
+    <!--<if test="likeStatus != null">like_status,</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+    <!--<if test="likeId != null"> #{likeId},</if>-->
+    <!--<if test="likeCollectionid != null"> #{likeCollectionid},</if>-->
+    <!--<if test="likeUserid != null"> #{likeUserid},</if>-->
+    <!--<if test="likeCreatetime != null"> #{likeCreatetime},</if>-->
+    <!--<if test="likeStatus != null"> #{likeStatus},</if>-->
+    <!--</trim>-->
     <!--</insert>-->
 
     <!--<delete id="deletePsLikeById" parameterType="java.lang.Integer">-->
-        <!--delete from ps_like-->
-        <!--where like_id = #{id}-->
+    <!--delete from ps_like-->
+    <!--where like_id = #{id}-->
     <!--</delete>-->
 
     <!--<update id="updatePsLikeById" parameterType="com.instrantes.pojo.PsLike">-->
-        <!--update ps_like set-->
-            <!--like_collectionid=#{likeCollectionid}-->
-            <!--,like_userid=#{likeUserid}-->
-            <!--,like_createtime=#{likeCreatetime}-->
-            <!--,like_status=#{likeStatus}-->
-        <!--where like_id=#{likeId}-->
+    <!--update ps_like set-->
+    <!--like_collectionid=#{likeCollectionid}-->
+    <!--,like_userid=#{likeUserid}-->
+    <!--,like_createtime=#{likeCreatetime}-->
+    <!--,like_status=#{likeStatus}-->
+    <!--where like_id=#{likeId}-->
     <!--</update>-->
 
     <!--<update id="updateNonEmptyPsLikeById" parameterType="com.instrantes.pojo.PsLike">-->
-        <!--update ps_like-->
-        <!--<set>-->
-            <!--<if test="likeCollectionid != null">-->
-                <!--like_collectionid=#{likeCollectionid},-->
-            <!--</if>-->
-            <!--<if test="likeUserid != null">-->
-                <!--like_userid=#{likeUserid},-->
-            <!--</if>-->
-            <!--<if test="likeCreatetime != null">-->
-                <!--like_createtime=#{likeCreatetime},-->
-            <!--</if>-->
-            <!--<if test="likeStatus != null">-->
-                <!--like_status=#{likeStatus},-->
-            <!--</if>-->
-        <!--</set>-->
-        <!--where like_id=#{likeId}-->
+    <!--update ps_like-->
+    <!--<set>-->
+    <!--<if test="likeCollectionid != null">-->
+    <!--like_collectionid=#{likeCollectionid},-->
+    <!--</if>-->
+    <!--<if test="likeUserid != null">-->
+    <!--like_userid=#{likeUserid},-->
+    <!--</if>-->
+    <!--<if test="likeCreatetime != null">-->
+    <!--like_createtime=#{likeCreatetime},-->
+    <!--</if>-->
+    <!--<if test="likeStatus != null">-->
+    <!--like_status=#{likeStatus},-->
+    <!--</if>-->
+    <!--</set>-->
+    <!--where like_id=#{likeId}-->
     <!--</update>-->
 
 </mapper>
