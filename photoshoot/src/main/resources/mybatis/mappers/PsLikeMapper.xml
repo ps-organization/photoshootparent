@@ -9,13 +9,6 @@
         <result column="PsLike4" property="likeStatus" />
     </resultMap>
 
-    <!--<sql id="ps_like_Column">-->
-        <!--ps_like.like_id as PsLike0-->
-        <!--,ps_like.like_collectionid as PsLike1-->
-        <!--,ps_like.like_userid as PsLike2-->
-        <!--,ps_like.like_createtime as PsLike3-->
-        <!--,ps_like.like_status as PsLike4-->
-    <!--</sql>-->
     <!--点赞功能的SQL-->
     <sql id="showPersonLikeConllectionStatus">
             SELECT
@@ -78,25 +71,8 @@
         where like_id=#{likeId}
     </update>
 
-    <!--<select id="getPsLikeRowCount" resultType="java.lang.Long">-->
-        <!--select count(like_id) from ps_like-->
-    <!--</select>-->
-    <!--<select id="selectPsLike" resultMap="result_PsLike_Map">-->
-        <!--select -->
-        <!--<include refid="ps_like_Column" /> -->
-        <!--from ps_like-->
-    <!--</select> -->
-
-    <!--<select id="selectPsLikeById" parameterType="java.lang.Integer" resultMap="result_PsLike_Map">-->
-        <!--select -->
-            <!--<include refid="ps_like_Column" /> -->
-        <!--from ps_like-->
-        <!--where ps_like.like_id = #{id}-->
-    <!--</select> -->
-
-    <!--点赞设计,第二步，在搜索当前用户为点赞后，添加-->
-
-    <insert id="insertPsLike">
+    <!--点赞成功后，插入点赞记录-->
+    <insert id="insertLikeRecordByUserId">
         INSERT INTO ps_like(like_collectionid, like_userid) VALUES (#{likeCollectionid},#{likeUserid})
     </insert>
 

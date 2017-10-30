@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/collection")
 public class PsCollectionController {
-    static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+    static Logger logger = LogManager.getLogger(PsCollectionController.class);
 
     @Autowired
     PsCollectionService psCollectionService;

@@ -17,4 +17,7 @@ public class PsLikeServiceImpl implements PsLikeService{
         this.psLikeDao = psLikeDao;
     }
 
+    public void insertLikeRecordByUserId(Integer likeCollectionid,Integer likeUserid){
+        psLikeDao.insertLikeRecordByUserId(likeCollectionid,likeUserid);
+    }
 }

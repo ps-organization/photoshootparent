@@ -16,30 +16,6 @@
         <result column="PsUser11" property="userCreatetime"/>
     </resultMap>
 
-    <!--<sql id="ps_user_Column">-->
-    <!--ps_user.user_id as PsUser0-->
-    <!--,ps_user.user_is_delete as PsUser1-->
-    <!--,ps_user.user_name as PsUser2-->
-    <!--,ps_user.user_password as PsUser3-->
-    <!--,ps_user.user_nickname as PsUser4-->
-    <!--,ps_user.user_role as PsUser5-->
-    <!--,ps_user.user_sex as PsUser6-->
-    <!--,ps_user.user_age as PsUser7-->
-    <!--,ps_user.user_introduction as PsUser8-->
-    <!--,ps_user.user_headphoto_location as PsUser9-->
-    <!--,ps_user.user_updatetime as PsUser10-->
-    <!--,ps_user.user_createtime as PsUser11-->
-    <!--</sql>-->
-
-    <!--<select id="getPsUserRowCount" resultType="java.lang.Long">-->
-    <!--select count(user_id) from ps_user-->
-    <!--</select>-->
-    <!--<select id="selectPsUser" resultMap="result_PsUser_Map">-->
-    <!--select-->
-    <!--<include refid="ps_user_Column" />-->
-    <!--from ps_user-->
-    <!--</select>-->
-
 
     <select id="selectPsUserById" parameterType="java.lang.Integer" resultType="PsUser">
         SELECT

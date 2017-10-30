@@ -1,8 +1,7 @@
 $().ready(function () {
-
-    $.post("/collection/singleColletion", {"collectionId":1},function (data) {
-        console.log("data:"+data);
-        console.log("data:"+data.psUser.userNickname);
+console.log("test");
+    $.post("/Like/Like", {"likeCollectionid": 2, "likeUserid": 2}, function (data) {
+        console.log("success");
     });
 
 });
