@@ -75,24 +75,41 @@ ul.grid li figcaption .status .author {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-ul.grid li figcaption .status .collection {
+ul.grid li figcaption .status .thumbUp {
   position: absolute;
   right: 10px;
   bottom: 3px;
 }
 ul.grid li figcaption .status a {
   text-decoration: none;
+  color: #999;
+}
+ul.grid li figcaption .status a:hover {
+  color: #ccc;
+}
+ul.grid li figcaption .status svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
 }
 ul.grid li figcaption .status img {
   vertical-align: middle;
   top: -1px;
   border: 0;
-  margin: 0 3px 0 0;
-  width: 20px;
-  height: 20px;
+  margin: 0;
+  width: 18px;
+  height: 18px;
 }
-ul.grid li figcaption .status span {
-  padding-left: 3px;
+p.tip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: none;
+  z-index: 999;
+}
+p.tip span {
+  color: #fff;
 }
 .pic img {
   object-fit: cover;

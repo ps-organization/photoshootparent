@@ -60,7 +60,7 @@ ul.grid {
                     text-decoration: none;
                     &:hover {
                         color: #ccc;
-                        }
+                    }
                 }
             }
             .status {
@@ -71,34 +71,52 @@ ul.grid {
                     text-overflow: ellipsis;
                     white-space: nowrap;
                 }
-                .collection {
+                .thumbUp {
                     position: absolute;
                     right: 10px;
                     bottom: 3px;
                 }
                 a {
                     text-decoration: none;
+                    color: #999;
+                    &:hover {
+                        color: #ccc;
+                    }
+                }
+                svg {
+                    width: 18px;
+                    height: 18px;
+                    vertical-align: middle;
                 }
                 img {
                     vertical-align: middle;
                     top: -1px;
                     border: 0;
-                    margin: 0 3px 0 0;
-                    width: 20px;
-                    height: 20px;
+                    margin: 0;
+                    width: 18px;
+                    height: 18px;
                 }
-                span {
-                    padding-left: 3px;
-                }
+
             }
         }
     }
-} 
+}
+p.tip {
+    position: absolute;
+    background: rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: none;
+    z-index: 999;
+    span {
+        color: #fff;
+    }
+}
 .pic img {
     object-fit: cover;
     height: 100%;
     width: 100%;
-    
+
 }
 .hoverUp {
     li {
