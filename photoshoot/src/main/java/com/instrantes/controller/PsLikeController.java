@@ -13,6 +13,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/like")
 public class PsLikeController {
+//    static Logger logger = LogManager.getLogger(PsLikeController.class.getName());
     @Autowired
     PsLikeService psLikeService;
 

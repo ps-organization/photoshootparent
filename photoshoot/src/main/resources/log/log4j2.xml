@@ -8,8 +8,9 @@
 <Configuration status="WARN" monitorInterval="300">
     <properties>
         <!-- 配置日志文件输出目录，此配置将日志输出到tomcat根目录下的指定文件夹 -->
-    <property name="LOG_HOME">${sys:catalina.home}/logs</property>
-    <property name="FILE_NAME">PsLogFile</property>
+        <property name="LOG_HOME">${sys:catalina.home}/logs</property>
+        <property name="FILE_NAME">PsLogFile</property>
+        <property name="log.sql.level">debug</property>
     </properties>
     <Appenders>
         <!--这个输出控制台的配置-->
@@ -27,7 +28,7 @@
                                  fileName="${LOG_HOME}/${FILE_NAME}.log"
                                  filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd HH-mm}-%i.log">
             <PatternLayout
-                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+                    pattern="%5p [%t] %d{yyyy-MM-dd HH:mm:ss} (%F:%L)- %m%n"/>
             <!-- 备份策略:满足其中一个就可以启动备份-->
             <!-- interval 多久执行一次备份，单位为 RollingRandomAccessFile的属性filePattern中%d{yyyy-MM-dd}的最小时间单位，此处是天-->
             <Policies>
@@ -45,9 +46,26 @@
         </RollingRandomAccessFile>
         <!-- 异步 appder  ,使用的是ArrayBlocingQueue -->
         <!--<Async name="Async">-->
-            <!--<AppenderRef ref="MyFile"/>-->
+        <!--<AppenderRef ref="MyFile"/>-->
         <!--</Async>-->
+
+        <!-- ERROR级别日志 -->
+        <RollingRandomAccessFile name="error_appender"
+                                 immediateFlush="true" fileName="${LOG_HOME}/error.log"
+                                 filePattern="${LOG_HOME}/error/error - %d{yyyy-MM-dd HH_mm_ss}.log.gz">
+            <PatternLayout>
+                <pattern>%5p [%t] %d{yyyy-MM-dd HH:mm:ss} (%F:%L) %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="2MB"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
     </Appenders>
+
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <!-- logger
         additivity属性：如果设置为true（默认值）则log会被打印两次，这里的logger和root-->
@@ -55,15 +73,22 @@
         <Logger name="PsLogFile" level="trace" additivity="false">
             <AppenderRef ref="MyFile"/>
         </Logger>
-        <Root level="error">
+        <!-- 为sql语句配置特殊的Log级别，方便调试 -->
+        <Logger name="com.instrantes.dao" level="${log.sql.level}" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+
+        <!--设置控制台输出的信息级别-->
+        <Root level="trace">
             <AppenderRef ref="Console"/>
+            <appender-ref ref="error_appender"/>
         </Root>
         <!-- 异步 logger：使用了disruptor类库，代替Jdk中的queue，性能提高很多
         includeLocation属性是指layout中的  %C or $class, %F or %file, %l or %location, %L or %line, %M or %method，异步logger默认为false，如果设置为true，会影响logger的性能
         -->
         <!--<AsyncLogger name="com.foo.test" level="info" additivity="false" includeLocation="false">-->
-            <!--<appender-ref ref="log4j2test"/>-->
-            <!--<appender-ref ref="STDOUT"/>-->
+        <!--<appender-ref ref="log4j2test"/>-->
+        <!--<appender-ref ref="STDOUT"/>-->
         <!--</AsyncLogger>-->
     </Loggers>
 </Configuration>
