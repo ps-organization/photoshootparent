@@ -1,7 +1,5 @@
 package com.instrantes.pojo;
 
-import com.instrantes.pojo.PsUser;
-
 public class PsCollection {
     private Integer collectionId;
     private Integer collectionUserid;

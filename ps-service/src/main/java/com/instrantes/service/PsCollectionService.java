@@ -14,7 +14,7 @@ public interface PsCollectionService{
 //    int deletePsCollectionById(Integer id);
 //    int updatePsCollectionById(PsCollection enti);
 //    int updateNonEmptyPsCollectionById(PsCollection enti);
-    List<PsCollection> selectPsCollectionByUserId (Integer id);
+    List<PsCollection> selectPsCollectionByUserId(Integer id);
     //查询个人所有作品信息
     List<PsCollection> selectCollectionInfoByUserId(Integer userId);
     PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId);

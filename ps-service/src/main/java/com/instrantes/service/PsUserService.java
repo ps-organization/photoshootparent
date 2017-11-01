@@ -1,9 +1,6 @@
 package com.instrantes.service;
 
-import com.instrantes.pojo.PsCollection;
 import com.instrantes.pojo.PsUser;
-
-import java.util.List;
 
 public interface PsUserService {
 

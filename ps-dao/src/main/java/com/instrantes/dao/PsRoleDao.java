@@ -1,5 +1,6 @@
 package com.instrantes.dao;
 
+
 import com.instrantes.pojo.PsRole;
 import org.springframework.stereotype.Repository;
 

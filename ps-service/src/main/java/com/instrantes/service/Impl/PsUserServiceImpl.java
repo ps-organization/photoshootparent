@@ -1,13 +1,10 @@
 package com.instrantes.service.Impl;
 
 import com.instrantes.dao.PsUserDao;
-import com.instrantes.pojo.PsCollection;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PsUserServiceImpl implements PsUserService {

@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>photoshootparent</artifactId>
+        <groupId>com.intrantes</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>ps-service</artifactId>
+    <properties>
+        <spring.security.version>4.2.3.RELEASE</spring.security.version>
+    </properties>
+
+    <packaging>war</packaging>
+    <name>ps-service Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <!-- spring Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-acl</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency><dependency>
+        <groupId>com.intrantes</groupId>
+        <artifactId>ps-pojo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+        <dependency>
+            <groupId>com.intrantes</groupId>
+            <artifactId>ps-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <finalName>ps-service</finalName>
+    </build>
+</project>

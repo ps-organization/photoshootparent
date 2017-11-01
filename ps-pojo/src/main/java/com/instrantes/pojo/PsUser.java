@@ -1,7 +1,5 @@
 package com.instrantes.pojo;
 
-import java.util.List;
-
 public class PsUser {
     private Integer userId;
     private String userIsDelete;
