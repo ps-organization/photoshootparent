@@ -8,6 +8,7 @@
     <modules>
         <module>photoshoot</module>
         <module>testsecurity</module>
+        <module>pschat</module>
     </modules>
     <name>photoshootparent Maven Webapp</name>
     <url>http://maven.apache.org</url>
