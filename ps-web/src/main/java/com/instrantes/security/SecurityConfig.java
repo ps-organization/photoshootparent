@@ -3,7 +3,6 @@ package com.instrantes.security;
 import com.instrantes.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.HttpMethod;
@@ -30,8 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource(name = "userDetailsServiceImpl")
     private UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    DataSource dataSource;
+//    @Autowired
+//    DataSource dataSource;
 
 //    InMemoryAuthenticationProvider
 

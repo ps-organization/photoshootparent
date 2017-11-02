@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -136,7 +135,7 @@ public class PsUserContoller {
     //新插入PsUser
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     @ResponseBody
-    public int newPsUser(@RequestBody PsUser psUser,HttpServletRequest request) {
+    public int newPsUser(@RequestBody PsUser psUser, HttpServletRequest request) {
 //        加密用户密码
         String oldPassword=encryptPassword(psUser);
 //        判断插入是否成功

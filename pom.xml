@@ -6,12 +6,12 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>photoshoot</module>
         <module>testsecurity</module>
         <module>pschat</module>
         <module>ps-pojo</module>
         <module>ps-dao</module>
         <module>ps-service</module>
+        <module>ps-web</module>
 
     </modules>
     <name>photoshootparent Maven Webapp</name>
@@ -315,7 +315,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.31</version>
+        </dependency>
         <!-- 连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
