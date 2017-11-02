@@ -46,11 +46,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-acl</artifactId>
             <version>${spring.security.version}</version>
-        </dependency><dependency>
-        <groupId>com.intrantes</groupId>
-        <artifactId>ps-pojo</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>
+        </dependency>
+        <dependency>
+            <groupId>com.intrantes</groupId>
+            <artifactId>ps-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.intrantes</groupId>
             <artifactId>ps-dao</artifactId>
