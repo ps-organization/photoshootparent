@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
@@ -13,6 +14,8 @@ import org.springframework.cache.support.CompositeCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -24,6 +27,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -35,31 +39,29 @@ import java.util.ResourceBundle;
 
 @Configuration
 @EnableCaching
+@PropertySource("classpath:redis.properties")
 @ImportResource({"classpath:spring/photoshoot-servlet.xml", "classpath:spring/applicationContext.xml", "classpath:spring/applicationContext-MyBatis.xml"})
 public class RedisConfig {
     private static final Logger log = LogManager.getLogger(RedisConfig.class);
 
+    @Resource
+    private Environment env;
     //连接工厂的Bean
     @Bean
     public JedisConnectionFactory redisConnectionFactory() {
-        ResourceBundle bundle = ResourceBundle.getBundle("redis");
-        //bundle类似一个map
-        if (bundle == null) {
-            throw new IllegalArgumentException("[redis.properties] is not find ");
-        }
         JedisPoolConfig poolConfig = new JedisPoolConfig();
 
-        poolConfig.setMaxTotal(Integer.valueOf(bundle.getString("redis.pool.maxTotal")));
-        poolConfig.setMaxIdle(Integer.valueOf(bundle.getString("redis.pool.maxIdle")));
-        poolConfig.setMaxWaitMillis(Long.valueOf(bundle.getString("redis.pool.maxWaitMillis")));
-        poolConfig.setTestOnBorrow(Boolean.valueOf(bundle.getString("redis.pool.testOnBorrow")));
-        poolConfig.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
+        poolConfig.setMaxTotal(Integer.valueOf(env.getProperty("redis.pool.maxTotal")));
+        poolConfig.setMaxIdle(Integer.valueOf(env.getProperty("redis.pool.maxIdle")));
+        poolConfig.setMaxWaitMillis(Long.valueOf(env.getProperty("redis.pool.maxWaitMillis")));
+        poolConfig.setTestOnBorrow(Boolean.valueOf(env.getProperty("redis.pool.testOnBorrow")));
+        poolConfig.setTestOnReturn(Boolean.valueOf(env.getProperty("redis.pool.testOnReturn")));
 
         // 创建Jedis连接工厂
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(poolConfig);
-        jedisConnectionFactory.setHostName(bundle.getString("redis.ip"));
-        jedisConnectionFactory.setPassword(bundle.getString("redis.pass"));
-        jedisConnectionFactory.setPort(Integer.valueOf(bundle.getString("redis.port")));
+        jedisConnectionFactory.setHostName(env.getProperty("redis.ip"));
+        jedisConnectionFactory.setPassword(env.getProperty("redis.pass"));
+        jedisConnectionFactory.setPort(Integer.valueOf(env.getProperty("redis.port")));
 
         // 调用后初始化方法，没有它将抛出异常
         jedisConnectionFactory.afterPropertiesSet();

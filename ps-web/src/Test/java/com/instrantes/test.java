@@ -13,7 +13,6 @@ import java.util.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 
@@ -32,9 +31,7 @@ public class test {
 //        String str = "http://localhost:8080/upload/images/2017/09/24/045543511.jpg";
 //        String aStr=str.substring(str.length()-24);
 //        System.out.println(aStr);
-
         String str="{\"title\":\"Morning\",\"name\":\"Tom\"}";
-
 //        JSONArray list= JSONObject.parseArray(str);
 //        System.out.println("json:"+list.get(1));
 //        Map<String,Object> map1 = (Map<String,Object>)JSONObject.parse(str);
@@ -74,6 +71,7 @@ public class test {
         logger.fatal("fatal message");
         logger.info("today");
         System.out.println("Hello World!");
+
 
     }
 }
