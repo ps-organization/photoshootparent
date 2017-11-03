@@ -18,10 +18,15 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by Lime on 2017/11/2
@@ -37,10 +42,26 @@ public class RedisConfig {
     //连接工厂的Bean
     @Bean
     public JedisConnectionFactory redisConnectionFactory() {
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
-        jedisConnectionFactory.setHostName("127.0.0.1");
-        jedisConnectionFactory.setPort(6379);
-        //此处还应该设置密码
+        ResourceBundle bundle = ResourceBundle.getBundle("redis");
+        //bundle类似一个map
+        if (bundle == null) {
+            throw new IllegalArgumentException("[redis.properties] is not find ");
+        }
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+
+        poolConfig.setMaxTotal(Integer.valueOf(bundle.getString("redis.pool.maxTotal")));
+        poolConfig.setMaxIdle(Integer.valueOf(bundle.getString("redis.pool.maxIdle")));
+        poolConfig.setMaxWaitMillis(Long.valueOf(bundle.getString("redis.pool.maxWaitMillis")));
+        poolConfig.setTestOnBorrow(Boolean.valueOf(bundle.getString("redis.pool.testOnBorrow")));
+        poolConfig.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
+
+        // 创建Jedis连接工厂
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(poolConfig);
+        jedisConnectionFactory.setHostName(bundle.getString("redis.ip"));
+        jedisConnectionFactory.setPassword(bundle.getString("redis.pass"));
+        jedisConnectionFactory.setPort(Integer.valueOf(bundle.getString("redis.port")));
+
+        // 调用后初始化方法，没有它将抛出异常
         jedisConnectionFactory.afterPropertiesSet();
         return jedisConnectionFactory;
     }
@@ -70,16 +91,30 @@ public class RedisConfig {
     @Bean
     public RedisTemplate<String, String> redisTemplate(
             RedisConnectionFactory redisCF) {
+        // 定义RedisTemplate，并设置连接工程
         RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisCF);
         redisTemplate.afterPropertiesSet();
+
+        // 自定Redis序列化器
+        RedisSerializer jdkSerializationRedisSerializer = new JdkSerializationRedisSerializer();
+        RedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        // 设置序列化器
+        redisTemplate.setDefaultSerializer(stringRedisSerializer);
+        redisTemplate.setKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(jdkSerializationRedisSerializer);
+        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setHashValueSerializer(jdkSerializationRedisSerializer);
+
         return redisTemplate;
     }
+
+
     /**
-     * @description 自定义的缓存key的生成策略
-     *              若想使用这个key
-     *              只需要讲注解上keyGenerator的值设置为customKeyGenerator即可
      * @return 自定义策略生成的key
+     * @description 自定义的缓存key的生成策略
+     * 若想使用这个key
+     * 只需要讲注解上keyGenerator的值设置为customKeyGenerator即可
      */
     @Bean
     public KeyGenerator customKeyGenerator() {
@@ -95,7 +130,7 @@ public class RedisConfig {
     }
 
 
-
+//
 //    private void setSerializer(RedisTemplate<String, String> template) {
 //        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
 //        ObjectMapper om = new ObjectMapper();
