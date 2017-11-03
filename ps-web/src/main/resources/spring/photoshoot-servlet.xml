@@ -18,10 +18,12 @@
     <!--此处修改2017年11月2日-->
     <!--scan the package-->
     <!--<context:component-scan base-package="com.instrantes.*"/>-->
-    <!--扫描web相关的controller,security-->
+    <!--扫描web相关的controller,security，service-->
     <context:component-scan base-package="com.instrantes.controller"/>
     <context:component-scan base-package="com.instrantes.security"/>
     <context:component-scan base-package="com.instrantes.service"/>
+    <context:component-scan base-package="com.instrantes.redis"/>
+
     <!-- 激活组件扫描功能,扫描aop的相关组件组件 -->
     <!--<context:component-scan base-package="com.instrantes.aop"/>-->
     <!-- 启动对@AspectJ注解的支持 -->

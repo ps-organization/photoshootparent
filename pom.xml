@@ -6,7 +6,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>testsecurity</module>
         <module>pschat</module>
         <module>ps-pojo</module>
         <module>ps-dao</module>
@@ -281,10 +280,11 @@
         </dependency>
 
         <!--redis-->
+        <!--高版本导致RedisCacheManager修改-->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
-            <version>2.0.0.RELEASE</version>
+            <version>1.8.3.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>
