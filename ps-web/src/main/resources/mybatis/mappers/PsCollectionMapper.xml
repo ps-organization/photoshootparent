@@ -59,33 +59,40 @@
     <!--查询所有作品信息-->
     <select id="selectAllCollection" resultMap="selectAllCollectionResultMap">
         SELECT
-            ps_collection.collection_id,
-            ps_collection.collection_userid,
-            ps_user.user_name,
-            ps_collection.collection_photoname,
-            ps_collection.collection_photo_location,
+            *
+        FROM
             (
                 SELECT
-                    Count(ps_like.like_id)
+                    ps_collection.collection_id,
+                    ps_collection.collection_userid,
+                    ps_user.user_name,
+                    ps_collection.collection_photoname,
+                    ps_collection.collection_photo_location,
+                    (
+                        SELECT
+                            Count(ps_like.like_id)
+                        FROM
+                            ps_like
+                        WHERE
+                            ps_like.like_status = 1
+                        AND ps_like.like_collectionid = ps_collection.collection_id
+                    ) AS like_count,
+                    user_like_status.like_status
                 FROM
-                    ps_like
-                WHERE
-                    ps_like.like_status = 1
-                AND ps_like.like_collectionid = ps_collection.collection_id
-            ) AS like_count,
-            user_like_status.like_status
-        FROM
-            ps_collection
-        INNER JOIN ps_user ON ps_collection.collection_userid = ps_user.user_id
-        LEFT JOIN (
-            SELECT
-                ps_like.like_collectionid,
-                ps_like.like_status
-            FROM
-                ps_like
-            WHERE
-                ps_like.like_userid = #{likeUserId}
-        ) AS user_like_status ON ps_collection.collection_id = user_like_status.like_collectionid
+                    ps_collection
+                INNER JOIN ps_user ON ps_collection.collection_userid = ps_user.user_id
+                LEFT JOIN (
+                    SELECT
+                        ps_like.like_collectionid,
+                        ps_like.like_status
+                    FROM
+                        ps_like
+                    WHERE
+                        ps_like.like_userid = #{likeUserId}
+                ) AS user_like_status ON ps_collection.collection_id = user_like_status.like_collectionid
+            ) AS allcollections
+        LIMIT #{currentPicId},
+        #{picLoadNum}
     </select>
     <!--查询单个作品的详细信息-->
     <select id="selectSingleCollectionInfoByCollectionId" resultMap="selectSingleCollecionInfoResultMap">

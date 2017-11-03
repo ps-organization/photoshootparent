@@ -17,6 +17,6 @@ public interface PsUserDao {
     PsUser selectPsCollectionByUserid(Integer userId);
 
     //    根据用户名只获取userId
-    int selectPsUserUserIdByName(String userName);
+    Integer selectPsUserUserIdByName(String userName);
 
 }

@@ -10,5 +10,5 @@ public interface PsUserService {
 
     PsUser selectPsCollectionByUserid(Integer userId);
 
-    int selectPsUserUserIdByName(String userName);
+    Integer selectPsUserUserIdByName(String userName);
 }

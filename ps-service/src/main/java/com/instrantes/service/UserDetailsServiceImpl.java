@@ -5,6 +5,7 @@ import com.instrantes.dao.PsUserDao;
 import com.instrantes.pojo.PsRole;
 import com.instrantes.pojo.PsUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,11 +22,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private PsUserDao psUserDao;
-//    private PsUserService psUserService;
+    //    private PsUserService psUserService;
     @Autowired
     private PsRoleDao psRoleDao;
 
-
+//    @Cacheable()
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 

@@ -30,7 +30,7 @@ public class PsUserServiceImpl implements PsUserService {
 
     //    根据用户名只获取userId
     @Override
-    public int selectPsUserUserIdByName(String userName) {
+    public Integer selectPsUserUserIdByName(String userName) {
         return psUserDao.selectPsUserUserIdByName(userName);
 }
 }

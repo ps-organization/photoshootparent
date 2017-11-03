@@ -22,8 +22,8 @@ public class PsCollectionServiceImpl implements PsCollectionService {
          psCollectionDao.batchInsertPsCollection(psCollectionList);
     }
     //查询所有作品信息
-    public List<PsCollection> selectAllCollection(Integer likeUserId){
-        return psCollectionDao.selectAllCollection(likeUserId);
+    public List<PsCollection> selectAllCollection(Integer likeUserId,Integer currentPicId,Integer picLoadNum){
+        return psCollectionDao.selectAllCollection(likeUserId,currentPicId,picLoadNum);
     }
     //查询个人所有作品信息
     public List<PsCollection> selectCollectionInfoByUserId(Integer userId) {

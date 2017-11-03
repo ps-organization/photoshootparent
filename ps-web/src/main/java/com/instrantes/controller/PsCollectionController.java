@@ -26,7 +26,7 @@ public class PsCollectionController {
     PsUserService psUserService;
 
     //    此处为获取当前用户id的方法
-    protected int getCurrentPsUserId() {
+    protected Integer getCurrentPsUserId() {
         /**
          *此处需要加入验证，验证是否找到用户ID
          *@param []
@@ -35,7 +35,7 @@ public class PsCollectionController {
          */
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        int flag = psUserService.selectPsUserUserIdByName(authentication.getName());
+        Integer flag = psUserService.selectPsUserUserIdByName(authentication.getName());
         return flag;
     }
 
@@ -73,18 +73,26 @@ public class PsCollectionController {
     //查询所有作品信息
     @RequestMapping(value = "/allCollection", method = RequestMethod.POST)
     @ResponseBody
-    public List<PsCollection> selectAllCollection() {
+    public List<PsCollection> selectAllCollection(Integer currentPicId,Integer picLoadNum) {
 /**
- *此处应该加入随机显示功能，或者显示最新的，而且需要（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
- *@param []
- *@return java.util.List<com.instrantes.pojo.PsCollection>
- *@date 2017/10/25
- */
-        try {
-            return psCollectionService.selectAllCollection(getCurrentPsUserId());
-        } catch (Exception e) {
-            return psCollectionService.selectAllCollection(0);
+*此处应该加入随机显示功能，或者显示最新的
+ * 已经实现（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
+*@param [currentPicId, picLoadNum]
+*@return java.util.List<com.instrantes.pojo.PsCollection>
+*@date 2017/11/3
+*/
+//        try {
+//            return psCollectionService.selectAllCollection(getCurrentPsUserId(),currentPicId,picLoadNum);
+//        } catch (Exception e) {
+//            Integer likeUserId=0;
+//            System.out.println(likeUserId);
+//            return psCollectionService.selectAllCollection(likeUserId,currentPicId,picLoadNum);
+//        }
+        if(getCurrentPsUserId()==null) {
+            System.out.println("---------------------------------:" + getCurrentPsUserId());
+            return psCollectionService.selectAllCollection(0, currentPicId, picLoadNum);
         }
+            return psCollectionService.selectAllCollection(getCurrentPsUserId(),currentPicId,picLoadNum);
     }
 
     //查询个人所有作品信息。此处用了json，因为前端传入的是Json字符串

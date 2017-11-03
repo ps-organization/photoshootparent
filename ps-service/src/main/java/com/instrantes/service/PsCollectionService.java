@@ -8,7 +8,7 @@ public interface PsCollectionService{
 //    PsCollection selectPsCollectionById(Integer id);
     void batchInsertPsCollection(List<PsCollection> psCollectionList);
     //查询所有作品信息
-    List<PsCollection> selectAllCollection(Integer likeUserId);
+    List<PsCollection> selectAllCollection(Integer likeUserId,Integer currentPicId,Integer picLoadNum);
 //    int insertPsCollection(PsCollection value);
 //    int insertNonEmptyPsCollection(PsCollection value);
 //    int deletePsCollectionById(Integer id);
