@@ -22,6 +22,11 @@ public class PsUserServiceImpl implements PsUserService {
         PsUser psUser=psUserDao.selectPsCollectionByUserid(userId);
         return psUser;
     }
+    //查找用户所有信息*登录功能
+    @Override
+    public PsUser selectPsUserByName(String userName){
+        return psUserDao.selectPsUserByName(userName);
+    }
     //    插入PsUser
     @Override
     public int insertPsUser(PsUser psUser) {

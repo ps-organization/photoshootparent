@@ -26,8 +26,6 @@ public class PsUserContoller {
     @Autowired
     private PsWatchService psWatchService;
     @Autowired
-    private PsUserDao psUserDao;
-    @Autowired
     private PsUserService psUserService;
     //此处是用户注册后登录的关键点
     @Autowired
@@ -42,11 +40,11 @@ public class PsUserContoller {
         return oldPassword;
     }
     //    此处为获取当前用户id的方法
-    protected int getCurrentPsUserId() {
-        System.out.println( SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
-        return psUserService.selectPsUserUserIdByName(authentication.getName());
-    }
+//    protected int getCurrentPsUserId() {
+//        System.out.println( SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+//        Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
+//        return psUserService.selectPsUserUserIdByName(authentication.getName());
+//    }
     @RequestMapping(value = "/testuser", method = RequestMethod.GET)
     public String setForm() {
         return "testuser";
@@ -68,7 +66,7 @@ public class PsUserContoller {
     @RequestMapping(value = "/check", method = RequestMethod.GET)
     @ResponseBody
     public PsUser selectPsUserByName(String userName) {
-        PsUser psUser = psUserDao.selectPsUserByName(userName);
+        PsUser psUser = psUserService.selectPsUserByName(userName);
         return psUser;
     }
 
@@ -77,7 +75,7 @@ public class PsUserContoller {
     @ResponseBody
     public PsUser selectPsUserByName() {
         Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
-        PsUser psUser = psUserDao.selectPsUserByName(authentication.getName());
+        PsUser psUser = psUserService.selectPsUserByName(authentication.getName());
         return psUser;
     }
     //用户退出功能

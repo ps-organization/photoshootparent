@@ -26,7 +26,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PsRoleDao psRoleDao;
 
-//    @Cacheable()
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
