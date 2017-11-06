@@ -412,7 +412,11 @@
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.6</version>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>com.google.guava</groupId>-->
             <!--<artifactId>guava</artifactId>-->

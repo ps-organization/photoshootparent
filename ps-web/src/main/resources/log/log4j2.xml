@@ -79,7 +79,7 @@
         </Logger>
 
         <!--设置控制台输出的信息级别-->
-        <Root level="debug">
+        <Root level="trace">
             <AppenderRef ref="Console"/>
             <appender-ref ref="error_appender"/>
         </Root>

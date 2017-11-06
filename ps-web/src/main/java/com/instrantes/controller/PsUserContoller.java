@@ -3,6 +3,7 @@ package com.instrantes.controller;
 import com.instrantes.dao.PsUserDao;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.pojo.PsWatch;
+import com.instrantes.redis.Util.SerializableUtil;
 import com.instrantes.service.PsUserService;
 import com.instrantes.service.PsWatchService;
 import org.springframework.beans.factory.annotation.Autowired;

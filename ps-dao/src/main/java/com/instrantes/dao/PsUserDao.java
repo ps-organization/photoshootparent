@@ -2,6 +2,7 @@ package com.instrantes.dao;
 
 
 import com.instrantes.pojo.PsUser;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,6 +1,9 @@
 package com.instrantes.pojo;
 
-public class PsUser {
+
+import java.io.Serializable;
+
+public class PsUser implements Serializable{
     private Integer userId;
     private String userIsDelete;
     private String userName;

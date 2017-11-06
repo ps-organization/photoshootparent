@@ -61,6 +61,7 @@ public class RedisConfig {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(poolConfig);
         jedisConnectionFactory.setHostName(env.getProperty("redis.ip"));
         jedisConnectionFactory.setPassword(env.getProperty("redis.pass"));
+        jedisConnectionFactory.setClientName(env.getProperty("redis.clientName"));
         jedisConnectionFactory.setPort(Integer.valueOf(env.getProperty("redis.port")));
 
         // 调用后初始化方法，没有它将抛出异常

@@ -4,6 +4,7 @@ import com.instrantes.dao.PsUserDao;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +24,7 @@ public class PsUserServiceImpl implements PsUserService {
         return psUser;
     }
     //查找用户所有信息*登录功能
+    @Cacheable(value = "user",key="'userName'+#userName")
     @Override
     public PsUser selectPsUserByName(String userName){
         return psUserDao.selectPsUserByName(userName);
