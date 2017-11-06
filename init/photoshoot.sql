@@ -10,9 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-10-30 16:12:28
+Date: 2017-11-06 17:29:34
 */
- 
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -37,7 +37,7 @@ CREATE TABLE `ps_collection` (
   KEY `fk_ps_collection_ps_collection_1` (`collection_tagid`),
   CONSTRAINT `fk_ps_collection_ps_collection_1` FOREIGN KEY (`collection_tagid`) REFERENCES `ps_tag` (`tag_id`),
   CONSTRAINT `fk_ps_collection_ps_collection_2` FOREIGN KEY (`collection_userid`) REFERENCES `ps_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_collection
@@ -57,6 +57,83 @@ INSERT INTO `ps_collection` VALUES ('21', '3', null, 'images/2017/10/20/09022467
 INSERT INTO `ps_collection` VALUES ('22', '3', null, 'images/2017/10/20/090224678.jpg', null, null, null, null, null, '1', '2017-10-20 09:03:22', '2017-10-20 09:03:22');
 INSERT INTO `ps_collection` VALUES ('23', '1', null, 'images/2017/10/20/093812186.jpg', null, null, null, null, null, '1', '2017-10-20 09:44:05', '2017-10-20 09:44:05');
 INSERT INTO `ps_collection` VALUES ('24', '1', null, 'images/2017/10/20/093812186.jpg', null, null, null, null, null, '1', '2017-10-20 09:44:05', '2017-10-20 09:44:05');
+INSERT INTO `ps_collection` VALUES ('25', '1', null, 'images/2017/11/03/043315204.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('26', '1', null, 'images/2017/11/03/043316722.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('27', '1', null, 'images/2017/11/03/043316807.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('28', '1', null, 'images/2017/11/03/043316875.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('29', '1', null, 'images/2017/11/03/043317948.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('30', '1', null, 'images/2017/11/03/043318555.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('31', '1', null, 'images/2017/11/03/043319359.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('32', '1', null, 'images/2017/11/03/043320233.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('33', '1', null, 'images/2017/11/03/043321007.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('34', '1', null, 'images/2017/11/03/043322048.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('35', '1', null, 'images/2017/11/03/043322761.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('36', '1', null, 'images/2017/11/03/043323131.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('37', '1', null, 'images/2017/11/03/043323829.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('38', '1', null, 'images/2017/11/03/043324418.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('39', '1', null, 'images/2017/11/03/043325068.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('40', '1', null, 'images/2017/11/03/043325502.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('41', '1', null, 'images/2017/11/03/043325816.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('42', '1', null, 'images/2017/11/03/043326273.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('43', '1', null, 'images/2017/11/03/043326842.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('44', '1', null, 'images/2017/11/03/043327372.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('45', '1', null, 'images/2017/11/03/043328159.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('46', '1', null, 'images/2017/11/03/043328403.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('47', '1', null, 'images/2017/11/03/043328998.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('48', '1', null, 'images/2017/11/03/043329866.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('49', '1', null, 'images/2017/11/03/043330056.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('50', '1', null, 'images/2017/11/03/043330381.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('51', '1', null, 'images/2017/11/03/043331735.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('52', '1', null, 'images/2017/11/03/043332498.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('53', '1', null, 'images/2017/11/03/043333722.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('54', '1', null, 'images/2017/11/03/043334613.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('55', '1', null, 'images/2017/11/03/043334778.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('56', '1', null, 'images/2017/11/03/043335026.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('57', '1', null, 'images/2017/11/03/043335143.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('58', '1', null, 'images/2017/11/03/043335284.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('59', '1', null, 'images/2017/11/03/043335463.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('60', '1', null, 'images/2017/11/03/043335954.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('61', '1', null, 'images/2017/11/03/043336127.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('62', '1', null, 'images/2017/11/03/043336552.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('63', '1', null, 'images/2017/11/03/043336681.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('64', '1', null, 'images/2017/11/03/043336747.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('65', '1', null, 'images/2017/11/03/043337302.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('66', '1', null, 'images/2017/11/03/043338184.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('67', '1', null, 'images/2017/11/03/043339415.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('68', '1', null, 'images/2017/11/03/043339872.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('69', '1', null, 'images/2017/11/03/043340748.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('70', '1', null, 'images/2017/11/03/043341591.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('71', '1', null, 'images/2017/11/03/043342494.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('72', '1', null, 'images/2017/11/03/043342711.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('73', '1', null, 'images/2017/11/03/043343182.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('74', '1', null, 'images/2017/11/03/043343411.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('75', '1', null, 'images/2017/11/03/043343790.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('76', '1', null, 'images/2017/11/03/043343953.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('77', '1', null, 'images/2017/11/03/043344139.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('78', '1', null, 'images/2017/11/03/043344822.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('79', '1', null, 'images/2017/11/03/043345188.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('80', '1', null, 'images/2017/11/03/043345368.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('81', '1', null, 'images/2017/11/03/043345757.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('82', '1', null, 'images/2017/11/03/043346278.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('83', '1', null, 'images/2017/11/03/043346381.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('84', '1', null, 'images/2017/11/03/043346477.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('85', '1', null, 'images/2017/11/03/043346665.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('86', '1', null, 'images/2017/11/03/043346810.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('87', '1', null, 'images/2017/11/03/043347163.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('88', '1', null, 'images/2017/11/03/043347756.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('89', '1', null, 'images/2017/11/03/043350290.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('90', '1', null, 'images/2017/11/03/043350481.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('91', '1', null, 'images/2017/11/03/043351251.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('92', '1', null, 'images/2017/11/03/043351361.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('93', '1', null, 'images/2017/11/03/043351487.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('94', '1', null, 'images/2017/11/03/043351561.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('95', '1', null, 'images/2017/11/03/043351718.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('96', '1', null, 'images/2017/11/03/043352536.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('97', '1', null, 'images/2017/11/03/043352662.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('98', '1', null, 'images/2017/11/03/043352732.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('99', '1', null, 'images/2017/11/03/043353549.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('100', '1', null, 'images/2017/11/03/043353791.jpg', null, null, null, null, null, '1', '2017-11-03 16:36:27', '2017-11-03 16:36:27');
+INSERT INTO `ps_collection` VALUES ('101', '1', null, 'images/2017/11/06/013535057.jpg', null, null, null, null, null, '1', '2017-11-06 13:35:36', '2017-11-06 13:35:36');
 
 -- ----------------------------
 -- Table structure for ps_comment
@@ -92,7 +169,7 @@ CREATE TABLE `ps_like` (
   KEY `fk_ps_like_ps_like_2` (`like_collectionid`),
   CONSTRAINT `fk_ps_like_ps_like_1` FOREIGN KEY (`like_userid`) REFERENCES `ps_user` (`user_id`),
   CONSTRAINT `fk_ps_like_ps_like_2` FOREIGN KEY (`like_collectionid`) REFERENCES `ps_collection` (`collection_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_like
