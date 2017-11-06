@@ -2,6 +2,13 @@ $().ready(function () {
     /*step 1*/
     var button1="<button id='emailf-button'></button>";
     var button2="<button id='phonef-button'></button>";
+    var button3="<button id='before-button'>返回</button>";
+    var page="<div> <input type='text' placeholder='请输入邮箱验证码' id='ver-code'>" +
+        "<button id='rgs-get-code' class='aui-btn-warning'>获取验证码</button></div>" +
+        "<input type='text' placeholder='请输入新密码（最少8位最多16位）' id='pwd'>" +
+        "<input type='text' placeholder='请与上述密码保持一致' id='repwd'>" +
+        "<button id='before-button' type='button'>返回</button>" +
+        "<button id='submit' type='submit'>提交</button>"
     $.getScript("../static/js/common.js");
     $('#next-button').click(function () {
     if (!isEmpty($('#username').val())){
@@ -14,20 +21,24 @@ $().ready(function () {
         $('#tips')[0].innerHTML="请选择找回方式";
         $("input").remove("#username");
         $("button").remove("#next-button");
-        $('.contain').append(button1,button2);
-    }/*step 2*/
+        $('.contain').append(button1,button2,button3);
+    }
+        $('#before-button').click(function () {
+            parent.location.reload();
+        });
+    /*step 2*/
+
         $('#emailf-button').click(function () {
             $('#pic2').css("background-position","50% 14%");
             $('#pic3').css("background-position","95% 82%");
             $('#tips')[0].innerHTML="";
             $("button").remove("#emailf-button");
             $("button").remove("#phonef-button");
-            var page="<div> <input type='text' placeholder='请输入邮箱验证码' id='ver-code'>" +
-                "<button id='rgs-get-code' class='aui-btn-warning'>获取验证码</button></div>" +
-                "<input type='text' placeholder='请输入新密码（最少8位最多16位）' id='pwd'>" +
-                "<input type='text' placeholder='请与上述密码保持一致' id='repwd'>" +
-                "<button id='submit' type='submit'>提交</button>"
+            $("button").remove("#before-button");
             $('.contain').append(page);
+            $('#before-button').click(function () {
+                parent.location.reload();
+            });
             $('#submit').click(function () {
                 if (!isEmpty($('#ver-code').val())||!isEmpty($('#pwd').val())||!isEmpty($('#repwd').val())){
                     $('#tips')[0].innerHTML="选项不能为空";
@@ -66,12 +77,11 @@ $().ready(function () {
             $('#tips')[0].innerHTML="";
             $("button").remove("#emailf-button");
             $("button").remove("#phonef-button");
-            var page="<div> <input type='text' placeholder='请输入短信验证码' id='ver-code'>" +
-                "<button id='rgs-get-code' class='aui-btn-warning'>获取验证码</button></div>" +
-                "<input type='text' placeholder='请输入新密码（最少8位最多16位）' id='pwd'>" +
-                "<input type='text' placeholder='请与上述密码保持一致' id='repwd'>" +
-                "<button id='submit' type='submit'>提交</button>"
+            $("button").remove("#before-button");
             $('.contain').append(page);
+            $('#before-button').click(function () {
+                parent.location.reload();
+            });
             $('#submit').click(function () {
                 if (!isEmpty($('#ver-code').val())||!isEmpty($('#pwd').val())||!isEmpty($('#repwd').val())){
                     $('#tips')[0].innerHTML="选项不能为空";

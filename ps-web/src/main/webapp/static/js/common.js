@@ -19,7 +19,7 @@
     }
     function isPwd(s)
     {
-    var patrn=/\S{8,16}/;
+    var patrn=/^\S{8,16}$/;
     if (!patrn.exec(s))return false
     return true
     }
