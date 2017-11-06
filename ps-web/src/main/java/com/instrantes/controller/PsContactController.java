@@ -35,10 +35,7 @@ public class PsContactController {
          *@return java.lang.String
          *@date 2017/10/26
          */
-        SendEmailUtils sendEmailUtils = new SendEmailUtils();
         String PS_PATH = request.getSession().getServletContext().getRealPath("PsSuggestion" + File.separator + "relation.txt");
-        String email = request.getParameter("email");//获取页面传输过来的邮箱地址
-        sendEmailUtils.sendEmail(email);//调用邮件发送类发送邮件
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
         try {
@@ -57,6 +54,9 @@ public class PsContactController {
             e.printStackTrace();
             return "fail";
         }
+        SendEmailUtils sendEmailUtils = new SendEmailUtils();
+        String email = (String) suggesionJson.get("email");//获取页面传输过来的邮箱地址
+        sendEmailUtils.sendEmail(email);//调用邮件发送类发送邮件
         return "success";
     }
 }

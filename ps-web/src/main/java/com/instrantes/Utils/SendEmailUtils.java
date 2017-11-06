@@ -2,7 +2,6 @@ package com.instrantes.Utils;
 
 import com.sun.mail.util.MailSSLSocketFactory;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
-
 import javax.mail.Address;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -23,7 +22,14 @@ public class SendEmailUtils {
      * @throws GeneralSecurityException
      * @throws javax.mail.MessagingException
      */
+
+    private String SENDEMAIL_USER = "627756022@qq.com";
+    private String SENDEMAIL_PASSWORD = "tmvkqwamvmfobchg";
+    private String EMIAL_HOST = "smtp.qq.com";
+    private String EMIAL_CHARSET = "UTF-8";
+
     public void sendEmail(String userEmail) throws UnsupportedEncodingException, MessagingException, GeneralSecurityException, javax.mail.MessagingException {
+
         //用于连接邮件服务器的参数配置（发送邮件时才需要用到）
         Properties properties = new Properties();
 
@@ -51,7 +57,7 @@ public class SendEmailUtils {
         //    From: 发件人
         //    其中 InternetAddress 的三个参数分别为: 邮箱, 显示的昵称(只用于显示, 没有特别的要求), 昵称的字符集编码
         //    真正要发送时, 邮箱必须是真实有效的邮箱。
-        message.setFrom(new InternetAddress("627756022@qq.com", "影约", "UTF-8"));
+        message.setFrom(new InternetAddress(SENDEMAIL_USER, "影约", EMIAL_CHARSET));
 
         //      To：收件人
         //  1261976051@qq.com y627756022@163.com
@@ -80,7 +86,7 @@ public class SendEmailUtils {
         message.saveChanges();
 
         Transport transport = session.getTransport();
-        transport.connect("smtp.qq.com", "627756022@qq.com", "tmvkqwamvmfobchg");
+        transport.connect(EMIAL_HOST, SENDEMAIL_USER, SENDEMAIL_PASSWORD);
 
         transport.sendMessage(message, new Address[] { new InternetAddress(userEmail) });
         transport.close();
