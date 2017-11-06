@@ -142,15 +142,6 @@
                 <version>${log4j.version}</version>
             </dependency>
 
-            <!--邮件发送-->
-            <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
-            <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>1.4.7</version>
-            </dependency>
-
-
             <!-- Jackson Json处理工具包 -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -412,6 +403,7 @@
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
+        <!--邮件发送-->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
