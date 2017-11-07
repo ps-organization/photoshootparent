@@ -61,7 +61,7 @@ public class FileUploadController {
             int srcHeight = bi.getHeight();
             String pic_path = pathRootSec + path + fileName;
 
-            Map<String, String> data = new HashMap<String, String>();
+            Map<String, String> data = new HashMap<>();
 
 
             data.put("path", pic_path);

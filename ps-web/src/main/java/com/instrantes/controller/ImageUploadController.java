@@ -39,7 +39,7 @@ public class ImageUploadController {
         Iterator<FileItem> iter = fileItems.iterator();//所有的表单项
         List<Map> listMap=new ArrayList<>();
         while (iter.hasNext()) {
-            Map<String, Object> map = new HashMap<String, Object>(); //创建一个集合为数据存储做准备,此处不能放在外面，否则map每次都会改变
+            Map<String, Object> map = new HashMap<>(); //创建一个集合为数据存储做准备,此处不能放在外面，否则map每次都会改变
             FileItem item = iter.next();//循环获得每个表单项
             //获得文件名,在某些操作系统上返回路径加文件名
             String name = item.getName();
@@ -116,7 +116,7 @@ public class ImageUploadController {
             int srcWidth = bi.getWidth();
             int srcHeight = bi.getHeight();
             String pic_path = pathRootSec + path + fileName;
-            Map<String, String> data = new HashMap<String, String>();
+            Map<String, String> data = new HashMap<>();
             //此处已返回一个将图片存在target中的upload的地址
             data.put("path", pic_path);
 
