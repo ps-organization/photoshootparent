@@ -1,5 +1,8 @@
 $().ready(function () {
     //currentPicId:加载最后一张图片的ID，picLoadNum:每次请求图片数量
+    importNav();
+    $(window).on('scroll', showBack);
+    $('.back-to-top').on('click', backToTop);
     var currentPicId = 0;
     var picLoadNum = 20;
     // var count = 0;
@@ -78,6 +81,11 @@ $().ready(function () {
 //         });
 //     }
 });
+//加载导航栏公共模块
+function importNav() {
+    $('#navbar').load('../../templates/nav.html');
+}
+
 var count = 0;
 function requestPic(currentPicId, picLoadNum) {
     $.post("/collection/allCollection", {"currentPicId": currentPicId, "picLoadNum": picLoadNum}, function (data) {
@@ -85,7 +93,7 @@ function requestPic(currentPicId, picLoadNum) {
             /*console.log("id:" + data[i].collectionId + ";location:" + data[i].collectionPhotolocation);
             console.log("userName:" + data[i].userName + ";likeCount:" + data[i].likeCount);
             console.log("collectionPhotoname:" + data[i].collectionPhotoname);*/
-            $('ul').append("<li>\n" +
+            $('.grid').append("<li>\n" +
                 "            <figure>\n" +
                 "                <a href=\"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575188.png\" target=\"_new\">\n" +
                 "                    <div class='pic'>\n" +
@@ -108,7 +116,7 @@ function requestPic(currentPicId, picLoadNum) {
             console.log("likeStatus:"+data[i].likeStatus);
         }
         //添加多次点赞提示
-        $('ul').append("<p class=\"tip\"><span>认真点的赞不能取消哟</span></p>");
+        // $('ul').append("<p class=\"tip\"><span>认真点的赞不能取消哟</span></p>");
         //点赞功能的实现
         // console.log($('.like').length);
         $('.like').on('click', function () {
@@ -164,4 +172,18 @@ function noRepeatLike(e) {
     var t = posTop - disTop;
     // console.log(disLeft);
     $('.tip').css({'left': l + 'px', 'top': t + 'px'}).stop(true, true).fadeIn(500).fadeOut(1500);
+}
+//返回顶部操作
+function backToTop() {
+    $('body, html').animate({
+        scrollTop: 0
+    }, 500);
+}
+//根据滚动条判断返回顶部按钮的显式与隐藏
+function showBack() {
+    if ($(window).scrollTop() > $(window).height() / 2) {
+        $('.back-to-top').fadeIn();
+    } else {
+        $('.back-to-top').fadeOut();
+    }
 }

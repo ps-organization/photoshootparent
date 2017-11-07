@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: #fff;
+}
+nav {
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.logo {
+  background-image: url(../../img/psico.jpg);
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  width: 50px;
+  height: 50px;
+  justify-content: flex-start;
+  margin: 0 10px;
+}
+.nav-content,
+.drop-menu {
+  list-style: none;
+}
+.drop-hover:hover {
+  cursor: pointer;
+}
+.drop-hover:hover .drop-menu {
+  max-height: 100%;
+}
+.drop-menu {
+  z-index: 999;
+  -webkit-transition: max-height 1s;
+  -moz-transition: max-height 1s;
+  -ms-transition: max-height 1s;
+  -o-transition: max-height 1s;
+  transition: max-height 1s;
+  max-height: 0;
+  overflow: hidden;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  padding-right: 30px;
+  line-height: 30px;
+}
+.drop-menu li {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.nav-content {
+  width: 350px;
+  padding: 0 20px;
+}
+.nav-content li:hover {
+  cursor: pointer;
+  color: #00b7ff;
+}
+.nav-content > li {
+  float: left;
+  padding: 0 10px;
+  line-height: 50px;
+  color: #fff;
+}
+.nav-right {
+  position: absolute;
+  right: -50px;
+  width: 200px;
+  line-height: 50px;
+}
+.nav-right a {
+  padding: 5px 15px;
+}
+.reg {
+  border: 1px solid #fff;
+  border-radius: 20px;
+}
+.login {
+  border-radius: 20px;
+  background: #000;
+}
+@media screen and (max-width: 768px) {
+  .nav-content {
+    display: none;
+  }
+}
