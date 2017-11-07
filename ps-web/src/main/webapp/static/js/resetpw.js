@@ -3,8 +3,9 @@ $().ready(function () {
     var button1="<button id='emailf-button'></button>";
     var button2="<button id='phonef-button'></button>";
     var button3="<button id='before-button'>返回</button>";
-    var page="<div> <input type='text' placeholder='请输入邮箱验证码' id='ver-code'>" +
+    var page="<div> <input type='text' placeholder='请输入邮箱' id='ver-email'>" +
         "<button id='rgs-get-code' class='aui-btn-warning'>获取验证码</button></div>" +
+        "<input type='text' placeholder='请输验证码' id='ver-code'>"+
         "<input type='text' placeholder='请输入新密码（最少8位最多16位）' id='pwd'>" +
         "<input type='text' placeholder='请与上述密码保持一致' id='repwd'>" +
         "<button id='before-button' type='button'>返回</button>" +
@@ -16,12 +17,32 @@ $().ready(function () {
         $('#username').addClass('wrong');
     }
     else{
-        $('#pic2').css("background-position","50% 82%");
-        $('#pic1').css("background-position","10% 14%");
-        $('#tips')[0].innerHTML="请选择找回方式";
+        var username = $("#username").val();
+         $.ajax({
+            url:"/resetpw/resetuserpw",
+            type:"POST",
+            data:"username="+username,
+            success:function(resut){
+                alert(resut.success);
+                console.log(resut);
+                $('#pic2').css("background-position","50% 82%");
+                $('#pic1').css("background-position","10% 14%");
+                $('#tips')[0].innerHTML="请选择找回方式";
+               return true;
+            },
+            error:function (resut) {
+                console.log(resut);
+                $('#tips')[0].innerHTML="用户名不正确";
+                $('#username').addClass('wrong');
+                return false;
+            }
+        });
+
         $("input").remove("#username");
         $("button").remove("#next-button");
         $('.contain').append(button1,button2,button3);
+
+
     }
         $('#before-button').click(function () {
             parent.location.reload();

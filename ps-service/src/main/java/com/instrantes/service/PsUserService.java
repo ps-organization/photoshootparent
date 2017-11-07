@@ -5,6 +5,8 @@ import org.springframework.cache.annotation.Cacheable;
 
 public interface PsUserService {
 
+    int selectPsUserName(String username);
+
     PsUser selectPsUserById(Integer id);
 
     int insertPsUser(PsUser value);

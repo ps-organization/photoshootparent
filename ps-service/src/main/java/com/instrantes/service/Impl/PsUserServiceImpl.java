@@ -13,6 +13,12 @@ public class PsUserServiceImpl implements PsUserService {
     private PsUserDao psUserDao;
 
     @Override
+    public int selectPsUserName(String username) {
+       int num =  psUserDao.selectPsUserByUserNameNotNull(username);
+        return num;
+    }
+
+    @Override
     public PsUser selectPsUserById(Integer id) {
         PsUser psUser = psUserDao.selectPsUserById(id);
         return psUser;
