@@ -59,17 +59,26 @@ public class PsCollectionController {
         //组装成collection对象再放入集合中
         List<PsCollection> psCollectionList = new ArrayList<>();
         int currentUserId = getCurrentPsUserId();
+
+
         for (int i = 0, picLocationLen = picLocation.length; i < picLocationLen; i++) {
-            //此处为去掉域名存入数据库，但仅限后缀为3个字母的图片
-            String str = new String(picLocation[i].substring(picLocation[i].length() - 31));
-            System.out.println("location:" + picLocation[i]);
-            System.out.println("id:" + currentUserId);
-            psCollectionList.add(new PsCollection(currentUserId, str));
+            if (picLocation[i].length()==60) {
+                //此处为去掉域名存入数据库，但仅限后缀为3个字母的图片
+                String str = new String(picLocation[i].substring(picLocation[i].length() - 31));
+                System.out.println("location:" + picLocation[i]);
+                System.out.println("id:" + currentUserId);
+                psCollectionList.add(new PsCollection(currentUserId, str));
+            }else {
+                //此处为去掉域名存入数据库，但仅限后缀为4个字母的图片
+                String str = new String(picLocation[i].substring(picLocation[i].length() - 32));
+                System.out.println("location:" + picLocation[i]);
+                System.out.println("id:" + currentUserId);
+                psCollectionList.add(new PsCollection(currentUserId, str));
+            }
 //            System.out.println("location:" + psCollection.getCollectionPhotolocation());
         }
         psCollectionService.batchInsertPsCollection(psCollectionList);
     }
-
     //查询所有作品信息
     @RequestMapping(value = "/allCollection", method = RequestMethod.POST)
     @ResponseBody
