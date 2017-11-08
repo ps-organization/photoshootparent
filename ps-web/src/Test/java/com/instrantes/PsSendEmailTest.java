@@ -14,6 +14,7 @@ import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 public class PsSendEmailTest {
 
@@ -80,4 +81,11 @@ public class PsSendEmailTest {
         transport.sendMessage(message, new Address[] { new InternetAddress("1261976051@qq.com") });
         transport.close();
     }
+
+    @Test
+    public void randomCode(){
+        int EmailCode = Integer.parseInt( String.valueOf(new Random().nextInt(8999)+1000));
+        System.out.println(EmailCode);
+    }
+
 }

@@ -16,4 +16,8 @@ public interface PsUserService {
     PsUser selectPsUserByName(String userName);//查找用户所有信息*登录功能
 
     Integer selectPsUserUserIdByName(String userName);
+
+    int selectPsUserEmail(String email);
+
+    PsUser selectPsUserNameEmail(String username);
 }

@@ -46,4 +46,16 @@ public class PsUserServiceImpl implements PsUserService {
     public Integer selectPsUserUserIdByName(String userName) {
         return psUserDao.selectPsUserUserIdByName(userName);
 }
+
+    //查询该用户的邮箱是否匹配
+    @Override
+    public int selectPsUserEmail(String email) {
+        return psUserDao.selectPsUserByEmail(email);
+    }
+
+    @Override
+    public PsUser selectPsUserNameEmail(String username) {
+        PsUser psUser = psUserDao.selectPsUserByNameEmail(username);
+        return psUser;
+    }
 }

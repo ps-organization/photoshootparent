@@ -56,8 +56,10 @@ public class PsContactController {
             return "fail";
         }
         SendEmailUtils sendEmailUtils = new SendEmailUtils();
+        String emailTheme = "影约反馈";
+        String emailText = "<h1>您的反馈已收到，感谢您对影约摄影平台的支持！</h1>";
         String email = (String) suggesionJson.get("email");//获取页面传输过来的邮箱地址
-        sendEmailUtils.sendEmail(email);//调用邮件发送类发送邮件
+        sendEmailUtils.sendEmail(email,emailTheme,emailText);//调用邮件发送类发送邮件
         return "success";
     }
 }

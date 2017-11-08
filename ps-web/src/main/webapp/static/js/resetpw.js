@@ -1,4 +1,5 @@
 $().ready(function () {
+    var username = null;
     /*step 1*/
     var button1="<button id='emailf-button'></button>";
     var button2="<button id='phonef-button'></button>";
@@ -17,13 +18,13 @@ $().ready(function () {
         $('#username').addClass('wrong');
     }
     else{
-        var username = $("#username").val();
+        username = $("#username").val();
+        //发送请求，查询该用户是否存在
          $.ajax({
             url:"/resetpw/resetuserpw",
             type:"POST",
             data:"username="+username,
             success:function(resut){
-                alert(resut.success);
                 console.log(resut);
                 $('#pic2').css("background-position","50% 82%");
                 $('#pic1').css("background-position","10% 14%");
@@ -37,13 +38,11 @@ $().ready(function () {
                 return false;
             }
         });
-
+    }
         $("input").remove("#username");
         $("button").remove("#next-button");
         $('.contain').append(button1,button2,button3);
 
-
-    }
         $('#before-button').click(function () {
             parent.location.reload();
         });
@@ -75,6 +74,20 @@ $().ready(function () {
 
             /*getcode*/
             $('#rgs-get-code').on('click', function() {
+                var veremail = $("#ver-email").val();
+                $.ajax({
+                    url:"/resetpw/sendEmailCode",
+                    type:"POST",
+                    data:{"username":username,"email":veremail},
+                    success:function(resut){
+                        console.log(resut);
+                        return true;
+                    },
+                    error:function (resut) {
+                        console.log(resut);
+                        return false;
+                    }
+                });
                 var _this = this;
                 var loopTime = 4;
                 // 修改样式
@@ -92,6 +105,17 @@ $().ready(function () {
                 }, 1000);
             });
         });
+
+        $("#ver-code").on('blur',function () {
+            alert($('#ver-code').val());
+            alert("bbbbbbbbbbbbbbbbb");
+        });
+        $("#ver-code").blur(function(){
+
+            alert("aaaaaaa.0000000000");
+        });
+
+
         $('#phonef-button').click(function () {
             $('#pic2').css("background-position","50% 14%");
             $('#pic3').css("background-position","95% 82%");
@@ -116,6 +140,7 @@ $().ready(function () {
                 }
             });
         });
+
 
     });
 });

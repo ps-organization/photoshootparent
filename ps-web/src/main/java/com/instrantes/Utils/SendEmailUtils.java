@@ -28,7 +28,7 @@ public class SendEmailUtils {
     private String EMIAL_HOST = "smtp.qq.com";
     private String EMIAL_CHARSET = "UTF-8";
 
-    public void sendEmail(String userEmail) throws UnsupportedEncodingException, MessagingException, GeneralSecurityException, javax.mail.MessagingException {
+    public void sendEmail(String userEmail,String emailTheme, String emailText) throws UnsupportedEncodingException, MessagingException, GeneralSecurityException, javax.mail.MessagingException {
 
         //用于连接邮件服务器的参数配置（发送邮件时才需要用到）
         Properties properties = new Properties();
@@ -74,11 +74,11 @@ public class SendEmailUtils {
         String date = dateFormat.format( now );
 
         //设置邮箱主题
-        message.setSubject("影约反馈");
+        message.setSubject(emailTheme);
 
         //邮箱正文,可以嵌套HTML代码
-        message.setContent("<h1>您的反馈已收到，感谢您对影约摄影平台的支持！</h1><br/><h1>"+date+"</h1>","text/html;charset=UTF-8");
-
+        message.setContent(emailText,"text/html;charset=UTF-8");
+//
         //设置显示时间
         message.setSentDate(now);
 
@@ -92,4 +92,5 @@ public class SendEmailUtils {
         transport.close();
 
     }
+
 }
