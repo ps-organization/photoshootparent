@@ -4,7 +4,7 @@ import com.instrantes.pojo.PsUser;
 import org.springframework.cache.annotation.Cacheable;
 
 public interface PsUserService {
-
+    Integer getCurrentPsUserId();
     PsUser selectPsUserById(Integer id);
 
     int insertPsUser(PsUser value);

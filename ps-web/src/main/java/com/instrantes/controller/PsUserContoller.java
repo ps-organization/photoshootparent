@@ -1,9 +1,7 @@
 package com.instrantes.controller;
 
-import com.instrantes.dao.PsUserDao;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.pojo.PsWatch;
-import com.instrantes.redis.Util.SerializableUtil;
 import com.instrantes.service.PsUserService;
 import com.instrantes.service.PsWatchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +38,6 @@ public class PsUserContoller {
         psUser.setUserPassword(password);
         return oldPassword;
     }
-    //    此处为获取当前用户id的方法
-//    protected int getCurrentPsUserId() {
-//        System.out.println( SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-//        Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
-//        return psUserService.selectPsUserUserIdByName(authentication.getName());
-//    }
     @RequestMapping(value = "/testuser", method = RequestMethod.GET)
     public String setForm() {
         return "testuser";

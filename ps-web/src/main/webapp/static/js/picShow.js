@@ -11,8 +11,7 @@ $().ready(function () {
         set: function (value) {
             ex = value;
             if (!(value % picLoadNum)) {
-                // console.log("ES5中currentPicId："+currentPicId);
-                // currentPicId=a.ex;
+                // Ajax请求图片，每次picLoadNum张
                 requestPic(a.ex, picLoadNum);
                 console.log("请求成功，a.ex：" + a.ex);
             }
@@ -58,6 +57,7 @@ function requestPic(currentPicId, picLoadNum) {
         }
         //添加多次点赞提示
         // $('ul').append("<p class=\"tip\"><span>认真点的赞不能取消哟</span></p>");
+        //清除点赞事件，防止多次请求叠加
         $('.like').unbind('click');
         thumbUp();
 
@@ -80,10 +80,9 @@ function requestPic(currentPicId, picLoadNum) {
 console.log($('.like').length);
 function thumbUp() {
     $('.like').on('click', function () {
-        console.log('okok');
         var that = $(this);
         var likeId = that.attr('id');
-        console.log(likeId);
+        console.log("likeId:"+likeId);
         var svgColor = that.find('svg path').attr('fill');
         console.log(that.find('svg path').attr('fill'));
         if (svgColor == '#8a8a8a') {
@@ -92,9 +91,9 @@ function thumbUp() {
             $.ajax({
                 url:"/like/likeRecord",
                 type:"POST",
-                contentType:"applicaiton/json",
+                contentType:"application/json",
                 dataType: 'json',
-                data:JSON.stringify({"likeCollectionid": likeId,"likeUserid": 2}),
+                data:JSON.stringify({"likeCollectionid": likeId}),
                 success:function(resut){
                     console.log(resut);
                 },
