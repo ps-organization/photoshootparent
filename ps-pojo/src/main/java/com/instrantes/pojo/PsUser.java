@@ -16,7 +16,7 @@ public class PsUser implements Serializable{
     private String userHeadphotoLocation;
     private java.util.Date userUpdatetime;
     private java.util.Date userCreatetime;
-
+    private String userEmail;
     private PsRole psRole;
 
 
@@ -127,6 +127,14 @@ public class PsUser implements Serializable{
 
     public void setUserHeadphotoLocation(String userHeadphotoLocation) {
         this.userHeadphotoLocation = userHeadphotoLocation;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public java.util.Date getUserUpdatetime() {

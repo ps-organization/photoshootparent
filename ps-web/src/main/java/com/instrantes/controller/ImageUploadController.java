@@ -64,16 +64,16 @@ public class ImageUploadController {
                 File savedFile = new File(dir, fileName);
                 item.write(savedFile);
 
-//                此处为读取图片
+//                此处为读取图片,貌似获取不了webp图片长宽，暂时注释
                 BufferedImage bi = ImageIO.read(new File(uploadPath + path + fileName));
-                int srcWidth = bi.getWidth();
-                int srcHeight = bi.getHeight();
+//                int srcWidth = bi.getWidth();
+//                int srcHeight = bi.getHeight();
                 String pathRootSec = "http://localhost:8080/upload/images";
                 String pic_path = pathRootSec + path + fileName;
 //                存储数据
                 map.put("path", pic_path);
-                map.put("width", String.valueOf(srcWidth));
-                map.put("height", String.valueOf(srcHeight));
+//                map.put("width", String.valueOf(srcWidth));
+//                map.put("height", String.valueOf(srcHeight));
                 listMap.add(map);
             }
         }
