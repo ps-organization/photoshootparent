@@ -59,37 +59,32 @@ public class PsCollectionController {
         //组装成collection对象再放入集合中
         List<PsCollection> psCollectionList = new ArrayList<>();
         int currentUserId = getCurrentPsUserId();
-
-
-        for (int i = 0, picLocationLen = picLocation.length; i < picLocationLen; i++) {
-            if (picLocation[i].length()==60) {
+        for (String itemStr : picLocation) {
+            // 60为http://localhost:8080/upload/images/xxxx/xx/xxxxxxxxx.jpg的长度
+            if (itemStr.length() == 60) {
                 //此处为去掉域名存入数据库，但仅限后缀为3个字母的图片
-                String str = new String(picLocation[i].substring(picLocation[i].length() - 31));
-                System.out.println("location:" + picLocation[i]);
-                System.out.println("id:" + currentUserId);
+                String str = itemStr.substring(itemStr.length() - 31);
                 psCollectionList.add(new PsCollection(currentUserId, str));
-            }else {
+            } else {
                 //此处为去掉域名存入数据库，但仅限后缀为4个字母的图片
-                String str = new String(picLocation[i].substring(picLocation[i].length() - 32));
-                System.out.println("location:" + picLocation[i]);
-                System.out.println("id:" + currentUserId);
+                String str = itemStr.substring(itemStr.length() - 32);
                 psCollectionList.add(new PsCollection(currentUserId, str));
             }
-//            System.out.println("location:" + psCollection.getCollectionPhotolocation());
         }
         psCollectionService.batchInsertPsCollection(psCollectionList);
     }
+
     //查询所有作品信息
     @RequestMapping(value = "/allCollection", method = RequestMethod.POST)
     @ResponseBody
-    public List<PsCollection> selectAllCollection(Integer currentPicId,Integer picLoadNum) {
+    public List<PsCollection> selectAllCollection(Integer currentPicId, Integer picLoadNum) {
 /**
-*此处应该加入随机显示功能，或者显示最新的
+ *此处应该加入随机显示功能，或者显示最新的
  * 已经实现（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
-*@param [currentPicId, picLoadNum]
-*@return java.util.List<com.instrantes.pojo.PsCollection>
-*@date 2017/11/3
-*/
+ *@param [currentPicId, picLoadNum]
+ *@return java.util.List<com.instrantes.pojo.PsCollection>
+ *@date 2017/11/3
+ */
 //        try {
 //            return psCollectionService.selectAllCollection(getCurrentPsUserId(),currentPicId,picLoadNum);
 //        } catch (Exception e) {
@@ -97,11 +92,11 @@ public class PsCollectionController {
 //            System.out.println(likeUserId);
 //            return psCollectionService.selectAllCollection(likeUserId,currentPicId,picLoadNum);
 //        }
-        if(getCurrentPsUserId()==null) {
+        if (getCurrentPsUserId() == null) {
             System.out.println("---------------------------------:" + getCurrentPsUserId());
             return psCollectionService.selectAllCollection(0, currentPicId, picLoadNum);
         }
-            return psCollectionService.selectAllCollection(getCurrentPsUserId(),currentPicId,picLoadNum);
+        return psCollectionService.selectAllCollection(getCurrentPsUserId(), currentPicId, picLoadNum);
     }
 
     //查询个人所有作品信息。此处用了json，因为前端传入的是Json字符串
@@ -122,14 +117,7 @@ public class PsCollectionController {
     //单个作品信息
     @RequestMapping(value = "/singleColletion", method = RequestMethod.POST)
     @ResponseBody
-    public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId){
-        logger.info("请求处理");
-        logger.trace("trace message");
-        logger.debug("debug message");
-        logger.info("info message");
-        logger.warn("warn message");
-        logger.error("error message");
-        logger.fatal("fatal message");
+    public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId) {
         return psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
     }
 
