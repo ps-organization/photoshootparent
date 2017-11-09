@@ -1,5 +1,8 @@
 package com.instrantes.pojo;
-public class PsLike {
+
+import java.io.Serializable;
+
+public class PsLike implements Serializable {
     private Integer likeId;
     private Integer likeCollectionid;
     private Integer likeUserid;

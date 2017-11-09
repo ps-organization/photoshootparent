@@ -5,13 +5,28 @@ import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PsUserServiceImpl implements PsUserService {
     @Autowired
     private PsUserDao psUserDao;
-
+@Cacheable(value = "userId")
+@Override
+    //    此处为获取当前用户id的方法
+    public Integer getCurrentPsUserId() {
+        /**
+        *根据授权的name获取用户id的方法
+        *@param []
+        *@return java.lang.Integer
+        *@date 2017/11/8
+        */
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return psUserDao.selectPsUserUserIdByName(authentication.getName());
+    }
     @Override
     public int selectPsUserName(String username) {
        int num =  psUserDao.selectPsUserByUserNameNotNull(username);

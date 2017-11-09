@@ -30,7 +30,7 @@
         <result column="PsCollection4" property="collectionPhotoname"/>
         <result column="PsCollection3" property="collectionPhotoLocation"/>
         <result column="like_count" property="likeCount" />
-        <result column="like_status" property="likeCount" />
+        <result column="like_status" property="likeStatus" />
     </resultMap>
     <!--查询单个作品的详细信息resultMap-->
     <resultMap id="selectSingleCollecionInfoResultMap" type="PsCollection">
