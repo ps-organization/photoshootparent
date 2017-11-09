@@ -5,11 +5,9 @@ import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsUserService;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
@@ -23,7 +21,7 @@ public class PsResetUserPwController {
     PsUserService psUserService;
 
     //创建一个4位数的数字验证码
-    int emailCode ;
+    Integer emailCode ;
 
     /**
      * 验证用户是否存在
@@ -77,7 +75,35 @@ public class PsResetUserPwController {
         }else {
             return "error";
         }
-
     }
 
+    //修改密码
+    @RequestMapping(value = "/EmailCodeResetPw", method = RequestMethod.POST)
+    @ResponseBody
+    public String EmailCodeResetPw(@RequestParam("emailcode")int emailcode,@RequestParam("userName")String username,@RequestParam("userPassword")String userpassword,@RequestParam("rpw")String rpw){
+        int count;
+        System.err.println("显示数据："+userpassword +" ----" + rpw);
+        if(emailCode == emailcode){
+            if(userpassword.equals(rpw)){
+                PsUser psUser = new PsUser();
+                String password = new BCryptPasswordEncoder().encode(rpw);
+                System.err.println("加密后的密码：" + password);
+                psUser.setUserPassword(password);
+                psUser.setUserName(username);
+                count = psUserService.updateUserPassword(psUser);
+                if(count == 1){
+                    emailCode = null;
+                    System.err.println("update success");
+                    return "update success";
+                }else {
+                    System.err.println("update error");
+                    return "update error";
+                }
+            }
+        }else {
+            System.err.println("code Is not correct");
+            return "code Is not correct";
+        }
+    return "";
+    }
 }

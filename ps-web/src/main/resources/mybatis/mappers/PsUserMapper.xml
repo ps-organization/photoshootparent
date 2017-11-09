@@ -46,6 +46,11 @@
         user_name = #{username}
     </select>
 
+    <!--修改密码 updateUserPassword-->
+    <update id="updateUserPassword" parameterType="PsUser" >
+        update ps_user set user_password = #{userPassword}
+        where user_name = #{userName};
+    </update>
 
     <select id="selectPsUserById" parameterType="java.lang.Integer" resultType="PsUser">
         SELECT

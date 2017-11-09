@@ -68,9 +68,18 @@ public class PsUserServiceImpl implements PsUserService {
         return psUserDao.selectPsUserByEmail(email);
     }
 
+    //获取用户邮箱
     @Override
     public PsUser selectPsUserNameEmail(String username) {
         PsUser psUser = psUserDao.selectPsUserByNameEmail(username);
         return psUser;
     }
+
+    //修改密码
+    @Override
+    public int updateUserPassword(PsUser psUser) {
+        int count = psUserDao.updateUserPassword(psUser);
+        return count;
+    }
+
 }

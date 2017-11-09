@@ -21,4 +21,6 @@ public interface PsUserService {
     int selectPsUserEmail(String email);
 
     PsUser selectPsUserNameEmail(String username);
+
+    int updateUserPassword(PsUser psUser);
 }

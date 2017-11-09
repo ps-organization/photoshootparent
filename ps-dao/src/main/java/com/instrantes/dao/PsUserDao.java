@@ -27,4 +27,7 @@ public interface PsUserDao {
 
     //根据用户昵称获取用户邮件
     PsUser selectPsUserByNameEmail(String username);
+
+    //修改密码
+    int updateUserPassword(PsUser psUser);
 }
