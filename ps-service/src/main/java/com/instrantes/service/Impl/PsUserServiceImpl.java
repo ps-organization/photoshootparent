@@ -1,44 +1,54 @@
 package com.instrantes.service.Impl;
 
+import com.instrantes.Utils.SendEmailUtils;
 import com.instrantes.dao.PsUserDao;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsUserService;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.util.Random;
 
 @Service
 public class PsUserServiceImpl implements PsUserService {
     @Autowired
     private PsUserDao psUserDao;
 
-    public String encryptPassword(PsUser psUser) {
-        String password ;
-        String oldPassword = psUser.getUserPassword() ;
+    //创建一个4位数的数字验证码
+    Integer emailCode;
+
+    private String encryptPassword(PsUser psUser) {
+        String password;
+        String oldPassword = psUser.getUserPassword();
         password = new BCryptPasswordEncoder().encode(oldPassword);
         psUser.setUserPassword(password);
         return oldPassword;
     }
-@Cacheable(value = "userId")
-@Override
+
+    @Cacheable(value = "userId")
+    @Override
     //    此处为获取当前用户id的方法
     public Integer getCurrentPsUserId() {
         /**
-        *根据授权的name获取用户id的方法
-        *@param []
-        *@return java.lang.Integer
-        *@date 2017/11/8
-        */
+         *根据授权的name获取用户id的方法
+         *@param []
+         *@return java.lang.Integer
+         *@date 2017/11/8
+         */
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return psUserDao.selectPsUserUserIdByName(authentication.getName());
     }
+
     @Override
     public int selectPsUserName(String username) {
-       int num =  psUserDao.selectPsUserByUserNameNotNull(username);
+        int num = psUserDao.selectPsUserByUserNameNotNull(username);
         return num;
     }
 
@@ -50,15 +60,17 @@ public class PsUserServiceImpl implements PsUserService {
 
     @Override
     public PsUser selectPsCollectionByUserid(Integer userId) {
-        PsUser psUser=psUserDao.selectPsCollectionByUserid(userId);
+        PsUser psUser = psUserDao.selectPsCollectionByUserid(userId);
         return psUser;
     }
+
     //查找用户所有信息*登录功能
-    @Cacheable(value = "user",key="'userName'+#userName")
+    @Cacheable(value = "user", key = "'userName'+#userName")
     @Override
-    public PsUser selectPsUserByName(String userName){
+    public PsUser selectPsUserByName(String userName) {
         return psUserDao.selectPsUserByName(userName);
     }
+
     //    插入PsUser
     @Override
     public int insertPsUser(PsUser psUser) {
@@ -69,7 +81,7 @@ public class PsUserServiceImpl implements PsUserService {
     @Override
     public Integer selectPsUserUserIdByName(String userName) {
         return psUserDao.selectPsUserUserIdByName(userName);
-}
+    }
 
     //查询该用户的邮箱是否匹配
     @Override
@@ -91,4 +103,46 @@ public class PsUserServiceImpl implements PsUserService {
         return count;
     }
 
+    //发送带有验证码的邮件
+    @Override
+    public void sendCode(String email) {
+        //创建邮箱主题
+        String emailTheme = "影约密码找回";
+        //创建一个四位数的验证码
+        emailCode = Integer.parseInt(String.valueOf(new Random().nextInt(8999) + 1000));
+        //创建邮件发送文本格式
+        String emailText = "<h2>亲爱的用户您好，您正在进行修改密码操作，请确认为本人操作！请在输入框中输入：<a style='font-size :45px ;color: #d58512 '>" + emailCode + "</a>&nbsp;以完成下一步操作。</h2></br><a style='color: darkgrey'>注意：此操作可能会修改您的密码、登录邮箱或绑定手机。如非本人操作，请及时登录并修改密码以保证帐户安全 \n" +
+                "（工作人员不会向你索取此验证码，请勿泄漏！)</a></h5><hr size='0.01' color='darkgrey'><p>此为系统邮件，请勿回复<br>\n" +
+                "                        请保管好您的邮箱，避免账号被他人盗用\n" +
+                "                    </p>";
+        //发送邮箱工具类
+        SendEmailUtils sendEmailUtils = new SendEmailUtils();
+        try {
+            //发送邮箱，email:用户邮箱；emailTheme：邮箱主题；emailText：邮箱文本
+            sendEmailUtils.sendEmail(email, emailTheme, emailText);
+        } catch (UnsupportedEncodingException | MessagingException | GeneralSecurityException | javax.mail.MessagingException e ) {
+            e.printStackTrace();
+        }
+    }
+
+    //进行验证码判断并修改密码
+    @Override
+    public String isEmptyCode(Integer emailCodes, String userName, String password) {
+        int count;
+        if (emailCode.equals(emailCodes)) {
+            PsUser psUser = new PsUser();
+            psUser.setUserPassword(password);
+            encryptPassword(psUser);
+            psUser.setUserName(userName);
+            count = updateUserPassword(psUser);
+            if (count == 1) {
+                emailCode = null;
+                return "update success";
+            } else {
+                return "update error";
+            }
+        }
+        return "";
+    }
 }
+

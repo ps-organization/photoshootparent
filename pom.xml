@@ -11,6 +11,7 @@
         <module>ps-dao</module>
         <module>ps-service</module>
         <module>ps-web</module>
+        <module>ps-utils</module>
 
     </modules>
     <name>photoshootparent Maven Webapp</name>

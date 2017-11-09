@@ -4,6 +4,7 @@ import com.instrantes.pojo.PsUser;
 import com.instrantes.pojo.PsWatch;
 import com.instrantes.service.PsUserService;
 import com.instrantes.service.PsWatchService;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 
 
 @Controller
@@ -29,6 +32,7 @@ public class PsUserContoller {
     //此处是用户注册后登录的关键点
     @Autowired
     protected AuthenticationManager authenticationManager;
+
 
 //    加密方法，用于对注册时用户密码加密,并返回原本的密码
     private String encryptPassword(PsUser psUser) {
@@ -141,6 +145,60 @@ public class PsUserContoller {
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
         return flag;
     }
+
+    /**
+     * 验证用户是否存在
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/resetuserpw", method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean resetUserPw(@RequestParam("username") String username) {
+        int flag = psUserService.selectPsUserName(username);
+        if (flag == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 验证邮箱是否属于用户
+     * 通过验证后发送验证码到用户邮箱
+     * 邮箱通过用户绑定的邮箱发送，不从页面获取的邮箱发送邮件
+     *
+     * @param email
+     * @param username
+     * @return
+     * @throws MessagingException
+     * @throws GeneralSecurityException
+     * @throws javax.mail.MessagingException
+     * @throws UnsupportedEncodingException
+     */
+    @RequestMapping(value = "/sendEmailCode", method = RequestMethod.POST)
+    @ResponseBody
+    public String sendEmailCode(@RequestParam("email") String email, @RequestParam("username") String username) throws MessagingException, GeneralSecurityException, javax.mail.MessagingException, UnsupportedEncodingException {
+        //判断从页面传来的邮箱是否和数据库的匹配
+        int flag = psUserService.selectPsUserEmail(email);
+        if (flag == 1) {
+            //成功返回邮箱
+            PsUser psUser = psUserService.selectPsUserNameEmail(username);
+            //发送邮箱
+            psUserService.sendCode(psUser.getUserEmail());
+            return "success";
+        } else {
+            return "error";
+        }
+    }
+
+    //修改密码
+    @RequestMapping(value = "/EmailCodeResetPw", method = RequestMethod.POST)
+    @ResponseBody
+    public String EmailCodeResetPw(@RequestParam("emailcode") Integer emailcode, @RequestParam("userName") String username, @RequestParam("userPassword") String userpassword) {
+        return psUserService.isEmptyCode(emailcode,username,userpassword);
+    }
+
+
 
 //    //根据用户id查询作品的详情
 //    @RequestMapping(value = "/userCollections", method = RequestMethod.POST)

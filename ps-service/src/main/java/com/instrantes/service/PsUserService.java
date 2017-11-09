@@ -1,10 +1,14 @@
 package com.instrantes.service;
 
 import com.instrantes.pojo.PsUser;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.cache.annotation.Cacheable;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+
 public interface PsUserService {
-    String encryptPassword(PsUser psUser) ;
+//    String encryptPassword(PsUser psUser) ;
 
     Integer getCurrentPsUserId();
 
@@ -25,4 +29,10 @@ public interface PsUserService {
     PsUser selectPsUserNameEmail(String username);
 
     int updateUserPassword(PsUser psUser);
+
+    //发送修改密码的验证码
+    void sendCode(String email);
+
+    //判断验证是否正确，判断成功修改密码
+    String isEmptyCode(Integer emailCodes,String uerName ,String password);
 }

@@ -21,7 +21,7 @@ $().ready(function () {
         username = $("#username").val();
         //发送请求，查询该用户是否存在
          $.ajax({
-            url:"/resetpw/resetuserpw",
+            url:"/PsUserController/resetuserpw",
             type:"POST",
             data:"username="+username,
             success:function(resut){
@@ -79,7 +79,7 @@ $().ready(function () {
                 var emailcode = $('#ver-code').val();
                 var pw = $('#pwd').val();
                 $.ajax({
-                    url:"/resetpw/EmailCodeResetPw",
+                    url:"/PsUserController/EmailCodeResetPw",
                     type:"POST",
                     data:{"userName":username,"emailcode":emailcode,"userPassword":pw},
                     success:function(resut){
@@ -97,7 +97,7 @@ $().ready(function () {
             $('#rgs-get-code').on('click', function() {
                 var veremail = $("#ver-email").val();
                 $.ajax({
-                    url:"/resetpw/sendEmailCode",
+                    url:"/PsUserController/sendEmailCode",
                     type:"POST",
                     data:{"username":username,"email":veremail},
                     success:function(resut){
