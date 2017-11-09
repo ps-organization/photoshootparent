@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 public class PsUserServiceImpl implements PsUserService {
     @Autowired
     private PsUserDao psUserDao;
-    @Autowired
-    protected AuthenticationManager authenticationManager;
+@Cacheable(value = "userId")
+@Override
     //    此处为获取当前用户id的方法
     public Integer getCurrentPsUserId() {
         /**
