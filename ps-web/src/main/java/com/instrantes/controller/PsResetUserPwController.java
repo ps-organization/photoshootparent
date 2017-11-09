@@ -80,7 +80,7 @@ public class PsResetUserPwController {
     //修改密码
     @RequestMapping(value = "/EmailCodeResetPw", method = RequestMethod.POST)
     @ResponseBody
-    public String EmailCodeResetPw(@RequestParam("emailcode")int emailcode,@RequestParam("userName")String username,@RequestParam("userPassword")String userpassword,@RequestParam("rpw")String rpw){
+    public String EmailCodeResetPw(@RequestParam("emailcode")Integer emailcode,@RequestParam("userName")String username,@RequestParam("userPassword")String userpassword,@RequestParam("rpw")String rpw){
         int count;
         System.err.println("显示数据："+userpassword +" ----" + rpw);
         if(emailCode == emailcode){
