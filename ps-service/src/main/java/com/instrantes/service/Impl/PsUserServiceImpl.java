@@ -16,7 +16,7 @@ public class PsUserServiceImpl implements PsUserService {
     @Autowired
     private PsUserDao psUserDao;
 
-    private String encryptPassword(PsUser psUser) {
+    public String encryptPassword(PsUser psUser) {
         String password ;
         String oldPassword = psUser.getUserPassword() ;
         password = new BCryptPasswordEncoder().encode(oldPassword);

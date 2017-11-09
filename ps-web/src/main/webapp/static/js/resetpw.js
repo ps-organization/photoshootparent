@@ -30,18 +30,18 @@ $().ready(function () {
                     $('#pic2').css("background-position","50% 82%");
                     $('#pic1').css("background-position","10% 14%");
                     $('#tips')[0].innerHTML="请选择找回方式";
-                    return true;
+
                 }else {
                     $('#tips')[0].innerHTML="用户名不正确";
                     $('#username').addClass('wrong');
-                    return false;
+
                 }
             },
             error:function (resut) {
                 console.log(resut);
                 $('#tips')[0].innerHTML="用户名不正确";
                 $('#username').addClass('wrong');
-                return false;
+
             }
         });
     }
@@ -78,20 +78,17 @@ $().ready(function () {
                 }
                 var emailcode = $('#ver-code').val();
                 var pw = $('#pwd').val();
-                var rpw = $('#repwd').val();
                 $.ajax({
                     url:"/resetpw/EmailCodeResetPw",
                     type:"POST",
-                    data:{"userName":username,"emailcode":emailcode,"userPassword":pw,"rpw":rpw},
+                    data:{"userName":username,"emailcode":emailcode,"userPassword":pw},
                     success:function(resut){
                         console.log(resut);
                             alert("简陋提示：密码修改成功！");
-                        return true;
                     },
                     error:function (resut) {
                         console.log(resut);
                         alert("密码修改失败");
-                        return false;
                     }
                 });
             });
@@ -105,7 +102,7 @@ $().ready(function () {
                     data:{"username":username,"email":veremail},
                     success:function(resut){
                         console.log(resut);
-                        if(resut.eq('success')){
+                        if(resut == "success"){
 
                         }else {
                             alert('邮箱错误！');
