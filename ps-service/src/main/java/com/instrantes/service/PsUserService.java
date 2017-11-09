@@ -4,6 +4,8 @@ import com.instrantes.pojo.PsUser;
 import org.springframework.cache.annotation.Cacheable;
 
 public interface PsUserService {
+    String encryptPassword(PsUser psUser) ;
+
     Integer getCurrentPsUserId();
 
     int selectPsUserName(String username);

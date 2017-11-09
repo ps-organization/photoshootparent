@@ -8,12 +8,21 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PsUserServiceImpl implements PsUserService {
     @Autowired
     private PsUserDao psUserDao;
+
+    private String encryptPassword(PsUser psUser) {
+        String password ;
+        String oldPassword = psUser.getUserPassword() ;
+        password = new BCryptPasswordEncoder().encode(oldPassword);
+        psUser.setUserPassword(password);
+        return oldPassword;
+    }
 @Cacheable(value = "userId")
 @Override
     //    此处为获取当前用户id的方法

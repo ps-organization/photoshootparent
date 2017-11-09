@@ -14,6 +14,7 @@ public class PsCollectionServiceImpl implements PsCollectionService {
     @Autowired
     private PsCollectionDao psCollectionDao;
 
+
     //    根据用户id查询作品信息
     public List<PsCollection> selectPsCollectionByUserId (Integer id){
         return psCollectionDao.selectPsCollectionByUserId(id);

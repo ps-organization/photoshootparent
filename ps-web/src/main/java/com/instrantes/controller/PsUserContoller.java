@@ -127,6 +127,7 @@ public class PsUserContoller {
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     @ResponseBody
     public int newPsUser(@RequestBody PsUser psUser, HttpServletRequest request) {
+
 //        加密用户密码
         String oldPassword=encryptPassword(psUser);
 //        判断插入是否成功
