@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-09 09:11:38
+Date: 2017-11-09 11:27:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -134,14 +134,18 @@ INSERT INTO `ps_collection` VALUES ('172', '1', null, 'images/2017/11/09/0910239
 -- ----------------------------
 DROP TABLE IF EXISTS `ps_comment`;
 CREATE TABLE `ps_comment` (
-  `comment_id` int(11) NOT NULL,
-  `comment_userid` int(11) DEFAULT NULL,
-  `comment_content` varchar(150) DEFAULT NULL,
-  `comment_time` timestamp NULL DEFAULT NULL,
+  `comment_reply_id` int(11) NOT NULL DEFAULT '0' COMMENT '回复别人的id',
+  `comment_collectionid` int(11) NOT NULL,
+  `comment_userid` int(11) NOT NULL,
+  `comment_content` varchar(300) DEFAULT NULL,
+  `comment_status` tinyint(1) NOT NULL DEFAULT '1',
+  `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   KEY `comment_userid` (`comment_userid`),
-  KEY `fk_ps_comment_ps_comment_1` (`comment_id`),
-  CONSTRAINT `fk_ps_comment_ps_comment_1` FOREIGN KEY (`comment_id`) REFERENCES `ps_collection` (`collection_id`),
-  CONSTRAINT `fk_ps_comment_ps_comment_2` FOREIGN KEY (`comment_userid`) REFERENCES `ps_user` (`user_id`)
+  KEY `fk_ps_comment_ps_comment_1` (`comment_collectionid`),
+  KEY `fk_ps_comment_ps_comment_3` (`comment_reply_id`),
+  CONSTRAINT `fk_ps_comment_ps_comment_1` FOREIGN KEY (`comment_collectionid`) REFERENCES `ps_collection` (`collection_id`),
+  CONSTRAINT `fk_ps_comment_ps_comment_2` FOREIGN KEY (`comment_userid`) REFERENCES `ps_user` (`user_id`),
+  CONSTRAINT `fk_ps_comment_ps_comment_3` FOREIGN KEY (`comment_reply_id`) REFERENCES `ps_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
