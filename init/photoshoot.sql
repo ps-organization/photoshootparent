@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-08 13:34:38
+Date: 2017-11-09 09:11:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,7 +37,7 @@ CREATE TABLE `ps_collection` (
   KEY `fk_ps_collection_ps_collection_1` (`collection_tagid`),
   CONSTRAINT `fk_ps_collection_ps_collection_1` FOREIGN KEY (`collection_tagid`) REFERENCES `ps_tag` (`tag_id`),
   CONSTRAINT `fk_ps_collection_ps_collection_2` FOREIGN KEY (`collection_userid`) REFERENCES `ps_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_collection
@@ -117,6 +117,17 @@ INSERT INTO `ps_collection` VALUES ('158', '1', null, 'images/2017/11/08/1049007
 INSERT INTO `ps_collection` VALUES ('159', '1', null, 'images/2017/11/08/104900781.webp', null, null, null, null, null, '1', '2017-11-08 10:49:03', '2017-11-08 10:49:03');
 INSERT INTO `ps_collection` VALUES ('160', '1', null, 'images/2017/11/08/104900790.webp', null, null, null, null, null, '1', '2017-11-08 10:49:03', '2017-11-08 10:49:03');
 INSERT INTO `ps_collection` VALUES ('161', '1', null, 'images/2017/11/08/104900797.webp', null, null, null, null, null, '1', '2017-11-08 10:49:03', '2017-11-08 10:49:03');
+INSERT INTO `ps_collection` VALUES ('162', '3', null, 'images/2017/11/08/035522240.webp', null, null, null, null, null, '1', '2017-11-08 15:56:17', '2017-11-08 15:56:17');
+INSERT INTO `ps_collection` VALUES ('163', '3', null, 'images/2017/11/08/035631848.webp', null, null, null, null, null, '1', '2017-11-08 15:57:32', '2017-11-08 15:57:32');
+INSERT INTO `ps_collection` VALUES ('164', '3', null, 'images/2017/11/08/035631858.webp', null, null, null, null, null, '1', '2017-11-08 15:57:32', '2017-11-08 15:57:32');
+INSERT INTO `ps_collection` VALUES ('165', '3', null, 'images/2017/11/08/040945478.webp', null, null, null, null, null, '1', '2017-11-08 16:09:59', '2017-11-08 16:09:59');
+INSERT INTO `ps_collection` VALUES ('166', '3', null, 'images/2017/11/08/040945486.webp', null, null, null, null, null, '1', '2017-11-08 16:09:59', '2017-11-08 16:09:59');
+INSERT INTO `ps_collection` VALUES ('167', '1', null, 'images/2017/11/08/044751827.webp', null, null, null, null, null, '1', '2017-11-08 16:48:30', '2017-11-08 16:48:30');
+INSERT INTO `ps_collection` VALUES ('168', '1', null, 'images/2017/11/08/044751860.webp', null, null, null, null, null, '1', '2017-11-08 16:48:30', '2017-11-08 16:48:30');
+INSERT INTO `ps_collection` VALUES ('169', '1', null, 'images/2017/11/09/090952432.webp', null, null, null, null, null, '1', '2017-11-09 09:09:54', '2017-11-09 09:09:54');
+INSERT INTO `ps_collection` VALUES ('170', '1', null, 'images/2017/11/09/090952469.webp', null, null, null, null, null, '1', '2017-11-09 09:09:54', '2017-11-09 09:09:54');
+INSERT INTO `ps_collection` VALUES ('171', '1', null, 'images/2017/11/09/091023982.webp', null, null, null, null, null, '1', '2017-11-09 09:10:26', '2017-11-09 09:10:26');
+INSERT INTO `ps_collection` VALUES ('172', '1', null, 'images/2017/11/09/091023990.webp', null, null, null, null, null, '1', '2017-11-09 09:10:26', '2017-11-09 09:10:26');
 
 -- ----------------------------
 -- Table structure for ps_comment
@@ -152,7 +163,7 @@ CREATE TABLE `ps_like` (
   KEY `fk_ps_like_ps_like_2` (`like_collectionid`),
   CONSTRAINT `fk_ps_like_ps_like_1` FOREIGN KEY (`like_userid`) REFERENCES `ps_user` (`user_id`),
   CONSTRAINT `fk_ps_like_ps_like_2` FOREIGN KEY (`like_collectionid`) REFERENCES `ps_collection` (`collection_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_like
@@ -164,6 +175,8 @@ INSERT INTO `ps_like` VALUES ('4', '4', '4', '2017-10-24 14:40:51', '1');
 INSERT INTO `ps_like` VALUES ('5', '3', '2', '2017-10-24 14:56:42', '0');
 INSERT INTO `ps_like` VALUES ('6', '4', '1', '2017-10-24 16:54:13', '0');
 INSERT INTO `ps_like` VALUES ('16', '2', '2', '2017-10-30 14:19:01', '1');
+INSERT INTO `ps_like` VALUES ('17', '1', '2', '2017-11-08 16:20:20', '1');
+INSERT INTO `ps_like` VALUES ('18', '119', '1', '2017-11-08 16:50:40', '1');
 
 -- ----------------------------
 -- Table structure for ps_role

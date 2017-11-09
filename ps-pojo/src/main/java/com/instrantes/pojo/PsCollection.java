@@ -1,6 +1,8 @@
 package com.instrantes.pojo;
 
-public class PsCollection {
+import java.io.Serializable;
+
+public class PsCollection implements Serializable {
     private Integer collectionId;
     private Integer collectionUserid;
     private Integer collectionTagid;
