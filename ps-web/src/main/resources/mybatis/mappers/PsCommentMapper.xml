@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.instrantes.dao.PsCommentDao">
+
+
+
     <!-- PsComment的resultMap,column是给数据库列起的别名,它对应property类的属性-->
-    <resultMap id="result_PsComment_Map" type="PsComment">
-        <result column="comment_reply_id" property="commentReplyId" />
-        <result column="comment_time" property="commentTime" />
-        <result column="comment_collectionid" property="commentCollectionid" />
-        <result column="comment_content" property="commentContent" />
-        <result column="comment_userid" property="commentUserid" />
-        <result column="comment_status" property="commentStatus" />
-    </resultMap>
+    <!--<resultMap id="result_PsComment_Map" type="PsComment">-->
+        <!--<result column="comment_reply_id" property="commentReplyId" />-->
+        <!--<result column="comment_time" property="commentTime" />-->
+        <!--<result column="comment_collectionid" property="commentCollectionid" />-->
+        <!--<result column="comment_content" property="commentContent" />-->
+        <!--<result column="comment_userid" property="commentUserid" />-->
+        <!--<result column="comment_status" property="commentStatus" />-->
+    <!--</resultMap>-->
 
-    <!-- 数据库中表名为:ps_comment的列名,as前是数据库的列明,as后是列的别名用于映射成实体类中的属性,需要注意的是别名必须与resultMap中的column别名一致 -->
-    <sql id="ps_comment_Column">
-        ps_comment.comment_reply_id as comment_reply_id
-        ,ps_comment.comment_time as comment_time
-        ,ps_comment.comment_collectionid as comment_collectionid
-        ,ps_comment.comment_content as comment_content
-        ,ps_comment.comment_userid as comment_userid
-        ,ps_comment.comment_status as comment_status
-    </sql>
+    <!--&lt;!&ndash; 数据库中表名为:ps_comment的列名,as前是数据库的列明,as后是列的别名用于映射成实体类中的属性,需要注意的是别名必须与resultMap中的column别名一致 &ndash;&gt;-->
+    <!--<sql id="ps_comment_Column">-->
+        <!--ps_comment.comment_reply_id as comment_reply_id-->
+        <!--,ps_comment.comment_time as comment_time-->
+        <!--,ps_comment.comment_collectionid as comment_collectionid-->
+        <!--,ps_comment.comment_content as comment_content-->
+        <!--,ps_comment.comment_userid as comment_userid-->
+        <!--,ps_comment.comment_status as comment_status-->
+    <!--</sql>-->
 
-    <!--获得类名为:PsComment对应的数据库表的数据总行数 -->
-    <select id="getPsCommentRowCount" resultType="java.lang.Long">
-        select count(*) from ps_comment
-    </select>
-    <!-- 获得类名为:PsComment对应数据库中表的数据集合 -->
-    <select id="selectPsComment" resultMap="result_PsComment_Map">
-        select 
-        <include refid="ps_comment_Column" /> 
-        from ps_comment
-    </select> 
+    <!--&lt;!&ndash;获得类名为:PsComment对应的数据库表的数据总行数 &ndash;&gt;-->
+    <!--<select id="getPsCommentRowCount" resultType="java.lang.Long">-->
+        <!--select count(*) from ps_comment-->
+    <!--</select>-->
+    <!--&lt;!&ndash; 获得类名为:PsComment对应数据库中表的数据集合 &ndash;&gt;-->
+    <!--<select id="selectPsComment" resultMap="result_PsComment_Map">-->
+        <!--select -->
+        <!--<include refid="ps_comment_Column" /> -->
+        <!--from ps_comment-->
+    <!--</select> -->
 
-    <!-- 将PsComment插入到对应数据库的表中,包括属性值为null的数据-->
+    <!--&lt;!&ndash; 将PsComment插入到对应数据库的表中,包括属性值为null的数据&ndash;&gt;-->
 
-    <insert id="insertPsComment" parameterType="PsComment">
-        insert into ps_comment(comment_reply_id,comment_time,comment_collectionid,comment_content,comment_userid,comment_status) 
-        values(#{commentReplyId},#{commentTime},#{commentCollectionid},#{commentContent},#{commentUserid},#{commentStatus})
-    </insert>
+    <!--<insert id="insertPsComment" parameterType="PsComment">-->
+        <!--insert into ps_comment(comment_reply_id,comment_time,comment_collectionid,comment_content,comment_userid,comment_status) -->
+        <!--values(#{commentReplyId},#{commentTime},#{commentCollectionid},#{commentContent},#{commentUserid},#{commentStatus})-->
+    <!--</insert>-->
 
-    <!-- 将PsComment中属性值不为null的数据,插入到对应数据库的表中-->
-    <insert id="insertNonEmptyPsComment" parameterType="PsComment">
-        insert into ps_comment
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="commentReplyId != null">comment_reply_id,</if>
-            <if test="commentTime != null">comment_time,</if>
-            <if test="commentCollectionid != null">comment_collectionid,</if>
-            <if test="commentContent != null">comment_content,</if>
-            <if test="commentUserid != null">comment_userid,</if>
-            <if test="commentStatus != null">comment_status,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="commentReplyId != null"> #{commentReplyId},</if>
-            <if test="commentTime != null"> #{commentTime},</if>
-            <if test="commentCollectionid != null"> #{commentCollectionid},</if>
-            <if test="commentContent != null"> #{commentContent},</if>
-            <if test="commentUserid != null"> #{commentUserid},</if>
-            <if test="commentStatus != null"> #{commentStatus},</if>
-        </trim>
-    </insert>
+    <!--&lt;!&ndash; 将PsComment中属性值不为null的数据,插入到对应数据库的表中&ndash;&gt;-->
+    <!--<insert id="insertNonEmptyPsComment" parameterType="PsComment">-->
+        <!--insert into ps_comment-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            <!--<if test="commentReplyId != null">comment_reply_id,</if>-->
+            <!--<if test="commentTime != null">comment_time,</if>-->
+            <!--<if test="commentCollectionid != null">comment_collectionid,</if>-->
+            <!--<if test="commentContent != null">comment_content,</if>-->
+            <!--<if test="commentUserid != null">comment_userid,</if>-->
+            <!--<if test="commentStatus != null">comment_status,</if>-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+            <!--<if test="commentReplyId != null"> #{commentReplyId},</if>-->
+            <!--<if test="commentTime != null"> #{commentTime},</if>-->
+            <!--<if test="commentCollectionid != null"> #{commentCollectionid},</if>-->
+            <!--<if test="commentContent != null"> #{commentContent},</if>-->
+            <!--<if test="commentUserid != null"> #{commentUserid},</if>-->
+            <!--<if test="commentStatus != null"> #{commentStatus},</if>-->
+        <!--</trim>-->
+    <!--</insert>-->
 
-    <!-- 将PsComment批量插入到对应数据库的表中-->
-    <insert id="insertPsCommentByBatch" parameterType="ArrayList">
-        insert into ps_comment(comment_reply_id,comment_time,comment_collectionid,comment_content,comment_userid,comment_status) values
-        <foreach collection="list" item="item" index="index" separator="," >
-            (#{item.commentReplyId},#{item.commentTime},#{item.commentCollectionid},#{item.commentContent},#{item.commentUserid},#{item.commentStatus})
-        </foreach>
-    </insert>
+    <!--&lt;!&ndash; 将PsComment批量插入到对应数据库的表中&ndash;&gt;-->
+    <!--<insert id="insertPsCommentByBatch" parameterType="ArrayList">-->
+        <!--insert into ps_comment(comment_reply_id,comment_time,comment_collectionid,comment_content,comment_userid,comment_status) values-->
+        <!--<foreach collection="list" item="item" index="index" separator="," >-->
+            <!--(#{item.commentReplyId},#{item.commentTime},#{item.commentCollectionid},#{item.commentContent},#{item.commentUserid},#{item.commentStatus})-->
+        <!--</foreach>-->
+    <!--</insert>-->
 
 </mapper>

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,6 +49,7 @@ public class ImageUploadController {
                 String uploadPath = request.getSession().getServletContext().getRealPath("upload/images");
                 //设置格式，为创建文件夹以及图片名称做准备
                 SimpleDateFormat format = new SimpleDateFormat("/yyyy/MM/dd/,hhmmssSSS");
+
                 Date date = new Date();
                 String[] folderArray = format.format(date).split(",");
 
