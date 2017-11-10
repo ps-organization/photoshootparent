@@ -33,15 +33,6 @@ public class PsUserContoller {
     @Autowired
     protected AuthenticationManager authenticationManager;
 
-
-//    加密方法，用于对注册时用户密码加密,并返回原本的密码
-    private String encryptPassword(PsUser psUser) {
-        String password ;
-        String oldPassword = psUser.getUserPassword() ;
-        password = new BCryptPasswordEncoder().encode(oldPassword);
-        psUser.setUserPassword(password);
-        return oldPassword;
-    }
     @RequestMapping(value = "/testuser", method = RequestMethod.GET)
     public String setForm() {
         return "testuser";
@@ -131,19 +122,8 @@ public class PsUserContoller {
     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     @ResponseBody
     public int newPsUser(@RequestBody PsUser psUser, HttpServletRequest request) {
-
-//        加密用户密码
-        String oldPassword=encryptPassword(psUser);
-//        判断插入是否成功
-        int flag = psUserService.insertPsUser(psUser);
-        System.out.println("已创建用户:"+psUser.getUserName());
-        //此处用来注册后的自动登录,增加该注册用户的验证和授权
-        UsernamePasswordAuthenticationToken token=new UsernamePasswordAuthenticationToken(psUser.getUserName(),oldPassword);
-        request.getSession();
-        token.setDetails(new WebAuthenticationDetails(request));
-        Authentication authenticatedUser = authenticationManager.authenticate(token);
-        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
-        return flag;
+        //返回插入是否成功1/0
+        return  psUserService.insertPsUser(psUser,request);
     }
 
     /**

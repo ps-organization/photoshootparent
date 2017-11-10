@@ -4,6 +4,7 @@ import com.instrantes.pojo.PsUser;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.cache.annotation.Cacheable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 
@@ -17,6 +18,8 @@ public interface PsUserService {
     PsUser selectPsUserById(Integer id);
 
     int insertPsUser(PsUser value);
+
+    int insertPsUser(PsUser psUser, HttpServletRequest request);
 
     PsUser selectPsCollectionByUserid(Integer userId);
 

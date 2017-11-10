@@ -7,11 +7,15 @@ import com.instrantes.service.PsUserService;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.Random;
@@ -20,7 +24,9 @@ import java.util.Random;
 public class PsUserServiceImpl implements PsUserService {
     @Autowired
     private PsUserDao psUserDao;
-
+    //此处是用户注册后登录的关键点
+    @Autowired
+    protected AuthenticationManager authenticationManager;
     //创建一个4位数的数字验证码
     Integer emailCode;
 
@@ -71,10 +77,26 @@ public class PsUserServiceImpl implements PsUserService {
         return psUserDao.selectPsUserByName(userName);
     }
 
+
     //    插入PsUser
+    public int insertPsUser(PsUser value){
+        return psUserDao.insertPsUser(value);
+    }
+
+    //    新插入PsUser
     @Override
-    public int insertPsUser(PsUser psUser) {
-        return psUserDao.insertPsUser(psUser);
+    public int insertPsUser(PsUser psUser, HttpServletRequest request) {
+//        加密用户密码，并返回旧密码
+        String oldPassword=encryptPassword(psUser);
+//        判断插入是否成功
+        int flag = psUserDao.insertPsUser(psUser);
+        //此处用来注册后的自动登录,增加该注册用户的验证和授权
+        UsernamePasswordAuthenticationToken token=new UsernamePasswordAuthenticationToken(psUser.getUserName(),oldPassword);
+        request.getSession();
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+        return flag;
     }
 
     //    根据用户名只获取userId
