@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/templates/fileupload.html").hasAuthority("ROLE_ORDIN")
                 .antMatchers("/templates/search.html").hasAuthority("ROLE_ORDIN")
                 .antMatchers("/templates/upload_picture.html").hasAuthority("ROLE_ORDIN")
+                .antMatchers("/templates/picShow.html").hasAuthority("ROLE_ORDIN")
                 .antMatchers("/show").authenticated()//authenticated()表示允许过的用户访问
                 .and()//配置登录页面
                 .formLogin().loginPage("/templates/photoshoot_default.html")//登录页面的访问路径

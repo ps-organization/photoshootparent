@@ -16,25 +16,7 @@
 </body>
 
 <script>
-    window.onload = function () {
-        var picLoadNum=20;
-        let a = {ex: 0};
-        Object.defineProperty(a, 'ex', {
-            set: function (value) {
-                ex=value;
-                if(!(value % picLoadNum)){
-                console.log(value);
-                }
-            },
-            get: function () {
-                return ex;
-            }
-        })
-        a.ex = 20;
-        a.ex=23;
-//        console.log("con:"+a.ex);
 
-    }
 </script>
 <script src="../static/js/test.js"></script>
 </html>

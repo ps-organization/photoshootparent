@@ -1,5 +1,6 @@
 package com.instrantes.controller;
 
+import com.instrantes.base.ApplicationException;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.pojo.PsWatch;
 import com.instrantes.service.PsUserService;
@@ -24,7 +25,7 @@ import java.security.GeneralSecurityException;
 
 @Controller
 @RequestMapping("/PsUserController")
-public class PsUserContoller {
+public class PsUserContoller{
     @Autowired
     private PsWatchService psWatchService;
     @Autowired
