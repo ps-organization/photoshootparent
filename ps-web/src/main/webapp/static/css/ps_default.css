@@ -1,4 +1,7 @@
 /*主体*/
+body {
+    overflow-x: hidden;
+}
 .wrapper {
     width: 1873px;
     height: 1854px;

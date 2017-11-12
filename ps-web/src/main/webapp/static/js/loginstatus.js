@@ -9,8 +9,11 @@ $(document).ready(function () {
             if (typeof data.userName==='undefined') {
             }
             else {
-                $('#login-li').remove();
-                $('#register-li').remove();
+                    $('.reg').remove();
+                    $('.login').remove();
+                    $('.nav-right').append("<li><a href='/templates/user_default.html'>" +
+                        "<img class='img-circle ' src=../upload/"
+                        + data.userHeadphotoLocation + "></a></li><li class='drop-hover'><a href='/templates/user_default.html'>"+data.userName+"</a>");
                 //创建一个装头像和名字 的li放在导航栏,并获取用户头像,用户名;为登录状态处添加下拉菜单
                 $('.navbar-right').append("<li id='loginstatus-li' class='dropdown'>" +
                     "<a href='/templates/user_default.html' id='loginstatus-a' class='dropdown-toggle'>" +
@@ -22,18 +25,7 @@ $(document).ready(function () {
                     "                <li><a href='/PsUserController/logout'>登出账户</a></li>\n" +
                     "            </ul></li>")
 
-                $('#loginstatus-li').mouseover(function () {
-                    clearTimeout(timeout);
-                    //交互延迟90ms
-                    timeout = setTimeout(function () {
-                        $('#loginstatus-li').addClass("open");
-                    }, 90);
-                }).mouseout(function () {
-                    clearTimeout(timeout);
-                    timeout = setTimeout(function () {
-                        $('#loginstatus-li').removeClass("open");
-                    }, 90);
-                })
+
             }
         },
         error: function (data) {

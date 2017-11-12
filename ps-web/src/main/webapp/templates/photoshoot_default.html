@@ -4,57 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>影约</title>
-    <link rel="stylesheet" href="../static/js/bootstrap-3.3.7-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/ps_default.css">
-    <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="../static/js/psindex.js"></script>
-    <script src="../static/js/loginstatus.js"></script>
+    <!--<link rel="stylesheet" href="../static/js/bootstrap-3.3.7-dist/css/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="../static/css/ps_default.css">-->
+    <link rel="stylesheet" href="../static/css/nav.css">
+    <link rel="stylesheet" href="../static/css/index.css">
 </head>
 
 
-<body>
-<div class="container-fluid">
-    <div class="head-box top_section"><!--头页部分-->
-        <nav class="navbar navbar-inverse navbar-fixed-top cust-nav">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <!--图标显示-->
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/templates/photoshoot_default.html">
-                            <img alt="影约" src="../img/psico.jpg" height="30px" width="30px"/>
-                        </a>
-                    </div>
-                </div>
+<body style="overflow-x: hidden">
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav cust-nav-bar">
-                        <li><a href="#">最新</a></li>
-                        <li><a href="#">约拍</a></li>
-                        <li><a href="#">关于我们</a></li>
-                        <li class="dropdown" id="nav-find">
-                            <a href="#" class="dropdown-toggle" >发现 </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">最新活动</a></li>
-                                 <li><a href="#">往期活动</a></li>
-                                <li><a href="#">随便看看</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">下载APP</a></li>
-                                <li><a href="#">商务合作</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+<div>
+    <!--<div class="head-box top_section">&lt;!&ndash;头页部分&ndash;&gt;
+        &lt;!&ndash;<div id="navbar"></div>&ndash;&gt;
+        &lt;!&ndash;<nav class="navbar navbar-inverse navbar-fixed-top cust-nav">&ndash;&gt;
+            &lt;!&ndash;<div class="container-fluid">&ndash;&gt;
+                &lt;!&ndash;<div class="navbar-header">&ndash;&gt;
+                    &lt;!&ndash;&lt;!&ndash;图标显示&ndash;&gt;&ndash;&gt;
+                    &lt;!&ndash;<div class="navbar-header">&ndash;&gt;
+                        &lt;!&ndash;<a class="navbar-brand" href="/templates/photoshoot_default.html">&ndash;&gt;
+                            &lt;!&ndash;<img alt="影约" src="../img/psico.jpg" height="30px" width="30px"/>&ndash;&gt;
+                        &lt;!&ndash;</a>&ndash;&gt;
+                    &lt;!&ndash;</div>&ndash;&gt;
+                &lt;!&ndash;</div>&ndash;&gt;
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li id="login-li"><a href="javascript:;" id="loginbtn">登录</a></li>
-                        <li id="register-li"><a href="javascript:;" id="registerbtn">注册</a></li>
-                    </ul>
-                </div><!-- 导航栏右侧 -->
-            </div><!-- /.container-fluid -->
-        </nav><!--导航栏部分-->
+                &lt;!&ndash;<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">&ndash;&gt;
+                    &lt;!&ndash;<ul class="nav navbar-nav cust-nav-bar">&ndash;&gt;
+                        &lt;!&ndash;<li><a href="#">最新</a></li>&ndash;&gt;
+                        &lt;!&ndash;<li><a href="#">约拍</a></li>&ndash;&gt;
+                        &lt;!&ndash;<li><a href="#">关于我们</a></li>&ndash;&gt;
+                        &lt;!&ndash;<li class="dropdown" id="nav-find">&ndash;&gt;
+                            &lt;!&ndash;<a href="#" class="dropdown-toggle" >发现 </a>&ndash;&gt;
+                            &lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;
+                                &lt;!&ndash;<li><a href="#">最新活动</a></li>&ndash;&gt;
+                                 &lt;!&ndash;<li><a href="#">往期活动</a></li>&ndash;&gt;
+                                &lt;!&ndash;<li><a href="#">随便看看</a></li>&ndash;&gt;
+                                &lt;!&ndash;<li class="divider"></li>&ndash;&gt;
+                                &lt;!&ndash;<li><a href="#">下载APP</a></li>&ndash;&gt;
+                                &lt;!&ndash;<li><a href="#">商务合作</a></li>&ndash;&gt;
+                            &lt;!&ndash;</ul>&ndash;&gt;
+                        &lt;!&ndash;</li>&ndash;&gt;
+                    &lt;!&ndash;</ul>&ndash;&gt;
+
+                    &lt;!&ndash;<ul class="nav navbar-nav navbar-right">&ndash;&gt;
+                        &lt;!&ndash;<li id="login-li"><a href="javascript:;" id="loginbtn">登录</a></li>&ndash;&gt;
+                        &lt;!&ndash;<li id="register-li"><a href="javascript:;" id="registerbtn">注册</a></li>&ndash;&gt;
+                    &lt;!&ndash;</ul>&ndash;&gt;
+                &lt;!&ndash;</div>&lt;!&ndash; 导航栏右侧 &ndash;&gt;&ndash;&gt;
+            &lt;!&ndash;</div>&lt;!&ndash; /.container-fluid &ndash;&gt;&ndash;&gt;
+        &lt;!&ndash;</nav>&lt;!&ndash;导航栏部分&ndash;&gt;&ndash;&gt;
+        <div id="navbar"></div>
         <div class="center">
             <div class="middle">
-                <div class="wrap"><!--欢迎部分-->
+                <div class="wrap">&lt;!&ndash;欢迎部分&ndash;&gt;
                     <h1>欢迎,影约!</h1>
                     <h2>一个你从未发现过的幻境，此处，可以回忆你最美好的生活!</h2>
                     <p><a class="btn btn-primary btn-lg" href="#">开始了解</a></p>
@@ -63,17 +64,17 @@
         </div>
     </div>
 
-    <div class="wrapper"><!--主体部分-->
+    <div class="wrapper">&lt;!&ndash;主体部分&ndash;&gt;
         <div class="overlay"></div>
         <div class="background"></div>
-        <!--搜索部分-->
+        &lt;!&ndash;搜索部分&ndash;&gt;
         <div>
         </div>
         <section class="content">
             <div class="center">
                 <div class="recommend-line"><a>由此开始</a></div>
             </div>
-            <!--选择标签部分-->
+            &lt;!&ndash;选择标签部分&ndash;&gt;
             <div class="reco">
                 <ul class="reco-tags">
                     <li class="active"><a href="javascript:;">人物</a></li>
@@ -83,7 +84,7 @@
                 </ul>
             </div>
 
-            <!--显示图片的两行-->
+            &lt;!&ndash;显示图片的两行&ndash;&gt;
             <div class="pic_con">
                 <div class="photo_row">
                     <div class="reco-pic-thumbnail"><a class="pic" style="background-image: url(../img/r0.jpg)"></a>
@@ -110,31 +111,31 @@
                 <div class="recommend-line"><a>精彩活动</a></div>
             </div>
         </section>
-    </div><!--主体部分-->
+    </div>&lt;!&ndash;主体部分&ndash;&gt;
 
-    <footer class="index-footer" id="index_footer"><!--脚页部分-->
-        <!--关于我们-->
+    <footer class="index-footer" id="index_footer">&lt;!&ndash;脚页部分&ndash;&gt;
+        &lt;!&ndash;关于我们&ndash;&gt;
         <ul>
             <li><h4>关于我们</h4></li>
             <li>这里充满了热爱摄影的人!<br/>
                 这有有你需要的摄影师!
             </li>
         </ul>
-        <!--联系与合作-->
+        &lt;!&ndash;联系与合作&ndash;&gt;
         <ul>
             <li><h4>联系与合作</h4></li>
             <li><a href="#" style="text-decoration: none">联系我们</a></li>
             <li><a href="#" style="text-decoration: none">用户反馈</a></li>
         </ul>
-        <!--移动-->
+        &lt;!&ndash;移动&ndash;&gt;
         <ul>
             <li><h4>客户端</h4></li>
             <li><a href="#" style="text-decoration: none">影约 Android 版</a></li>
             <li><a href="#" style="text-decoration: none">影约 Iphone 版</a></li>
         </ul>
-    </footer><!--脚页部分-->
+    </footer>&lt;!&ndash;脚页部分&ndash;&gt;
 
-    <!--登录弹框-->
+    &lt;!&ndash;登录弹框&ndash;&gt;
     <div class="login-dialog">
         <form method="post" action="/PsUserController/check">
             <div class="logo">
@@ -145,27 +146,27 @@
             </div>
             <div class="form-group">
                 <input class="input-place" type="password" name="password" required="" placeholder="输入密码">
-                <!--<a href="//tuchong.com/account/forget/" target="_blank" class="input-tips forget-password">忘记密码？</a>-->
+                &lt;!&ndash;<a href="//tuchong.com/account/forget/" target="_blank" class="input-tips forget-password">忘记密码？</a>&ndash;&gt;
             </div>
             <div class="form-group text-center">
                 <button id="logbtn" class="btn submit-btn btn-danger">
                     登录
                 </button>
             </div>
-            <!--此处是关闭按钮-->
+            &lt;!&ndash;此处是关闭按钮&ndash;&gt;
             <div class="close"></div>
         </form>
     </div>
-    <!--注册弹框-->
+    &lt;!&ndash;注册弹框&ndash;&gt;
     <div class="register-dialog">
-        <div class="register-form"><!--此处是没有form标签，是因为用了Ajax，而不写url则会导致跳入当前页-->
+        <div class="register-form">&lt;!&ndash;此处是没有form标签，是因为用了Ajax，而不写url则会导致跳入当前页&ndash;&gt;
             <div class="logo">
                 <h3><img src="../img/psico.jpg" style="width: 30px"/> 影约 </h3>
             </div>
-            <!--后期再加入这个-->
-            <!--<div class="form-group">-->
-                <!--<input class="input-place" name="account" autofocus="" required="" placeholder="手机号">-->
-            <!--</div>-->
+            &lt;!&ndash;后期再加入这个&ndash;&gt;
+            &lt;!&ndash;<div class="form-group">&ndash;&gt;
+                &lt;!&ndash;<input class="input-place" name="account" autofocus="" required="" placeholder="手机号">&ndash;&gt;
+            &lt;!&ndash;</div>&ndash;&gt;
             <div class="form-group">
                 <input class="input-place" id="username" name="username" required="" placeholder="用户名">
             </div>
@@ -180,11 +181,155 @@
                     注册
                 </button>
             </div>
-            <!--此处是关闭按钮-->
+            &lt;!&ndash;此处是关闭按钮&ndash;&gt;
             <div class="close"></div>
         </div>
+    </div>-->
+    <div id="wrapper">
+        <!-- 模态遮罩 -->
+        <div class="mask"></div>
+        <!-- 登录模态框 -->
+        <div class="login-modal">
+            <h1>登录</h1>
+            <h2>请输入您的账号密码</h2>
+            <form method="post" action="/PsUserController/check">
+                <div class="group">
+                    <input type="text" name="account" autofocus="" required="">
+                    <span class="line"></span>
+                    <label>手机号/邮箱/用户名</label>
+                </div>
+                <div class="group">
+                    <input type="password" name="password" autofocus="" required="">
+                    <span class="line"></span>
+                    <label>密码</label>
+                </div>
+                <button type="submit" class="button" id="logbtn">登录</button>
+            </form> </div>
+        <!-- 注册模态框 -->
+        <div class="reg-modal">
+            <h1>注册</h1>
+            <h2>请输入您的账号密码</h2>
+            <form>
+                <div class="group">
+                    <input type="text" autofocus="" required="">
+                    <span class="line"></span>
+                    <label>手机号/邮箱/用户名</label>
+                </div>
+                <div class="group">
+                    <input type="password" autofocus="" required="">
+                    <span class="line"></span>
+                    <label>密码</label>
+                </div>
+                <div class="group">
+                    <input type="password" required>
+                    <span class="line"></span>
+                    <label>确认密码</label>
+                </div>
+                <button type="submit" class="button">注册</button>
+            </form>
+        </div>
+        <!-- 导航栏 -->
+        <div id="navbar"></div>
+        <!-- 横幅 -->
+        <div class="banner" onselectstart="return false;">
+            <div class="inner">
+                <h1>欢迎,影约!</h1>
+                <p>一个你从未发现过的幻境，此处，可以回忆你最美好的生活!</p>
+                <button>开始了解</button>
+            </div>
+        </div>
     </div>
+    <!-- 内容 -->
+    <div class="content">
+        <div class="section1">
+            <div class="start-line">
+                <a>由此开始</a>
+            </div>
+            <div class="tabs-container">
+                <ul class="tabs-list">
+                    <li class="active">人物</li>
+                    <li>动物</li>
+                    <li>风景</li>
+                    <li>汽车</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tabs-pic">
+            <ul class="tabs-pic-show">
+                <li class="active">
+                    <ul class="grid">
+                        <li>
+                            <div class="pic">
+                                <img src="../img/r0.jpg" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <img src="../img/r1.jpg" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <img src="../img/r2.jpg" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <img src="../img/r3.jpg" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <img src="../img/r4.jpg" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <img src="../img/r5.jpg" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content1">
+        <div class="section1">
+            <div class="start-line">
+                <a>精彩活动</a>
+            </div>
+            <div class="activity-container">
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="foot-container">
+            <ul>
+                <li><h4>关于我们</h4></li>
+                <li>这里充满了热爱摄影的人!</li>
+                <li> 这有有你需要的摄影师!</li>
+            </ul>
+            <!--联系与合作-->
+            <ul>
+                <li><h4>联系与合作</h4></li>
+                <li><a href="#">联系我们</a></li>
+                <li><a href="#">用户反馈</a></li>
+            </ul>
+            <!--移动-->
+            <ul>
+                <li><h4>客户端</h4></li>
+                <li><a href="#">影约 Android 版</a></li>
+                <li><a href="#" style="text-decoration: none">影约 Iphone 版</a></li>
+            </ul>
+        </div>
+    </footer>
 </div>
+
+<script src="../static/js/jquery-3.2.1.js"></script>
+<script src="../static/js/psindex.js"></script>
+<script src="../static/js/loginstatus.js"></script>
 
 </body>
 

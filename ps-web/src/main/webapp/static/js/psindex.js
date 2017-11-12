@@ -1,36 +1,36 @@
 var timeout;
 $(document).ready(function () {
-
-    $('#nav-find').mouseover(function () {
-        clearTimeout(timeout);
-        //交互延迟90ms
-        timeout = setTimeout(function () {
-            $('#nav-find').addClass("open");
-        }, 90);
-    }).mouseout(function () {
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-            $('#nav-find').removeClass("open");
-        }, 90);
-    })
-
-
-    // 导航栏右侧,打开或关闭登录框
-    $("#loginbtn").click(function () {
-        $(".login-dialog").css("display", "block")
+    $('#navbar').load('../../templates/nav.html', function () {
+        $('.login').on('click', function () {
+            $('.mask').fadeIn();
+            $('.login-modal').fadeIn();
+        });
+        $('.reg').on('click', function () {
+            $('.mask').fadeIn();
+            $('.reg-modal').fadeIn();
+        });
+        $('.mask').on('click', function () {
+            $(this).fadeOut();
+            $('.login-modal').fadeOut();
+            $('.reg-modal').fadeOut();
+        });
+        $('input').blur(function () {
+            var $this = $(this);
+            if ($this.val()) {
+                $this.addClass('used');
+            }
+            else {
+                $this.removeClass('used');
+            }
+        });
     });
-    $(".close").click(function () {
-        $(".login-dialog").css("display", "none")
-    });
 
+    // $('.tabs-list > li').on('click', function () {
+    //     var tabIndex = $(this).index();
+    //     $(this).addClass('active').siblings().removeClass('active');
+    //     $('.tabs-pic-show > li').eq(tabIndex).addClass('active').siblings().removeClass('active');
+    // });
 
-    // 导航栏右侧,打开或关闭注册框
-    $("#registerbtn").click(function () {
-        $(".register-dialog").css("display", "block")
-    });
-    $(".close").click(function () {
-        $(".register-dialog").css("display", "none")
-    });
 
     //点击注册按钮提交表单
     $('#regbtn').click(function () {
@@ -54,21 +54,18 @@ $(document).ready(function () {
     });
 
     //    推荐标签
-    $(".reco-tags li a").click(function () {
-        $(this).parent().siblings().removeClass("active");
-        $(this).parent().addClass("active");
-
+    $(".tabs-list > li").click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
         // 图片名称
-        var flag = getFlag(this.innerHTML);
-
-        // 所有图片a标签
+        var picName = $(this).text();
+        var flag = getFlag(picName);
         var pics = $('.pic');
-
+        // 所有图片a标签
         for (var i = 0; i < pics.length; i++) {
             // 设置图片路径
             var picpath = "../img/" + flag + i + ".jpg";
             var uurl = "url(" + picpath + ")";
-            pics[i].style.cssText = "background-image:" + uurl;
+            $('.grid li').eq(i).find('img').attr('src', picpath);
         }
     })
 });

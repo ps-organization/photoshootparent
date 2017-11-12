@@ -54,8 +54,11 @@ function requestPic(currentPicId, picLoadNum) {
                 "            </figure>\n" +
                 "        </li>");
             //此处给点赞图片改变颜色
-            if (data[i].likeStatus == null && data[i].likeStatus == 0) {
-
+            // console.log('output:'  + data[i].likeStatus);
+            if (data[i].likeStatus == 1) {
+                console.log('likeid:   '+$('#'+data[i].collectionId).attr('id'));
+                $('#'+data[i].collectionId).find('svg path').attr({fill: '#ca3530'});
+                // console.log($('.like').parents('li:nth-child(li)'));
             }
         }//for循环结束
 

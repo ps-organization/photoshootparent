@@ -1,0 +1,332 @@
+#wrapper {
+  height: 900px;
+  background-image: url('../../img/20170802145635.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: 3;
+}
+.login-modal,
+.reg-modal {
+  display: none;
+  max-width: 500px;
+  filter: opacity(0.7);
+  -webkit-filter: opacity(0.7);
+  height: 380px;
+  background-color: #fff;
+  border-radius: 15px;
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px;
+}
+.login-modal h1,
+.reg-modal h1 {
+  padding-top: 1em;
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.login-modal h2,
+.reg-modal h2 {
+  font-size: 15px;
+  line-height: 30px;
+  text-align: center;
+  color: #757575;
+  padding-bottom: 30px;
+}
+.login-modal .group,
+.reg-modal .group {
+  position: relative;
+  margin-bottom: 55px;
+}
+.login-modal input,
+.reg-modal input {
+  font-size: 1.1em;
+  line-height: 1.1em;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  background: transparent;
+  color: #636363;
+  width: 80%;
+  margin: 0 auto;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #cdcdcd;
+}
+.login-modal input:focus,
+.reg-modal input:focus {
+  outline: none;
+}
+.login-modal input:focus ~ .line:before,
+.reg-modal input:focus ~ .line:before,
+.login-modal input:focus ~ .line:after,
+.reg-modal input:focus ~ .line:after {
+  width: 42%;
+}
+.login-modal input:focus ~ label,
+.reg-modal input:focus ~ label,
+.login-modal input.used ~ label,
+.reg-modal input.used ~ label {
+  top: -20px;
+  left: 8%;
+  transform: scale(0.85);
+  color: #00A0E3;
+}
+.login-modal .line,
+.reg-modal .line {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.login-modal .line:before,
+.reg-modal .line:before {
+  left: 50%;
+}
+.login-modal .line:after,
+.reg-modal .line:after {
+  right: 50%;
+}
+.login-modal .line:before,
+.reg-modal .line:before,
+.login-modal .line:after,
+.reg-modal .line:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #00A0E3;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.login-modal .button,
+.reg-modal .button {
+  cursor: pointer;
+  position: absolute;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  left: 50%;
+  color: #fff;
+  background: #00b7ff;
+  font-size: 1em;
+  padding: .5em 1em;
+  border: 1px solid #00b7ff;
+  border-radius: .3em;
+}
+.login-modal label,
+.reg-modal label {
+  color: #999;
+  font-size: 1em;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 45px;
+  top: 10px;
+  transition: all 0.2s ease;
+}
+.reg-modal {
+  height: 460px;
+}
+.banner {
+  height: 850px;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  color: #fff;
+}
+.banner .inner {
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+  top: 200px;
+  position: relative;
+}
+.banner .inner h1 {
+  padding: 20px;
+  font-size: 3em;
+  border-bottom: 1px solid #fff;
+}
+.banner .inner p {
+  margin-top: 20px;
+  font-size: 1.5em;
+}
+.banner .inner button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.banner .inner button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transition: all .2s linear;
+}
+.start-line {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  line-height: 1em;
+  padding: 15px 0;
+}
+.start-line a {
+  cursor: pointer;
+}
+.start-line:before,
+.start-line:after {
+  padding: 15px 0;
+  top: 1.5em;
+  position: absolute;
+  display: inline-block;
+  border-top: 1px solid #916a35;
+  width: 44%;
+  content: "";
+}
+.start-line:before {
+  left: 0;
+}
+.start-line:after {
+  right: 0;
+}
+.content {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.content1 {
+  margin-top: 150px;
+}
+.activity-container {
+  max-width: 1440px;
+  height: 500px;
+  margin: 0 auto;
+}
+.tabs-container {
+  width: 100%;
+}
+.tabs-container .tabs-list {
+  padding-top: 100px;
+  margin: 0 auto;
+  max-width: 800px;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+}
+.tabs-container .tabs-list > li {
+  cursor: pointer;
+  padding: 10px 0;
+  flex: 1;
+  text-align: center;
+  width: 100px;
+  list-style: none;
+}
+.tabs-container .tabs-list > li.active {
+  border-bottom: 2px solid #00A0E3;
+}
+.tabs-container .tabs-list > li:hover {
+  color: #00A0E3;
+}
+.tabs-pic {
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: block;
+}
+.tabs-pic-show {
+  display: block;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  list-style: none;
+}
+.tabs-pic-show > li {
+  display: none;
+  position: relative;
+  width: 100%;
+}
+.tabs-pic-show > li.active {
+  display: block;
+}
+ul.grid {
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+}
+ul.grid li {
+  width: 400px;
+  height: 300px;
+  position: relative;
+  margin: 10px;
+}
+ul.grid li .pic {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-position: center center;
+  background-size: cover;
+}
+.pic img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+footer {
+  margin-top: 50px;
+  max-width: 100%;
+  height: 30em;
+  background: transparent url(../../img/index/wallhaven-491315.webp) center 60% no-repeat;
+  background-size: cover;
+  display: flex;
+  display: -webkit-flex;
+}
+footer .foot-container {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  width: 1280px;
+  margin: 0 auto;
+}
+footer .foot-container > ul {
+  list-style: none;
+  text-align: center;
+  flex: 1;
+  padding: 1em;
+}
+footer .foot-container > ul li {
+  padding: .5em;
+}
+footer .foot-container > ul li a {
+  color: #534a4a;
+}
+footer .foot-container > ul li a:hover {
+  color: #00A0E3;
+}
