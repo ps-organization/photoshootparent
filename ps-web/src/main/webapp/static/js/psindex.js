@@ -1,5 +1,6 @@
 var timeout;
 $(document).ready(function () {
+    // 点击登录注册后的事件
     $('#navbar').load('../../templates/nav.html', function () {
         $('.login').on('click', function () {
             $('.mask').fadeIn();
@@ -31,12 +32,18 @@ $(document).ready(function () {
     //     $('.tabs-pic-show > li').eq(tabIndex).addClass('active').siblings().removeClass('active');
     // });
 
+    //点击开始了解后的滑动
+    $('.about').on('click', function() {
+        $("html,body").animate({
+                scrollTop: $("#start").offset().top},
+            1000);
+    });
 
     //点击注册按钮提交表单
     $('#regbtn').click(function () {
         var userName = $('#username').val();
         var userPassword = $('#vpassword').val();
-        if (userName == "" || userName == null) {
+        if (userName == "" || userName == null ) {
             //跳出该函数
             return false;
         }

@@ -22,7 +22,7 @@ nav {
     display: flex;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-
+    align-items: center;
 }
 
 .logo {
@@ -31,7 +31,6 @@ nav {
     background-size: 50px 50px;
     width: 50px;
     height: 50px;
-    justify-content: flex-start;
     margin: 0 10px;
 }
 .nav-content, .drop-menu {
@@ -81,7 +80,7 @@ nav {
     }
 }
 .nav-right {
-    position: absolute;
+    margin-left: auto;
     height: 50px;
     right: 0;
     margin-right: 15px;
@@ -93,7 +92,7 @@ nav {
         float: left;
         margin-right: 10px;
         & > a {
-            padding: 5px 15px;
+            padding: 5px 20px;
         }
     }
 }
@@ -106,16 +105,16 @@ nav {
     background: #000;
 }
 .img-circle {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border:  1px solid rgba(255, 255, 255, .1);
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px;
 }
 @media screen and (max-width: 768px) {
     .nav-content {
         display: none;
-        
+
     }
 }
