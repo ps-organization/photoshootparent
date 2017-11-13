@@ -20,15 +20,15 @@
   max-width: 500px;
   filter: opacity(0.7);
   -webkit-filter: opacity(0.7);
-  height: 380px;
   background-color: #fff;
   border-radius: 15px;
   z-index: 4;
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 50%;
   left: 0;
   right: 0;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
   margin: auto;
   padding: 10px;
 }
@@ -120,16 +120,17 @@
 .login-modal .button,
 .reg-modal .button {
   cursor: pointer;
-  position: absolute;
+  position: relative;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   left: 50%;
   color: #fff;
   background: #00b7ff;
   font-size: 1em;
-  padding: .5em 1em;
+  padding: .8em 2em;
   border: 1px solid #00b7ff;
-  border-radius: .3em;
+  border-radius: 1.5em;
+  margin-bottom: 1em;
 }
 .login-modal label,
 .reg-modal label {
@@ -141,9 +142,6 @@
   left: 45px;
   top: 10px;
   transition: all 0.2s ease;
-}
-.reg-modal {
-  height: 460px;
 }
 .banner {
   height: 850px;
@@ -329,4 +327,13 @@ footer .foot-container > ul li a {
 }
 footer .foot-container > ul li a:hover {
   color: #00A0E3;
+}
+.forgot {
+  position: absolute;
+  right: 50px;
+  color: rgba(63, 155, 147, 0.74);
+  bottom: 80px;
+}
+.forgot:hover {
+  color: rgba(10, 230, 212, 0.74);
 }

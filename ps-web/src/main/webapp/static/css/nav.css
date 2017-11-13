@@ -5,18 +5,18 @@
 /* body {
     background: rgb(36, 36, 99);
 } */
-a {
+nav a {
   text-decoration: none;
 }
-a:link,
-a:visited,
-a:hover,
-a:focus,
-a:active {
+nav a:link,
+nav a:visited,
+nav a:hover,
+nav a:focus,
+nav a:active {
   color: #fff;
   text-decoration: none;
 }
-a:hover {
+nav a:hover {
   color: #00b7ff;
 }
 nav {
