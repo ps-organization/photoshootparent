@@ -25,8 +25,7 @@ import java.sql.SQLException;
  * 集中处理类异常
  *
  * @ControllerAdvice：注解将作用在所有注解了@RequestMapping的控制器的方法上。
- * @ExceptionHandler：用于全局处理控制器里的异常。
- * Created by Lime on 2017/11/9
+ * @ExceptionHandler：用于全局处理控制器里的异常。 Created by Lime on 2017/11/9
  */
 
 //只能配置程序中抛出的错误
@@ -52,10 +51,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {ApplicationException.class})
     @ResponseBody
     public ResponseEntity<Object> FoundException(ApplicationException ex, WebRequest request) throws IOException {
+        System.out.println(ex.toString());
+        ex.printStackTrace(); 
         ex = new ApplicationException(UserReturnCode.USER_NOT_ALLOW.getMessage(), UserReturnCode.USER_NOT_ALLOW.getCode());
         return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = {IllegalStateException.class})
+    @ResponseBody
+    public ResponseEntity<Object> FoundException(IllegalStateException ex, WebRequest request) throws IOException {
+        System.out.println(ex.toString());
+        ex.printStackTrace();
+        return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
 
     /**
      * 根据各种异常构建 ResponseEntity 实体. 服务于以上各种异常
@@ -69,13 +77,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //    }
     @ResponseBody
     private void outputMessage(HttpServletResponse response, Integer errCode, String errMsg) throws IOException {
-        ApplicationException result = new ApplicationException(errMsg,errCode);
+        ApplicationException result = new ApplicationException(errMsg, errCode);
         String json = JSON.toJSONString(result);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/json");
         ServletOutputStream os = response.getOutputStream();
         os.write(json.getBytes("utf-8"));
     }
+
     protected <T> ResponseEntity<T> response(T body, HttpStatus status) {
         log.debug("Responding with a status of {}", status);
         return new ResponseEntity<>(body, new HttpHeaders(), status);
@@ -90,15 +99,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //    }
 
 
-//    @ExceptionHandler(value = {RuntimeException.class, ApplicationException.class})
-//        @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    public String cppException(IllegalStateException illegalStateException) {
-//        System.out.println(illegalStateException.toString());
-//        illegalStateException.printStackTrace();
-//        return "异常声明，请求页面不存在";
-//    }
-
-
 //
 //    @ExceptionHandler(ApplicationException.class)
 //    @ResponseBody
@@ -106,7 +106,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //        log.info("Business exception handler  " + ex.getMessage());
 //        request.getSession(true).setAttribute(EXPTION_MSG_KEY, ex.getMessage());
 //    }
-
 
 
 }

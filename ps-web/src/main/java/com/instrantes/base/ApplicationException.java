@@ -43,7 +43,7 @@ public class ApplicationException extends RuntimeException {
     public String toString() {
         return "ApplicationException{" +
                 "code=" + code +
-                "message=" + getMessage() +
+                ",message=" + getMessage() +
                 '}';
     }
 }

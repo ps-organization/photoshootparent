@@ -38,8 +38,7 @@ public class PsUserServiceImpl implements PsUserService {
         psUser.setUserPassword(password);
         return oldPassword;
     }
-//  此处需要修改
-//    @Cacheable(value = "userId")
+
     @Override
     //    此处为获取当前用户id的方法
     public Integer getCurrentPsUserId() {

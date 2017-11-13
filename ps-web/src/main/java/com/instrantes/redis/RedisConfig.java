@@ -107,7 +107,7 @@ public class RedisConfig {
         redisTemplate.setKeySerializer(stringRedisSerializer);
         redisTemplate.setValueSerializer(jdkSerializationRedisSerializer);
         redisTemplate.setHashKeySerializer(stringRedisSerializer);
-        redisTemplate.setHashValueSerializer(jdkSerializationRedisSerializer);
+        redisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
 
         return redisTemplate;
     }

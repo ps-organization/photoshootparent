@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,8 +23,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @ImportResource({"classpath:spring/photoshoot-servlet.xml", "classpath:spring/applicationContext.xml", "classpath:spring/applicationContext-MyBatis.xml"})
-
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource(name = "userDetailsServiceImpl")
@@ -81,9 +82,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()//启用记住我功能
 //                .alwaysRemember(true)      //开启后会造成UsernameNotFoundException，暂未处理
-                .tokenValiditySeconds(86400);
-//                .rememberMeParameter("remember-me")//登陆时是否激活记住我功能的参数名字，在登陆页面有展示
-//                .rememberMeCookieName("workspace");//cookies的名字，登陆后可以通过浏览器查看cookies名字;
+                .tokenValiditySeconds(86400)
+                .rememberMeParameter("remember-me")//登陆时是否激活记住我功能的参数名字，在登陆页面有展示
+                .rememberMeCookieName("workspace");//cookies的名字，登陆后可以通过浏览器查看cookies名字;
     }
 
 

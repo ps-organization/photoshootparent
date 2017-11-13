@@ -106,7 +106,7 @@ public class PsCollectionController {
  */
         return psCollectionService.selectCollectionInfoByUserId(psUserService.getCurrentPsUserId());
     }
-    //查询其他人所有作品信息。此处用了json，因为前端传入的是Json字符串，累死上面那个方法
+    //查询其他人所有作品信息。此处用了json，因为前端传入的是Json字符串，类似上面那个方法
 //    @RequestMapping(value = "/personCollection", method = RequestMethod.POST)
 //    @ResponseBody
 //    public List<PsCollection> selectCollectionInfoByUserId(@RequestBody String userId) { // 该方法不能用Integer接收
