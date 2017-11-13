@@ -128,11 +128,11 @@
             ps_collection.collection_photoname,
             ps_user.user_name
         FROM
-            ps_collection,
             ps_user
+        LEFT JOIN ps_collection ON ps_collection.collection_userid = ps_user.user_id
         WHERE
-            ps_collection.collection_flag = 1
-        AND ps_user.user_id = ps_collection.collection_userid = #{userId};
+            ps_user.user_id = ps_collection.collection_userid
+        AND ps_collection.collection_userid = #{userId}
     </select>
     <!--批量上传多个图片-->
     <insert id="batchInsertPsCollection">

@@ -25,11 +25,5 @@ public enum UserReturnCode implements ReturnCode {
         return message;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

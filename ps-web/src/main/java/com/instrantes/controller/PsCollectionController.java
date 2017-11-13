@@ -1,6 +1,7 @@
 package com.instrantes.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.instrantes.base.ApplicationException;
 import com.instrantes.pojo.PsCollection;
 import com.instrantes.service.PsCollectionService;
 import com.instrantes.service.PsUserService;
@@ -40,7 +41,7 @@ public class PsCollectionController {
     }
 
     //根据用户id查询作品的详情
-    @RequestMapping(value = "/userCollections/userCollections", method = RequestMethod.POST)
+    @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
     @ResponseBody
     public List<PsCollection> selectPsCollectionByUserId(Integer id) {
         List<PsCollection> psCollectionList = psCollectionService.selectPsCollectionByUserId(id);
@@ -85,13 +86,7 @@ public class PsCollectionController {
  *@return java.util.List<com.instrantes.pojo.PsCollection>
  *@date 2017/11/3
  */
-//        try {
-//            return psCollectionService.selectAllCollection(getCurrentPsUserId(),currentPicId,picLoadNum);
-//        } catch (Exception e) {
-//            Integer likeUserId=0;
-//            System.out.println(likeUserId);
-//            return psCollectionService.selectAllCollection(likeUserId,currentPicId,picLoadNum);
-//        }
+//        throw new ApplicationException("sss", 10001);
         if (getCurrentPsUserId() == null) {
             System.out.println("---------------------------------:" + getCurrentPsUserId());
             return psCollectionService.selectAllCollection(0, currentPicId, picLoadNum);
@@ -102,17 +97,30 @@ public class PsCollectionController {
     //查询个人所有作品信息。此处用了json，因为前端传入的是Json字符串
     @RequestMapping(value = "/personCollection", method = RequestMethod.POST)
     @ResponseBody
-    public List<PsCollection> selectCollectionInfoByUserId(@RequestBody String userId) { // 该方法不能用Integer接收
-        /**
-         *根据用户的ID，获取个人用户的所有作品
-         *@param [userId]
-         *@return java.util.List<com.instrantes.pojo.PsCollection>
-         *@date 2017/10/21
-         */
-        JSONObject array = JSONObject.parseObject(userId);
-        System.out.println("----------------id:" + array.getInteger("userId"));
-        return psCollectionService.selectCollectionInfoByUserId(array.getInteger("userId"));
+    public List<PsCollection> selectCollectionInfoByUserId() { // 该方法不能用Integer接收
+/**
+ *根据登陆用户的ID，获取当前登陆用户的所有作品
+ *@param []
+ *@return java.util.List<com.instrantes.pojo.PsCollection>
+ *@date 2017/11/13
+ */
+        return psCollectionService.selectCollectionInfoByUserId(psUserService.getCurrentPsUserId());
     }
+    //查询其他人所有作品信息。此处用了json，因为前端传入的是Json字符串，累死上面那个方法
+//    @RequestMapping(value = "/personCollection", method = RequestMethod.POST)
+//    @ResponseBody
+//    public List<PsCollection> selectCollectionInfoByUserId(@RequestBody String userId) { // 该方法不能用Integer接收
+//        /**
+//         *根据用户的ID，获取个人用户的所有作品
+//         *@param [userId]
+//         *@return java.util.List<com.instrantes.pojo.PsCollection>
+//         *@date 2017/10/21
+//         */
+//        JSONObject array = JSONObject.parseObject(userId);
+//        System.out.println("----------------id:" + array.getInteger("userId"));
+//        return psCollectionService.selectCollectionInfoByUserId(array.getInteger("userId"));
+//    }
+
 
     //单个作品信息
     @RequestMapping(value = "/singleColletion", method = RequestMethod.POST)

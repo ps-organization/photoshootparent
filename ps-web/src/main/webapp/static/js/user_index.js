@@ -22,7 +22,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "/collection/personCollection",
-            data:JSON.stringify({"userId":1}),
+            // data:JSON.stringify({"userId":1}),
             contentType: "application/json;charset=utf-8",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
