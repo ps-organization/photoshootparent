@@ -78,10 +78,12 @@ $().ready(function () {
                 }
                 var emailcode = $('#ver-code').val();
                 var pw = $('#pwd').val();
+                var psUser = {"userName":username,"emailcode":emailcode,"userPassword":pw};
                 $.ajax({
                     url:"/PsUserController/EmailCodeResetPw",
                     type:"POST",
-                    data:{"userName":username,"emailcode":emailcode,"userPassword":pw},
+                    contentType:"application/json",
+                    data:JSON.stringify(psUser),
                     success:function(resut){
                         console.log(resut);
                             alert("简陋提示：密码修改成功！");

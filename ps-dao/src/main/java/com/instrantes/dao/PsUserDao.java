@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface PsUserDao {
 
     //查询该用户是否存在
-    int selectPsUserByUserNameNotNull(String username);
+    PsUser selectPsUserByUserNameEmail(String username);
 
     PsUser selectPsUserById(Integer id);
     //查找用户所有信息*
@@ -21,12 +21,6 @@ public interface PsUserDao {
 
     //    根据用户名只获取userId
     Integer selectPsUserUserIdByName(String userName);
-
-    //查询邮件是否存在
-    int selectPsUserByEmail(String email);
-
-    //根据用户昵称获取用户邮件
-    PsUser selectPsUserByNameEmail(String username);
 
     //修改密码
     int updateUserPassword(PsUser psUser);

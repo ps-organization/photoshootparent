@@ -13,7 +13,7 @@ public interface PsUserService {
 
     Integer getCurrentPsUserId();
 
-    int selectPsUserName(String username);
+    PsUser selectPsUserName(String username);
 
     PsUser selectPsUserById(Integer id);
 
@@ -27,9 +27,8 @@ public interface PsUserService {
 
     Integer selectPsUserUserIdByName(String userName);
 
-    int selectPsUserEmail(String email);
-
-    PsUser selectPsUserNameEmail(String username);
+    //用过昵称查询邮件
+    PsUser selectPsByUserNameEmail(String username);
 
     int updateUserPassword(PsUser psUser);
 

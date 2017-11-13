@@ -7,6 +7,7 @@ import com.instrantes.service.PsUserService;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -53,9 +54,9 @@ public class PsUserServiceImpl implements PsUserService {
     }
 
     @Override
-    public int selectPsUserName(String username) {
-        int num = psUserDao.selectPsUserByUserNameNotNull(username);
-        return num;
+    public PsUser selectPsUserName(String username) {
+
+        return  psUserDao.selectPsUserByUserNameEmail(username);
     }
 
     @Override
@@ -105,16 +106,11 @@ public class PsUserServiceImpl implements PsUserService {
         return psUserDao.selectPsUserUserIdByName(userName);
     }
 
-    //查询该用户的邮箱是否匹配
-    @Override
-    public int selectPsUserEmail(String email) {
-        return psUserDao.selectPsUserByEmail(email);
-    }
 
     //获取用户邮箱
     @Override
-    public PsUser selectPsUserNameEmail(String username) {
-        PsUser psUser = psUserDao.selectPsUserByNameEmail(username);
+    public PsUser selectPsByUserNameEmail(String username) {
+        PsUser psUser = psUserDao.selectPsUserByUserNameEmail(username);
         return psUser;
     }
 

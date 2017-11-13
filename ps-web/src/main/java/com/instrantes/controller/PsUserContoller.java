@@ -1,6 +1,5 @@
 package com.instrantes.controller;
 
-import com.instrantes.base.ApplicationException;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.pojo.PsWatch;
 import com.instrantes.service.PsUserService;
@@ -8,11 +7,8 @@ import com.instrantes.service.PsWatchService;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.LinkedHashMap;
 
 
 @Controller
@@ -134,12 +131,12 @@ public class PsUserContoller{
      */
     @RequestMapping(value = "/resetuserpw", method = RequestMethod.POST)
     @ResponseBody
-    public Boolean resetUserPw(@RequestParam("username") String username) {
-        int flag = psUserService.selectPsUserName(username);
-        if (flag == 1) {
-            return true;
+    public String resetUserPw(@RequestParam("username") String username) {
+        PsUser psUser = psUserService.selectPsByUserNameEmail(username);
+        if (psUser.getUserEmail() != null) {
+            return "success";
         } else {
-            return false;
+            return "该用户未绑定邮箱";
         }
     }
 
@@ -160,12 +157,9 @@ public class PsUserContoller{
     @ResponseBody
     public String sendEmailCode(@RequestParam("email") String email, @RequestParam("username") String username) throws MessagingException, GeneralSecurityException, javax.mail.MessagingException, UnsupportedEncodingException {
         //判断从页面传来的邮箱是否和数据库的匹配
-        int flag = psUserService.selectPsUserEmail(email);
-        if (flag == 1) {
-            //成功返回邮箱
-            PsUser psUser = psUserService.selectPsUserNameEmail(username);
-            //发送邮箱
-            psUserService.sendCode(psUser.getUserEmail());
+        PsUser psUser = psUserService.selectPsByUserNameEmail(username);
+        if (psUser.getUserEmail().equals(email)) {
+            psUserService.sendCode(email); //发送邮箱
             return "success";
         } else {
             return "error";
@@ -175,8 +169,8 @@ public class PsUserContoller{
     //修改密码
     @RequestMapping(value = "/EmailCodeResetPw", method = RequestMethod.POST)
     @ResponseBody
-    public String EmailCodeResetPw(@RequestParam("emailcode") Integer emailcode, @RequestParam("userName") String username, @RequestParam("userPassword") String userpassword) {
-        return psUserService.isEmptyCode(emailcode,username,userpassword);
+    public String EmailCodeResetPw(@RequestBody LinkedHashMap<String, String> psUserJson) {
+        return psUserService.isEmptyCode(Integer.parseInt(psUserJson.get("emailcode")),psUserJson.get("userName"),psUserJson.get("userPassword"));
     }
 
 

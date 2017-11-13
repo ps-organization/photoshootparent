@@ -16,30 +16,10 @@
         <result column="PsUser11" property="userCreatetime"/>
     </resultMap>
 
-    <!--根据用户昵称查询用户邮件 selectPsUserByNameEmail-->
-    <select id="selectPsUserByNameEmail" parameterType="java.lang.String" resultType="PsUser">
+    <!-- 查询用户是否存在及Email-->
+    <select id="selectPsUserByUserNameEmail" parameterType="java.lang.String" resultType="PsUser">
         SELECT
         user_email
-        FROM
-        ps_user
-        WHERE
-        user_name = #{username}
-    </select>
-
-    <!-- 查询用户邮箱是否匹配 selectPsUserByEmail -->
-    <select id="selectPsUserByEmail" parameterType="java.lang.String" resultType="java.lang.Integer">
-        SELECT
-        count(*)
-        FROM
-        ps_user
-        WHERE
-        user_email = #{email}
-    </select>
-
-    <!-- 查询用户是否存在 select count(*) from ps_user where user_name = ''-->
-    <select id="selectPsUserByUserNameNotNull" parameterType="java.lang.String" resultType="java.lang.Integer">
-        SELECT
-        count(*)
         FROM
         ps_user
         WHERE
