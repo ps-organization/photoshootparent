@@ -36,11 +36,6 @@ public class PsUserContoller{
         return "testuser";
     }
 
-    @RequestMapping(value = "/initUser", method = RequestMethod.GET)
-    public String initialUserPage() {
-        return "user_default";
-    }
-
     //    根据id查询PsUser
     @RequestMapping(value = "/findUser", method = RequestMethod.GET)
     @ResponseBody
@@ -48,13 +43,19 @@ public class PsUserContoller{
         PsUser psUser = psUserService.selectPsUserById(id);
         return psUser;
     }
-    //    根据userName查询PsUser
-    @RequestMapping(value = "/check", method = RequestMethod.GET)
-    @ResponseBody
-    public PsUser selectPsUserByName(String userName) {
-        PsUser psUser = psUserService.selectPsUserByName(userName);
-        return psUser;
-    }
+    //2017年11月14日注释，此处原本作为为处理登录过程，设置登录后需跳入controller的过程，但目前暂不需要设置该过程
+//    @RequestMapping(value = "/initUser", method = RequestMethod.GET)
+//    public String initialUserPage() {
+//        return "user_default";
+//    }
+
+    //    用户登录功能,根据userName查询PsUser,2017年11月14日注释：发现已经在security中定义拦截
+//    @RequestMapping(value = "/check", method = RequestMethod.GET)
+//    @ResponseBody
+//    public PsUser selectPsUserByName(String userName) {
+//        PsUser psUser = psUserService.selectPsUserByName(userName);
+//        return psUser;
+//    }
 
     //用户登录功能，显示用户信息，此处实际属于登陆状态的一个判断，如果没找到，则提醒需要登录
     @RequestMapping(value = "/show", method = RequestMethod.GET)
@@ -64,21 +65,21 @@ public class PsUserContoller{
         PsUser psUser = psUserService.selectPsUserByName(authentication.getName());
         return psUser;
     }
-    //用户退出功能
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        /**
-        *用户退出功能，验证授权是否存在
-        *@param [request, response]
-        *@return java.lang.String
-        *@date 2017/10/23
-        */
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/templates/photoshoot_default.html";
-    }
+    //用户退出功能,已在security中配置了，所以不用
+//    @RequestMapping(value="/logout", method = RequestMethod.GET)
+//    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+//        /**
+//        *用户退出功能，验证授权是否存在
+//        *@param [request, response]
+//        *@return java.lang.String
+//        *@date 2017/10/23
+//        */
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null){
+//            new SecurityContextLogoutHandler().logout(request, response, auth);
+//        }
+//        return "redirect:/templates/photoshoot_default.html";
+//    }
 
     //登录后,显示用户粉丝数量
     @RequestMapping(value = "/showFansCount", method = RequestMethod.GET)
