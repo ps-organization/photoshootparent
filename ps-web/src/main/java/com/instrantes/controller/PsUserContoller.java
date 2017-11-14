@@ -77,7 +77,7 @@ public class PsUserContoller{
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/templates/user_default.html";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+        return "redirect:/templates/photoshoot_default.html";
     }
 
     //登录后,显示用户粉丝数量

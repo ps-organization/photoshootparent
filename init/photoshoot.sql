@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-09 11:27:27
+Date: 2017-11-14 11:18:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -145,12 +145,16 @@ CREATE TABLE `ps_comment` (
   KEY `fk_ps_comment_ps_comment_3` (`comment_reply_id`),
   CONSTRAINT `fk_ps_comment_ps_comment_1` FOREIGN KEY (`comment_collectionid`) REFERENCES `ps_collection` (`collection_id`),
   CONSTRAINT `fk_ps_comment_ps_comment_2` FOREIGN KEY (`comment_userid`) REFERENCES `ps_user` (`user_id`),
-  CONSTRAINT `fk_ps_comment_ps_comment_3` FOREIGN KEY (`comment_reply_id`) REFERENCES `ps_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_ps_comment_ps_comment_3` FOREIGN KEY (`comment_reply_id`) REFERENCES `ps_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_comment
 -- ----------------------------
+INSERT INTO `ps_comment` VALUES ('0', '1', '2', '这张图片还不错', '1', '2017-11-10 16:16:05');
+INSERT INTO `ps_comment` VALUES ('2', '1', '1', '谢谢你的赞赏！', '1', '2017-11-10 16:16:57');
+INSERT INTO `ps_comment` VALUES ('0', '1', '2', '你谦虚了', '1', '2017-11-10 16:18:55');
+INSERT INTO `ps_comment` VALUES ('0', '2', '3', '欣赏欣赏。', '1', '2017-11-10 16:19:54');
 
 -- ----------------------------
 -- Table structure for ps_like
@@ -235,11 +239,12 @@ CREATE TABLE `ps_user` (
   KEY `ps_user_ibfk_1` (`user_id`),
   KEY `fk_ps_user_ps_user_1` (`user_role`),
   CONSTRAINT `fk_ps_user_ps_user_1` FOREIGN KEY (`user_role`) REFERENCES `ps_role` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_user
 -- ----------------------------
+INSERT INTO `ps_user` VALUES ('0', '0', 'default', 'default', 'default', '1', '1', null, null, null, '2017-11-10 16:15:39', '2017-11-10 16:15:48', null);
 INSERT INTO `ps_user` VALUES ('1', '0', 'Amy', '$2a$05$baP5xNaDvSHNOtXK35g96.Wb9c0EbyqgxlCh5bhJgYTCnHzdec4v2', 'Amy', '1', '2', '25', null, 'I can swim', '2017-07-26 09:47:34', '2017-10-18 10:58:51', 'headpic/2017/07/26/Amy.jpg');
 INSERT INTO `ps_user` VALUES ('2', '0', 'Jean', '$2a$05$TRfx4t3VMMEVegQEQVNUB.CWxzZ8ErPMsBWeQsk.izeAnAHhkIPve', 'Jean', '1', '2', '28', null, 'I can swim', '2017-07-27 09:47:34', '2017-10-18 11:01:21', 'headpic/2017/07/26/Jean.jpg');
 INSERT INTO `ps_user` VALUES ('3', '0', 'Tom', '$2a$05$7ZWWXf4Ox3dXK/fE.2FkqeW/Tp/TML4L4Yr1Y7lqxNJ9MWEG5CpVC', 'Tom', '1', '1', '28', null, 'I can swim', '2017-07-28 10:19:05', '2017-10-18 11:01:31', 'headpic/2017/07/26/Tom.jpeg');
@@ -252,6 +257,7 @@ INSERT INTO `ps_user` VALUES ('9', '0', 'Dam', '$2a$10$xsQgNGm3wedoGry6Vh1P4eWta
 INSERT INTO `ps_user` VALUES ('10', '0', 'Wu', '$2a$10$w7vextFxwqFOnoAsBchhbutunilh7HkPk8GjKsZLX1j.GpeVp9WDO', 'Wu', '1', '1', null, null, null, '2017-10-18 10:40:40', '2017-10-24 13:19:08', null);
 INSERT INTO `ps_user` VALUES ('11', '0', 'Hanna', '$2a$10$P.Qzu9leWbcisYiLOqUY1u/spz.l9KHvuqtiBcirKJdq2Mm9wjGce', 'Hanna', '1', '1', null, null, null, '2017-10-18 10:42:06', '2017-10-24 13:19:10', null);
 INSERT INTO `ps_user` VALUES ('12', '0', 'GuoJing', '$2a$10$z/YCpq1hySAAOvb4RogvVOq5ymNoD/sNu/QVeVVG8j9JqlNFoQv9G', 'GuoJing', '1', '1', null, null, null, '2017-10-18 10:45:46', '2017-10-24 13:19:13', null);
+INSERT INTO `ps_user` VALUES ('14', '0', 'abc', '$2a$10$l2AKz4Iq0Hsu/6ItRf8g3ubDDhORRYVwAklvOX.39Qe6X6CgJRiXe', null, '1', '1', null, null, null, '2017-11-13 12:00:29', '2017-11-13 12:00:29', null);
 
 -- ----------------------------
 -- Table structure for ps_watch
