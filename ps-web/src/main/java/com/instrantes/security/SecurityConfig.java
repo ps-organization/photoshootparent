@@ -22,6 +22,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler;
@@ -40,7 +41,7 @@ import javax.sql.DataSource;
 @ImportResource({"classpath:spring/photoshoot-servlet.xml", "classpath:spring/applicationContext.xml", "classpath:spring/applicationContext-MyBatis.xml"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // CAS单点登录服务地址
-    private String SSO_URL = "http://localhost:8080";
+    private final static String SSO_URL = "http://localhost:8080";
 
     @Resource(name = "userDetailsServiceImpl")
     private UserDetailsServiceImpl userDetailsService;
@@ -72,8 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(getCasAuthenticationEntryPoint())
                 .and()
                 .addFilter(casAuthenticationFilter())
-                .addFilterBefore(singleSignOutFilter(),CasAuthenticationFilter.class) //注销客户端
-                .addFilterBefore(logoutFilter(),LogoutFilter.class) //注销服务器端,此处把logout重新写了下
+                .addFilterBefore(singleSignOutFilter(),CasAuthenticationFilter.class) //注销客户端,放在CAS_FILTER之前
+                .addFilterBefore(logoutFilter(),LogoutFilter.class) //注销服务器端,此处把logout重新写了下,放在Spring Security的登出过滤器之前
                 .csrf().disable()//关闭防跨站伪请求攻击，默认启用
                 .authorizeRequests()//该方法所返回的对象的方法来配置请求级别的安全细节
                     .antMatchers("/templates/photoshoot_default.html").permitAll()//对于登录路径不进行拦截
@@ -142,9 +143,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 认证过滤器
+     * 将Cas Server传递过来的ticket（Cas概念）封装成一个Authentication
+     * 对应UsernamePasswordAuthenticationToken，其中ticket作为该Authentication的password，然后传递给AuthenticationManager进行认证。
      */
-    //将Cas Server传递过来的ticket（Cas概念）封装成一个Authentication
-    //对应UsernamePasswordAuthenticationToken，其中ticket作为该Authentication的password，然后传递给AuthenticationManager进行认证。
     public CasAuthenticationFilter casAuthenticationFilter() throws Exception {
         CasAuthenticationFilter filter = new CasAuthenticationFilter();
         filter.setAuthenticationManager(authenticationManager());
@@ -172,35 +173,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CasAuthenticationProvider casAuthenticationProvider() {
         CasAuthenticationProvider provider = new CasAuthenticationProvider();
-        provider.setTicketValidator(cas30ServiceTicketValidator());
+        provider.setTicketValidator(cas20ServiceTicketValidator());
         provider.setServiceProperties(serviceProperties());
         provider.setKey("an_id_for_this_auth_provider_only");
-        provider.setAuthenticationUserDetailsService(userDetailsByNameServiceWrapper()); //包装了一个普通的UserDetailsS​​ervice实现
+//        注入获取tsp用户的service，当CAS认证成功时, Security会自动调用此类对用户进行授权
+//        包装了一个普通的UserDetailsS​​ervice实现,根据Authentication对象中包含的用户名来检索UserDetails 对象
+        provider.setAuthenticationUserDetailsService(new UserDetailsByNameServiceWrapper<>(userDetailsService));
         return provider;
     }
 
     private ServiceProperties serviceProperties() {
         ServiceProperties properties = new ServiceProperties();
 //        Cas Server认证成功后的跳转地址，这里要跳转到我们的Spring Security应用，之后会由CasAuthenticationFilter处理，默认处理地址为/j_spring_cas_security_check
-        properties.setService("http://localhost:8080/templates/photoshoot_default.html");
+        properties.setService(SSO_URL + "/templates/photoshoot_default.html");
         properties.setSendRenew(false);
         return properties;
     }
 
-    /**
-     * 当CAS认证成功时, Spring Security会自动调用此类对用户进行授权
-     */
-    private UserDetailsByNameServiceWrapper userDetailsByNameServiceWrapper() {
-        UserDetailsByNameServiceWrapper wrapper = new UserDetailsByNameServiceWrapper();
-        wrapper.setUserDetailsService(userDetailsService);
-        return wrapper;
-    }
 
     /**
     *配置TicketValidator在登录认证成功后验证ticket
     *Date: 2017/11/14
     */
-    private Cas20ServiceTicketValidator cas30ServiceTicketValidator() {
+    private Cas20ServiceTicketValidator cas20ServiceTicketValidator() {
         return new Cas20ServiceTicketValidator(SSO_URL); //Cas Server访问地址的前缀，即根路径
     }
 
