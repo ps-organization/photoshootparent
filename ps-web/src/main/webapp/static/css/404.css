@@ -1,0 +1,84 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+
+.bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../../img/common/404.gif) no-repeat center center fixed;
+    background-size: cover;
+    background-color: #000;
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.content {
+    font-family: 'Avenir-Next',Avenir,Helvetica,sans-serif;
+    color: #fff;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 160px;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    max-width: 800px;
+    font-size: 30px;
+}
+
+p {
+    text-align: left;
+    padding-bottom: 32px;
+    text-align: center;
+}
+.btn {
+    background: rgba(255, 255, 255, 0);
+    display: inline-block;
+    border: 1px solid #aaa;
+    border-radius: 40px;
+    padding: 15px 30px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    color:#e2e2e2;
+    width: 85%;
+    text-align: center;
+}
+.btn:hover {
+    color: #e2e2e2;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media all and (max-width: 480px) and (min-width:200px){
+    .btn {
+        color: #e2e2e2;
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 120px;
+    }
+    .bg-img {
+        background-size: 100% 100%;
+    }
+
+}
+@media all and (min-width: 950px){
+    .bg-img {
+        background-size: 100% 100%;
+    }
+}
