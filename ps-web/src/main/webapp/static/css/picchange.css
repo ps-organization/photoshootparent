@@ -172,6 +172,7 @@ a {
     width: 320px;
     height: 200px;
     border: none;
+    object-fit: cover;
 
 }
 #card2{
@@ -184,6 +185,7 @@ a {
     height: 200px;
     border: none;
     float: left;
+    object-fit: cover;
 }
 #card3{
     height: 300px;
@@ -195,6 +197,7 @@ a {
     height: 200px;
     border: none;
     float: left;
+    object-fit: cover;
 }
 #card4{
     height: 300px;
@@ -205,6 +208,7 @@ a {
     width: 320px;
     height: 200px;
     border: none;
+    object-fit: cover;
 
 }
 #card5{
@@ -217,6 +221,7 @@ a {
     height: 200px;
     border: none;
     float: left;
+    object-fit: cover;
 }
 #card6{
     height: 300px;
@@ -228,4 +233,5 @@ a {
     height: 200px;
     border: none;
     float: left;
+    object-fit: cover;
 }
