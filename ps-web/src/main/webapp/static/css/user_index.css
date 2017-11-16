@@ -166,10 +166,26 @@ header {
 
 /*显示图片处*/
 .pic_part {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
 }
-
+.pic_part:after{
+    content: '';
+    flex-grow:999999;
+}
+/*一个内容层*/
+.item{
+    flex-grow: 1;
+    margin:2px;
+    height:200px;
+    position:relative;
+}
+.item img{
+    height:200px;
+    object-fit: cover;
+    min-width: 100%;
+    vertical-align:bottom;
+}
 /*.left_part {*/
 /*!*margin-top: 50px;*!*/
 /*position: absolute;*/
