@@ -28,9 +28,9 @@ $(document).ready(function () {
                 for (var i = 0; i < data.length; i++) {
                     //创建图片格式
                     var src = "../upload/" + data[i].collectionPhotolocation;
-                    $('.photo_list').append("<li class='photo-item' id='pic" + i + "'>\n" +
+                    $('.pic_part').append("<div class='item' id='pic" + i + "'>\n" +
                         "                    <img src='" + src + "'/>\n" +
-                        "                </li>");
+                        "                </div>");
                     // 图片加载速度慢，获取的图片图片大小一直为0，因此采用该方法
                     $('#pic' + i).find('img').on("load", function () {
                         var w = $(this).width();
