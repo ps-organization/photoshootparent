@@ -37,7 +37,7 @@ $(document).ready(function () {
                         var h = $(this).height();
                         console.log("w:" + w + ";h:" + h);
                         // 此处添加div
-                        $('.photo_list').append();
+                        $('.pic_part').append();
                     })
                 }}
         })
