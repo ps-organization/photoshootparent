@@ -126,6 +126,7 @@ public class PsCollectionController {
     @RequestMapping(value = "/singleColletion", method = RequestMethod.POST)
     @ResponseBody
     public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId) {
+        System.out.println("-------------------------------------------------------"+psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId).getPsUser().getUserHeadphotoLocation());;
         return psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
     }
 

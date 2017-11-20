@@ -3,7 +3,7 @@ var count = 0;      //统计已加载图片的数量
 let a = {ex: 0};    //ex为页面当前图片的最大峰值
 
 $().ready(function () {
-    importNav();
+    // importNav();
     $(window).on('scroll', showBack);
     $('.back-to-top').on('click', backToTop);
     // //监听count的数值
@@ -25,9 +25,9 @@ $().ready(function () {
 });
 
 //加载导航栏公共模块
-function importNav() {
-    $('#navbar').load('../../templates/nav.html');
-}
+// function importNav() {
+//     $('#navbar').load('../../templates/nav.html');
+// }
 
 function requestPic(currentPicId, picLoadNum) {
     $.post("/collection/allCollection", {"currentPicId": currentPicId, "picLoadNum": picLoadNum}, function (data) {
@@ -35,7 +35,7 @@ function requestPic(currentPicId, picLoadNum) {
         for (var i = 0; i < data.length; i++) {
             $('.grid').append("<li>\n" +
                 "            <figure>\n" +
-                "                <a href='https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-575188.png' target='_new'>\n" +
+                "                <a href='/templates/picSingle.html?" + data[i].collectionId + "'target='_new'>\n" +
                 "                    <div class='pic'>\n" +
                 "                        <img class='lazyload'  data-src='../upload/" + data[i].collectionPhotolocation + "' alt=''>\n" +
                 "                    </div>\n" +

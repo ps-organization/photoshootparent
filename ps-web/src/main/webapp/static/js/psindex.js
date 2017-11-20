@@ -1,30 +1,30 @@
 var timeout;
 $(document).ready(function () {
     // 点击登录注册后的事件
-    $('#navbar').load('../../templates/nav.html', function () {
-        $('.login').on('click', function () {
-            $('.mask').fadeIn();
-            $('.login-modal').fadeIn();
-        });
-        $('.reg').on('click', function () {
-            $('.mask').fadeIn();
-            $('.reg-modal').fadeIn();
-        });
-        $('.mask').on('click', function () {
-            $(this).fadeOut();
-            $('.login-modal').fadeOut();
-            $('.reg-modal').fadeOut();
-        });
-        $('input').blur(function () {
-            var $this = $(this);
-            if ($this.val()) {
-                $this.addClass('used');
-            }
-            else {
-                $this.removeClass('used');
-            }
-        });
-    });
+    // $('#navbar').load('../../templates/nav.html', function () {
+    //     $('.login').on('click', function () {
+    //         $('.mask').fadeIn();
+    //         $('.login-modal').fadeIn();
+    //     });
+    //     $('.reg').on('click', function () {
+    //         $('.mask').fadeIn();
+    //         $('.reg-modal').fadeIn();
+    //     });
+    //     $('.mask').on('click', function () {
+    //         $(this).fadeOut();
+    //         $('.login-modal').fadeOut();
+    //         $('.reg-modal').fadeOut();
+    //     });
+    //     $('input').blur(function () {
+    //         var $this = $(this);
+    //         if ($this.val()) {
+    //             $this.addClass('used');
+    //         }
+    //         else {
+    //             $this.removeClass('used');
+    //         }
+    //     });
+    // });
 
     // $('.tabs-list > li').on('click', function () {
     //     var tabIndex = $(this).index();

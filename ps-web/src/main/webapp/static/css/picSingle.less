@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body, html {
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.main {
+    width: 100%;
+    height: calc(~"100% - 50px");
+    display: flex;
+    flex-direction: row;
+}
+.pic-content{
+    position: relative;
+    background-color: #ddd;
+    height: 100%;
+    flex: 1;
+    border-right: 1px solid silver;
+    overflow: hidden;
+}
+.pic-content-left, .pic-content-right {
+    width: 25%;
+    height: 100%;
+    position: absolute;
+}
+.pic-content-left {
+    top: 0;
+    left: 0;
+}
+.pic-content-right {
+    top: 0;
+    right: 0;
+}
+.pic-content img {
+    position: relative;
+    transform: translate(-50%, -50%);
+    max-height: 100%;
+    max-width: 100%;
+    background: #eee;
+    top: 50%;
+    left: 50%;
+}
+.info-panel{
+    width: 320px;
+    background-color: #ccc;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    .author-info {
+        height: 80px;
+        border-bottom: 2px solid silver;
+        position: relative;
+        .author-avatar {
+            height: 60px;
+            width: 60px;
+            img {
+                margin: 20px 0;
+                width: 50px;
+                height: 50px;
+                line-height: 60px;
+                border-radius: 50%;
+                margin-left: 10px;
+            }
+        }
+        .author-name {
+            text-decoration: none;
+            color: #666;
+            position: absolute;
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+        p {
+            position: absolute;
+            bottom: 15px;
+            margin-left: 10px;
+            display: inline-block;
+        }
+    }
+    .like-info {
+        height: 80px;
+        position: relative;
+        border-bottom: 2px solid silver;
+        .like-all {
+            position: relative;
+            border-radius: 20px;
+            display: inline-block;
+            width: 110px;
+            height: 45px;
+            margin: 20px 0 20px 10px;
+            background-color: red;
+            
+            & > svg {
+                position: relative;
+                top: 10px;
+                left: 10px;
+            }
+            &:after {
+                content: attr(data-attr);
+                color: #fff;
+                position: absolute;
+                //right: 10px;
+                left: 50%;
+                transform: tranlsteX(-50%);
+                -webkit-transform: tranlsteX(-50%);
+                top: 10px;
+                
+            }
+            &:hover {
+                background-color: rgb(255, 46, 46);
+            }
+            &:focus {
+                transition: all .5s;
+                -webkit-transition: all .5s;
+            }
+        }
+        
+        & > svg {
+            position: absolute;
+            cursor: pointer;
+            top: 30px;
+            right: 30px;
+        }
+    }
+    .pic-info {
+        height: auto;
+        position: relative;
+        margin-left: 10px;
+        border-bottom: 2px solid silver;
+    }
+    #detail-drop {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+    .detail-drop {
+        position: relative;
+        cursor: pointer;
+        border-bottom: 2px solid silver;
+        display: block;
+        height: 60px;
+        .detail-icon {
+            position: relative;
+            top: 20px;
+            left: 10px;
+        }
+        .drop-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            transition: all .5s;
+            -webkit-transition: all .5s;
+        }
+        span {
+            position: relative;
+            left: 20px;
+            top: 10px;
+            font-size: 1.1em;
+        }
+    }
+    .detail-show {
+        max-height: 0;
+        overflow: hidden;
+        position: relative;
+        -webkit-transition: all .5s;
+        transition: all .5s;
+        .comment-container {
+            padding: 1px;
+            position: relative;
+            margin: 10px auto 0 auto;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(243, 247, 250, 0.6);
+            .comment-show {
+                padding: 1px;
+                width: 100%;
+                height: auto;
+                margin: 20px 0;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(243, 247, 250, 0.6);
+                .reply {
+                    margin-bottom: 10px;
+                    margin-right: 10px;
+                }
+                a {
+                    text-decoration: none;
+                    color: rgb(71, 69, 69);
+                }
+            }
+        }
+    }
+}
+.reply-panel {
+    display: none;
+}
+.commment-wrapper {
+    display: flex;
+    vertical-align: top;
+}
+.u-comment {
+    display: flex;
+    vertical-align: top;
+    margin-bottom: 10px;
+    p {
+        display: inline-block;
+        width: 75%;
+
+        margin: 20px 10px auto auto;
+        word-wrap: break-word;
+    }
+}
+.u-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-left: 10px;
+        background-size: cover;
+    }
+.area {
+    width: 75%;  
+    min-height: 20px;  
+    max-height: 100%;  
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 20px;
+    padding: 2px;  
+    outline: 0;  
+    border: 1px solid #a0b3d6;  
+    font-size: 1em;  
+    line-height: 1.5em;  
+    word-wrap: break-word;  
+    overflow-x: hidden;  
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);  
+    &:empty:before{  
+        cursor: text;
+        color:lightgrey;  
+        content:attr(placeholder);  
+    } 
+}
+.reply {
+    cursor: pointer;
+    width: 50px;
+    height: 20px;
+    color: #fff;
+    background-color: rgb(64, 127, 243);
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: 30px;
+    padding: 5px 10px;
+}
+
+#detail-drop:checked ~ .detail-show {
+    max-height: 100%;
+    opacity: 1;
+}
+#detail-drop:checked + label > .drop-icon {
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.load-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+}

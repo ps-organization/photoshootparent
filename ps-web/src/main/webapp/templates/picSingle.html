@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/nav.css">
+    <link rel="stylesheet" href="../static/css/picSingle.css">
+</head>
+<body>
+<!-- 导航栏 -->
+<div id="navbar"></div>
+<!-- 内容 -->
+<div class="main">
+    <!-- 图片主题 -->
+    <div class="pic-content">
+        <div class="pic-content-left"></div>
+        <!--<svg xmlns="http://www.w3.org/2000/svg" class="load-icon" width="38" height="38" viewBox="0 0 38 38" stroke="#fff">-->
+            <!--<g fill="none" fill-rule="evenodd">-->
+                <!--<g transform="translate(1 1)" stroke-width="2">-->
+                    <!--<circle stroke-opacity=".5" cx="18" cy="18" r="18" />-->
+                    <!--<path d="M36 18c0-9.94-8.06-18-18-18" transform="rotate(39.5088 18 18)">-->
+                        <!--<animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"-->
+                        <!--/>-->
+                    <!--</path>-->
+                <!--</g>-->
+            <!--</g>-->
+        <!--</svg>-->
+        <img alt="">
+        <div class="pic-content-right"></div>
+    </div>
+    <!-- 图片信息区 -->
+    <div class="info-panel">
+        <!-- 作者信息 -->
+        <div class="author-info">
+            <a class="author-avatar" href="#">
+                <img alt="">
+            </a>
+            <a href="#" class="author-name"></a>
+            <p>
+                <span id="fans-num"></span>
+                <span> 名粉丝</span>
+            </p>
+        </div>
+        <!-- 点赞与分享 -->
+        <div class="like-info">
+            <a href="#" class="like-all" data-attr>
+                <svg t="1510818852675" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1902" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     width="25" height="25">
+                    <defs>
+                        <style type="text/css"></style>
+                    </defs>
+                    <path d="M742.4 94.96c129.888 0 227.832 97.888 227.832 227.696 0 166.832-152.544 309.832-422.168 548.224l-1.232 1.088-1.16 1.16L512 906.784l-33.672-33.656-1.16-1.16-1.232-1.088C206.312 632.488 53.768 489.488 53.768 322.656c0-129.808 97.944-227.696 227.832-227.696 70.624 0 143.184 33.888 189.368 88.44L512 231.872l41.032-48.472C599.216 128.848 671.776 94.96 742.4 94.96M742.4 41.2c-87.04 0-174.08 40.936-230.4 107.464C455.68 82.136 368.64 41.2 281.6 41.2 122.88 41.2 0 164.016 0 322.656 0 517.12 174.08 675.76 440.32 911.16L512 982.8l71.68-71.64C849.92 675.76 1024 517.12 1024 322.656 1024 164.016 901.12 41.2 742.4 41.2L742.4 41.2z"
+                          p-id="1903" fill="#ffffff"></path>
+                </svg>
+            </a>
+            <svg class="share" t="1510820026685" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2708" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 width="30" height="30">
+                <defs>
+                    <style type="text/css"></style>
+                </defs>
+                <path d="M818.152727 809.495273H131.258182V225.954909h308.805818V142.615273H46.661818L46.545455 892.648727h856.226909V637.835636h-84.619637z"
+                      p-id="2709"></path>
+                <path d="M244.317091 611.397818c131.258182-137.821091 299.403636-158.882909 389.748364-158.882909 38.818909 0 62.813091 3.84 63.813818 4.002909l4.957091 0.814546v161.000727L977.454545 374.830545 702.789818 131.351273v163.072l-11.403636-0.069818c-360.354909-0.023273-433.501091 246.295273-447.069091 317.044363z"
+                      p-id="2710"></path>
+            </svg>
+        </div>
+        <!-- 图片信息 -->
+        <div class="pic-info">
+            <h2 class="pic-name"></h2>
+            <p class="pic-introduction"></p>
+        </div>
+        <input id="detail-drop" type="checkbox" name="tabs">
+        <label for="detail-drop" class="detail-drop">
+            <svg t="1510821035603" class="detail-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3933"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30">
+                <defs>
+                    <style type="text/css"></style>
+                </defs>
+                <path d="M809.472 307.0464H214.528a26.4704 26.4704 0 0 1 0-52.9408h594.944a26.4704 26.4704 0 0 1 26.4704 26.4704c0 14.592-11.8784 26.4704-26.4704 26.4704z m-339.6096 453.1712H214.5792a26.4704 26.4704 0 0 1 0-52.9408h255.2832a26.4704 26.4704 0 0 1 26.4704 26.4704c0 14.592-11.8784 26.4704-26.4704 26.4704z m339.6096-226.6112H214.528a26.4704 26.4704 0 0 1 0-52.9408h594.944a26.4704 26.4704 0 0 1 0 52.9408z m-60.3136 474.2144h-53.0944c-14.6432 0-26.4704-11.8784-26.4704-26.4704s11.8784-26.4704 26.4704-26.4704h52.8896c0.9216-0.1024 13.4144-2.1504 46.7456-27.5456 23.04-17.6128 50.6368-42.2912 77.568-69.5296 26.5216-26.7776 51.0976-54.5792 69.12-78.2336 24.9344-32.7168 28.2624-45.4656 28.5696-47.0528V226.304c0-86.6304-70.5024-157.1328-157.1328-157.1328H210.0736c-86.6304 0-157.1328 70.5024-157.1328 157.1328v571.392c0 86.6816 70.5024 157.1328 157.1328 157.1328H467.456c14.6432 0 26.4704 11.8784 26.4704 26.4704s-11.8784 26.4704-26.4704 26.4704H210.0736C94.2592 1007.8208 0 913.5616 0 797.696V226.304C0 110.4384 94.2592 16.2304 210.0736 16.2304h603.8016C929.7408 16.1792 1024 110.4384 1024 226.304v506.6752c0 12.0832-4.1472 31.5392-36.5568 74.8032-19.3536 25.9072-46.08 56.4224-75.1616 85.8624-29.5936 30.0032-60.0576 57.2416-85.7088 76.6976-44.288 33.5872-65.3824 37.4784-77.4144 37.4784z m-56.9856-5.4784a26.4704 26.4704 0 0 1-26.4704-26.4704v-133.2736c0-103.8336 84.48-188.3136 188.3136-188.3136h117.0944a26.4704 26.4704 0 0 1 0 52.9408H854.016c-74.6496 0-135.3728 60.7232-135.3728 135.3728v133.2736c0.0512 14.592-11.8272 26.4704-26.4704 26.4704z m0 0"
+                      fill="#272636" p-id="3934"></path>
+            </svg>
+            <span>详情</span>
+            <svg t="1510821934962" class="drop-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5392"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30">
+                <defs>
+                    <style type="text/css"></style>
+                </defs>
+                <path d="M512.2912 657.3168000000001c1.856-2.4575999999999993 2.860800000000001-4.171199999999999 4.219200000000002-5.531199999999998 114.52480000000003-114.57439999999998 229.09920000000008-229.09919999999994 343.5808000000001-343.7167999999998 8.891200000000003-8.900799999999997 18.961600000000004-12.894399999999992 31.200000000000003-9.319999999999988 20.321599999999997 5.934400000000005 27.42719999999999 31.187200000000004 13.417599999999979 47.024-0.9648000000000002 1.0895999999999995-1.9872000000000005 2.1295999999999986-3.017600000000001 3.1599999999999993-122.44320000000003 122.44799999999995-244.9072000000001 244.8767999999999-367.3024000000001 367.3711999999998-9.089600000000004 9.095999999999998-19.608 12.788799999999997-31.742400000000004 8.423999999999987-5.089599999999999-1.8304000000000011-9.879999999999999-5.568000000000002-13.783999999999999-9.462400000000006-87.54399999999998-87.31200000000001-174.94559999999996-174.76800000000006-262.37439999999987-262.19680000000005-34.788799999999995-34.78880000000001-69.59199999999996-69.5616-104.35519999999995-104.37600000000005-10.177599999999996-10.192000000000004-12.747199999999994-22.2656-7.446399999999986-34.052800000000005 8.025600000000008-17.8432 30.937600000000003-22.863999999999987 45.6336-9.975999999999999 1.7007999999999996 1.4912000000000007 3.2783999999999995 3.1264000000000007 4.879999999999999 4.728 114.09599999999996 114.08800000000004 228.1887999999999 228.1792000000001 342.26559999999995 342.2864000000001C508.83680000000004 653.0464000000001 509.99999999999994 654.624 512.2912 657.3168000000001z"
+                      p-id="5393"></path>
+            </svg>
+        </label>
+        <!-- 详情与评论区 -->
+        <div class="detail-show">
+            <!-- 回复区 -->
+            <div class="commment-wrapper">
+                <div class="u-avatar" style="background-image: url(../img/psico.jpg)"></div>
+                <div class="area" placeholder="请输入你的评论" contenteditable="true"></div>
+            </div>
+            <div class="reply">评论</div>
+            <!-- 评论展示区 -->
+            <div class="comment-container">
+                <div class="comment-show">
+                    <div class="u-comment">
+                        <div class="u-avatar" style="background-image: url(../img/psico.jpg)"></div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam quos laborum recusandae est culpa officia magni, facere laudantium maxime, impedit ea nobis aspernatur itaque quaerat enim a aliquid rem? lsdkfsdfsdfsdfsdfsdfsdfsdfsdffffffffffffsladfkjsdlormjlsdkj</p>
+                    </div>
+                    <a href="JavaScript:void(0);" class="reply-btn" style="margin-left: 30%;">回复</a>
+                    <a href="JavaScript:void(0);" class="del-btn" style="margin-left: 5%;">删除</a>
+                    <a href="JavaScript:void(0);" class="up-btn" style="display:none;margin-left: 5%;">收起</a>
+                    <div class="reply-panel">
+                        <div class="area" placeholder="请输入你的评论" contenteditable="true"></div>
+                        <div class="reply">回复</div>
+                    </div>
+                </div>
+                <div class="comment-show">
+                    <div class="u-comment">
+                        <div class="u-avatar" style="background-image: url(../img/psico.jpg)"></div>
+                        <p>lsdkfsdfsdfsdfsdfsdfsdfsdfsdffffffffffffsladfkjsdlormjlsdkj</p>
+                    </div>
+                    <a href="JavaScript:void(0);" class="reply-btn" style="margin-left: 30%;">回复</a>
+                    <a href="JavaScript:void(0);" class="del-btn" style="margin-left: 5%;">删除</a>
+                    <a href="JavaScript:void(0);" class="up-btn" style="display:none;margin-left: 5%;">收起</a>
+                    <div class="reply-panel">
+                        <div class="area" placeholder="请输入你的评论" contenteditable="true"></div>
+                        <div class="reply">回复</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="../static/js/loginstatus.js"></script>
+<script src="../static/js/picSingle.js"></script>
+</body>
+</html>
