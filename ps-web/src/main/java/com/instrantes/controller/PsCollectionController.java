@@ -26,14 +26,14 @@ public class PsCollectionController {
     @Autowired
     PsUserService psUserService;
 
+    /**
+     *此处需要加入验证，验证是否找到用户ID
+     *@param
+     *@return int
+     *Date 2017/10/25
+     */
     //    此处为获取当前用户id的方法
     protected Integer getCurrentPsUserId() {
-        /**
-         *此处需要加入验证，验证是否找到用户ID
-         *@param []
-         *@return int
-         *@date 2017/10/25
-         */
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Integer flag = psUserService.selectPsUserUserIdByName(authentication.getName());
@@ -47,15 +47,14 @@ public class PsCollectionController {
         List<PsCollection> psCollectionList = psCollectionService.selectPsCollectionByUserId(id);
         return psCollectionList;
     }
-
-    @RequestMapping(value = "/publishPic", method = RequestMethod.POST)
-    @ResponseBody
     /**
      *批量上传多个图片
-     *@param [picLocation]
+     *@param picLocation 图片位置
      *@return void
-     *@date 2017/10/20
+     *Date 2017/10/20
      */
+    @RequestMapping(value = "/publishPic", method = RequestMethod.POST)
+    @ResponseBody
     public void batchInsertPsCollection(@RequestParam(value = "data") String picLocation[]) {
         //组装成collection对象再放入集合中
         List<PsCollection> psCollectionList = new ArrayList<>();
@@ -75,17 +74,18 @@ public class PsCollectionController {
         psCollectionService.batchInsertPsCollection(psCollectionList);
     }
 
+    /**
+     *此处应该加入随机显示功能，或者显示最新的
+     * 已经实现（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
+     *@param currentPicId 图片当前ID
+     *@param picLoadNum 图片数目
+     *@return java.util.List<com.instrantes.pojo.PsCollection>
+     *Date 2017/11/3
+     */
     //查询所有作品信息
     @RequestMapping(value = "/allCollection", method = RequestMethod.POST)
     @ResponseBody
     public List<PsCollection> selectAllCollection(Integer currentPicId, Integer picLoadNum) {
-/**
- *此处应该加入随机显示功能，或者显示最新的
- * 已经实现（大数据库分段查询功能），即每次仅查询一部分图片。而不是整个数据库的所有图片
- *@param [currentPicId, picLoadNum]
- *@return java.util.List<com.instrantes.pojo.PsCollection>
- *@date 2017/11/3
- */
 //        throw new ApplicationException("sss", 10001);
         if (getCurrentPsUserId() == null) {
             System.out.println("---------------------------------:" + getCurrentPsUserId());
@@ -93,17 +93,17 @@ public class PsCollectionController {
         }
         return psCollectionService.selectAllCollection(getCurrentPsUserId(), currentPicId, picLoadNum);
     }
-
+    /**
+     *根据登陆用户的ID，获取当前登陆用户的所有作品
+     *@param
+     *@return java.util.List<com.instrantes.pojo.PsCollection>
+     *Date 2017/11/13
+     */
     //查询个人所有作品信息。此处用了json，因为前端传入的是Json字符串
     @RequestMapping(value = "/personCollection", method = RequestMethod.POST)
     @ResponseBody
     public List<PsCollection> selectCollectionInfoByUserId() { // 该方法不能用Integer接收
-/**
- *根据登陆用户的ID，获取当前登陆用户的所有作品
- *@param []
- *@return java.util.List<com.instrantes.pojo.PsCollection>
- *@date 2017/11/13
- */
+
         return psCollectionService.selectCollectionInfoByUserId(psUserService.getCurrentPsUserId());
     }
     //查询其他人所有作品信息。此处用了json，因为前端传入的是Json字符串，类似上面那个方法
