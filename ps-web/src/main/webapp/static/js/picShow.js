@@ -35,7 +35,7 @@ function requestPic(currentPicId, picLoadNum) {
         for (var i = 0; i < data.length; i++) {
             $('.grid').append("<li>\n" +
                 "            <figure>\n" +
-                "                <a href='/templates/picSingle.html?" + data[i].collectionId + "'target='_new'>\n" +
+                "                <a href='/templates/picSingle.html?" + data[i].collectionId + "&" + data[i].likeStatus+ "'target='_new'>\n" +
                 "                    <div class='pic'>\n" +
                 "                        <img class='lazyload'  data-src='../upload/" + data[i].collectionPhotolocation + "' alt=''>\n" +
                 "                    </div>\n" +
@@ -94,6 +94,7 @@ function thumbUp() {
         var svgColor = that.find('svg path').attr('fill');
         console.log(that.find('svg path').attr('fill'));
         if (svgColor == '#8a8a8a') {
+            console.log("likeAjax come in!");
             //改变点赞图标颜色，并给点赞数+1
             addLike(that);
             addOneLike(that);
@@ -104,9 +105,13 @@ function thumbUp() {
                 dataType: 'json',
                 data: JSON.stringify({"likeCollectionid": likeId}),
                 success: function (resut) {
-                    console.log(resut);
+                    // console.log('successsssss');
+                    var imgHref=$('#' + likeId).parents('li').find('figure a');
+                    // console.log("likeId"+likeId);
+                    imgHref.attr('href',imgHref.attr('href').split('&')[0]+"&1");
                 },
                 error: function (resut) {
+                    console.log("test erro----------");
                     console.log(resut);
                 }
             });

@@ -31,8 +31,9 @@ public class PsLikeController {
      *@date 2017/11/8
      */
     @ResponseBody
-    public void insertLikeRecordByUserId(@RequestBody Map<String, Integer> likeJson) {
+    public Integer insertLikeRecordByUserId(@RequestBody Map<String, Integer> likeJson) {
 //                Map<String,String>map = JSON.parseObject(likeJson,new TypeReference<Map<String, String>>(){});
         psLikeService.insertLikeRecordByUserId(likeJson.get("likeCollectionid"), psUserService.getCurrentPsUserId());
+        return 1;
     }
 }
