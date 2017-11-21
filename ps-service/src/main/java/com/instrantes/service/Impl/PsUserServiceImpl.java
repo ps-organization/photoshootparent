@@ -39,22 +39,20 @@ public class PsUserServiceImpl implements PsUserService {
         return oldPassword;
     }
 
+    /**
+     *根据授权的name获取用户id(获取当前登陆用户id的方法)
+     *@param
+     *@return java.lang.Integer
+     *Date 2017/11/8
+     */
     @Override
-    //    此处为获取当前用户id的方法
     public Integer getCurrentPsUserId() {
-        /**
-         *根据授权的name获取用户id的方法
-         *@param []
-         *@return java.lang.Integer
-         *@date 2017/11/8
-         */
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return psUserDao.selectPsUserUserIdByName(authentication.getName());
     }
 
     @Override
     public PsUser selectPsUserName(String username) {
-
         return  psUserDao.selectPsUserByUserNameEmail(username);
     }
 

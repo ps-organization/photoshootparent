@@ -51,10 +51,11 @@ $(document).ready(function () {
                 // 将字符串转换成对象
                 var obj = $.parseJSON(res);
                 console.log("res:"+res);
-                // 此处为隐藏域，添加value(图片位置)
+                // 此处为(大图小图)隐藏域，添加value(图片位置)
                 for (var i = count - ffileTags.length; i < count; i++) {
                     var $liIndex = "li_index_" + i;
-                    $('#' + $liIndex + ' input').val(obj[i].path);
+                    $('#' + $liIndex + ' input').eq(0).val(obj[i].path);
+                    $('#' + $liIndex + ' input').eq(1).val(obj[i].smallPath);
                 }
             },
             error: function (res) {
@@ -69,11 +70,17 @@ $(document).ready(function () {
 
     // 点击发布照片按钮触发,获取所有隐藏域
     $('#publish-pic').click(function () {
-        var $picLocation = $('.content .left_part .photo_list li input');
+        var $picLocation = $('.content .left_part .photo_list li input:nth-of-type(1)');
+        var $smallPicLocation = $('.content .left_part .photo_list li input:nth-of-type(2)');
         var picArray = new Array();
+        var smallPicArray = new Array();
+        console.log("sss"+$picLocation.length);
+        console.log("$smallPicLocation:"+$smallPicLocation.length);
         //此处需要额外注意的是，上传样式出也有一个input，因此需要减1
         for (var i = 0; i < $picLocation.length-1; i++) {
             picArray[i] = $picLocation[i].value;
+            console.log("picArray[i]:"+picArray[i]);
+            smallPicArray[i]=$smallPicLocation[i].value;
             console.log("picHide:"+picArray[i]);
         }
         console.log("a:"+picArray);
@@ -82,12 +89,10 @@ $(document).ready(function () {
         $.ajax({
             url: "/collection/publishPic",
             type: "POST",
-            // data: picArray,
+            contentType:"application/json",
             //阻止深度序列化
             traditional:true,
-            data:{
-                data:picArray
-            },
+            data:JSON.stringify({picArray:picArray,smallPicArray:smallPicArray}),
             // contentType : "application/json",
             success: function (res) {
                 alert("上传成功");
@@ -137,8 +142,9 @@ function creatImage(src, count) {
     var id = "li_index_" + count;
 
     $('.upload_tips').before("<li class=\"photo-item\" id=\"" + id + "\" style=\"\">\n" +
-        "<i name=\"progress\" class=\"icon-add\">已上传：</i>\n" +
-        "<img src=\"" + src + "\" style=\"width: 250px;opacity: 0.4;\"/>\n" +
-        "<input type=\"hidden\" value=\"\" id=\"" + count + "\" />\n" +
+        "<i name='progress' class='icon-add'>已上传：</i>\n" +
+        "<img src='" + src + "' style='width: 250px;opacity: 0.4;'/>\n" +
+        "<input type='hidden' value='' id='" + count + "' />\n" +
+        "<input type='hidden' value='' id='s" + count + "' />\n" +
         "</li>");
 }

@@ -7,6 +7,7 @@ public class PsCollection implements Serializable {
     private Integer collectionUserid;
     private Integer collectionTagid;
     private String collectionPhotolocation;
+    private String collectionSmallPhotoLocation;
     private String collectionPhotoname;
     private String collectionPhotointroduction;
     private Object collectionPrice;
@@ -25,9 +26,10 @@ public class PsCollection implements Serializable {
         super();
     }
 
-    public PsCollection(Integer collectionUserid, String collectionPhotolocation) {
+    public PsCollection(Integer collectionUserid, String collectionPhotolocation,String collectionSmallPhotoLocation) {
         this.collectionUserid = collectionUserid;
         this.collectionPhotolocation = collectionPhotolocation;
+        this.collectionSmallPhotoLocation = collectionSmallPhotoLocation;
     }
 
     public PsCollection(Integer collectionId, Integer collectionUserid, Integer collectionTagid, String collectionPhotolocation, String collectionPhotoname, String collectionPhotointroduction, Object collectionPrice, String collectionPhotoinformation, String collectionAdress, Integer collectionFlag, java.util.Date collectionCreatetime, java.util.Date collectionUpdatetime) {
@@ -143,6 +145,13 @@ public class PsCollection implements Serializable {
         this.collectionUpdatetime = collectionUpdatetime;
     }
 
+    public String getCollectionSmallPhotoLocation() {
+        return collectionSmallPhotoLocation;
+    }
+
+    public void setCollectionSmallPhotoLocation(String collectionSmallPhotoLocation) {
+        this.collectionSmallPhotoLocation = collectionSmallPhotoLocation;
+    }
 
     public String getUserName() {
         return userName;

@@ -1,12 +1,14 @@
 package com.instrantes.service;
 import com.instrantes.pojo.PsCollection;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface PsCollectionService{
 //    long getPsCollectionRowCount();
 //    PsCollection selectPsCollectionById(Integer id);
-    void batchInsertPsCollection(List<PsCollection> psCollectionList);
+    void batchInsertPsCollection(HashMap<String,ArrayList<String>> hashMap, Integer currentUserId);
     //查询所有作品信息
     List<PsCollection> selectAllCollection(Integer likeUserId,Integer currentPicId,Integer picLoadNum);
 //    int insertPsCollection(PsCollection value);

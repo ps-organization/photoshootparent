@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -34,44 +36,27 @@ public class PsCollectionController {
      */
     //    此处为获取当前用户id的方法
     protected Integer getCurrentPsUserId() {
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Integer flag = psUserService.selectPsUserUserIdByName(authentication.getName());
-        return flag;
+        return psUserService.selectPsUserUserIdByName(authentication.getName());
     }
 
     //根据用户id查询作品的详情
     @RequestMapping(value = "/userCollections", method = RequestMethod.POST)
     @ResponseBody
     public List<PsCollection> selectPsCollectionByUserId(Integer id) {
-        List<PsCollection> psCollectionList = psCollectionService.selectPsCollectionByUserId(id);
-        return psCollectionList;
+        return  psCollectionService.selectPsCollectionByUserId(id);
     }
-    /**
+     /**
      *批量上传多个图片
-     *@param picLocation 图片位置
+      * @param hashMap key有两个picArray（大图）smallPicArray（小图）
      *@return void
-     *Date 2017/10/20
+     *Date: 2017/11/21
      */
     @RequestMapping(value = "/publishPic", method = RequestMethod.POST)
     @ResponseBody
-    public void batchInsertPsCollection(@RequestParam(value = "data") String picLocation[]) {
-        //组装成collection对象再放入集合中
-        List<PsCollection> psCollectionList = new ArrayList<>();
-        int currentUserId = getCurrentPsUserId();
-        for (String itemStr : picLocation) {
-            // 60为http://localhost:8080/upload/images/xxxx/xx/xxxxxxxxx.jpg的长度
-            if (itemStr.length() == 60) {
-                //此处为去掉域名存入数据库，但仅限后缀为3个字母的图片
-                String str = itemStr.substring(itemStr.length() - 31);
-                psCollectionList.add(new PsCollection(currentUserId, str));
-            } else {
-                //此处为去掉域名存入数据库，但仅限后缀为4个字母的图片
-                String str = itemStr.substring(itemStr.length() - 32);
-                psCollectionList.add(new PsCollection(currentUserId, str));
-            }
-        }
-        psCollectionService.batchInsertPsCollection(psCollectionList);
+    public void batchInsertPsCollection(@RequestBody HashMap<String,ArrayList<String>> hashMap) {
+        int currentUserId = psUserService.getCurrentPsUserId();
+        psCollectionService.batchInsertPsCollection(hashMap,currentUserId);
     }
 
     /**
@@ -126,7 +111,6 @@ public class PsCollectionController {
     @RequestMapping(value = "/singleColletion", method = RequestMethod.POST)
     @ResponseBody
     public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId) {
-        System.out.println("-------------------------------------------------------"+psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId).getPsUser().getUserHeadphotoLocation());;
         return psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
     }
 

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 public class TestImgUtil {
     public static void main(String[] args) {
         String imgPath="C:\\001.png";
-        BufferedImage img=ImgUtils.resize(imgPath,0.5);
+        BufferedImage img=ImgUtils.resize(imgPath,0.3);
         ImgUtils.writeImage("F:\\TTTT\\1.jpg",img,"jpg");
 
     }

@@ -138,12 +138,14 @@
     <insert id="batchInsertPsCollection">
         INSERT INTO ps_collection (
         collection_userid,
-        collection_photo_location
+        collection_photo_location,
+        collection_small_photo_location
         )
         VALUES
         <foreach item="item" collection="psCollectionList" separator=",">
             (#{item.collectionUserid},
-            #{item.collectionPhotolocation})
+            #{item.collectionPhotolocation},
+            #{item.collectionSmallPhotoLocation})
         </foreach>
     </insert>
     <!--<sql id="ps_collection_Column">-->
