@@ -18,10 +18,12 @@ function getSinglePic(curId) {
         $('.author-avatar > img').attr('src', '../upload/' + data.psUser.userHeadphotoLocation);
         $('.author-name').html(data.psUser.userNickname);
         $(".pic-introduction").html(data.collectionPhotointroduction);
+        console.log(data.psUser.fansSum);
+        $("#fans-num").html(data.psUser.fansSum);
         $('.like-all').attr('id', data.collectionId);
         $('.like-all').attr('data-attr', data.likeCount);
         $('.pic-name').html(data.collectionPhotoname);
-        if (data.likeStuts==1){
+        if (data.psLike.likeStuts==1){
             $('.like-all').css('background-color', 'red');
         }else {
             $('.like-all').css('background-color', 'black');
