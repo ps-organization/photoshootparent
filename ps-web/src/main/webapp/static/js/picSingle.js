@@ -1,14 +1,14 @@
 $(function () {
     // $('#navbar').load('../../templates/nav.html');
     var query = location.search.substring(1).split("&"),
-        curId = parseInt(query[0]),
-        curLikeStatus = parseInt(query[1]);
+        curId = parseInt(query[0]);
+        // curLikeStatus = parseInt(query[1])
     getSinglePic(curId);
-    if (curLikeStatus == 1) {
-        $('.like-all').css('background-color', 'black');
-    } else {
-        $('.like-all').css('background-color', 'red');
-    }
+    // if (curLikeStatus == 1) {
+    //     $('.like-all').css('background-color', 'black');
+    // } else {
+    //     $('.like-all').css('background-color', 'red');
+    // }
     thumbUp();
 });
 function getSinglePic(curId) {
@@ -18,15 +18,17 @@ function getSinglePic(curId) {
         $('.author-avatar > img').attr('src', '../upload/' + data.psUser.userHeadphotoLocation);
         $('.author-name').html(data.psUser.userNickname);
         $(".pic-introduction").html(data.collectionPhotointroduction);
-        console.log(data.psUser.fansSum);
+        // console.log(data.psUser.fansSum);
         $("#fans-num").html(data.psUser.fansSum);
         $('.like-all').attr('id', data.collectionId);
         $('.like-all').attr('data-attr', data.likeCount);
         $('.pic-name').html(data.collectionPhotoname);
-        if (data.psLike.likeStuts==1){
-            $('.like-all').css('background-color', 'red');
-        }else {
+        console.log(data.psLike.likeStatus);
+        console.log(data.psLike);
+        if (data.psLike.likeStatus==1){
             $('.like-all').css('background-color', 'black');
+        }else {
+            $('.like-all').css('background-color', 'red');
         }
     });
 }
@@ -56,8 +58,8 @@ function thumbUp() {
                 dataType: 'json',
                 data: JSON.stringify({"likeCollectionid": likeId}),
                 success: function (resut) {
-                    var imgHref = window.location.href;
-                    imgHref.attr('href',imgHref.attr('href').split('&')[0]+"&1");
+                    // var imgHref = window.location.href;
+                    // imgHref.attr('href',imgHref.attr('href').split('&')[0]+"&1");
                 },
                 error: function (resut) {
                     console.log(resut);

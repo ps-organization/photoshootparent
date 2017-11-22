@@ -3,6 +3,7 @@ package com.instrantes.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.instrantes.base.ApplicationException;
 import com.instrantes.pojo.PsCollection;
+import com.instrantes.pojo.PsLike;
 import com.instrantes.service.PsCollectionService;
 import com.instrantes.service.PsLikeService;
 import com.instrantes.service.PsUserService;
@@ -117,7 +118,14 @@ public class PsCollectionController {
         Integer psUserId=psUserService.getCurrentPsUserId();
         PsCollection psCollection=psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
         psCollection.setPsUser(psUserService.selectPsUserGeneralInformationById(psUserId));
+        try{
         psCollection.setPsLike( psLikeService.selectStatus(collectionId,psUserId));
+            System.out.println("------------------------------------------"+psCollection.getPsLike().getLikeStatus());
+        } catch (Exception e){
+            PsLike psLike=new PsLike();
+            psLike.setLikeStatus(0);
+            psCollection.setPsLike(psLike);
+        }
         return psCollection;
     }
 
