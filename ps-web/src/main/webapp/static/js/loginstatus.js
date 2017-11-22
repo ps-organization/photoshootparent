@@ -54,7 +54,7 @@ $(document).ready(function () {
                                 "                                    <li><a href='/PsUserController/logout'>登出账户</a></li>" +
                                 "                                </ul></li>");
                             if (realUploadUrl) {
-                                $('.nav-right').append('<li style="background: #167fec;"><a id="publish-pic">发布图片</a></li>');
+                                $('.nav-right').append('<li style="background: #167fec;"><a href="javascript:void(0);" id="publish-pic">发布图片</a></li>');
                                 $('#publish-pic').on('click',publishPic);
                             }
                         }

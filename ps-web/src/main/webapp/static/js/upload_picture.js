@@ -139,12 +139,16 @@ function outLucency() {
 
 //创建图片的节点以及给图片添加，src和id
 function creatImage(src, count) {
-    var id = "li_index_" + count;
+    var id = "li_index_" + count,
+        pathIndex = src.lastIndexOf('/'),
+        path = src.substring(pathIndex+1);
 
     $('.upload_tips').before("<li class=\"photo-item\" id=\"" + id + "\" style=\"\">\n" +
         "<i name='progress' class='icon-add'>已上传：</i>\n" +
         "<img src='" + src + "' style='width: 250px;opacity: 0.4;'/>\n" +
+        "<div class='img-name' contenteditable='true'>"+path+"</div>"+
         "<input type='hidden' value='' id='" + count + "' />\n" +
         "<input type='hidden' value='' id='s" + count + "' />\n" +
         "</li>");
+
 }

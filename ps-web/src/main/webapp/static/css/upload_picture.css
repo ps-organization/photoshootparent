@@ -26,12 +26,17 @@
     padding: 22px 30px 80px;
     /*overflow-y: auto;*/
 }
-
+.left_part .photo-list {
+    position: relative;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin:auto;
+}
 .left_part .photo_list li {
     position: relative;
     display: inline-block;
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 350px;
+    padding: 20px;
     margin-left: 40px;
     margin-bottom: 40px;
     vertical-align: top;
@@ -68,17 +73,23 @@
     cursor: pointer;
 }
 
-
+.left_part .photo_list .photo-item {
+    width: 250px;
+    height: 300px;
+}
 .left_part .photo_list .photo-item img {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
     max-width: 250px;
     max-height: 250px;
     margin: auto;
-    vertical-align: middle;
+}
+.left_part .photo_list .photo-item .img-name {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
 }
 ul .photo-item {
     height: 208px;
