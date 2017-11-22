@@ -17,6 +17,8 @@ public interface PsUserService {
 
     PsUser selectPsUserById(Integer id);
 
+    PsUser selectPsUserGeneralInformationById(Integer id);//查询用户常用的信息，ID 昵称 用户头像 粉丝数目
+
     int insertPsUser(PsUser value);
 
     int insertPsUser(PsUser psUser, HttpServletRequest request);

@@ -33,6 +33,20 @@
             l.like_collectionid=#{collectionId}
     </select>
 
+    <!--查询likeStatus，传入参数：collectionID,userID-->
+    <!--此处picSingle.html页面有用到-->
+    <select id="selectStatus">
+        SELECT
+            ps_like.like_collectionid,
+            ps_like.like_userid,
+            ps_like.like_status
+        FROM
+            ps_like
+        WHERE
+            ps_like.like_collectionid = #{collectionId}
+        AND ps_like.like_userid =#{userId}
+    </select>
+
     <!--点赞设计总共有2个过程/功能-->
     <!--1.显示自己是否赞.否,则要插入一条未赞记录-->
     <!--传入参数：userId,collectionId-->

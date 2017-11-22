@@ -21,6 +21,8 @@ public class PsCollection implements Serializable {
     private Integer likeCount;
     private Integer likeStatus;
     private  PsUser psUser;
+    //添加PsLike实体类
+    private  PsLike psLike;
 
     public PsCollection() {
         super();
@@ -183,5 +185,13 @@ public class PsCollection implements Serializable {
 
     public void setPsUser(PsUser psUser) {
         this.psUser = psUser;
+    }
+
+    public PsLike getPsLike() {
+        return psLike;
+    }
+
+    public void setPsLike(PsLike psLike) {
+        this.psLike = psLike;
     }
 }

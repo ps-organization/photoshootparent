@@ -51,6 +51,22 @@
 	        ps_user.user_name =#{userName}
     </select>
 
+<!--查询用户常用的信息，ID 昵称 用户头像 粉丝数目-->
+    <!--此处被picSingle.html页面用到-->
+    <select id="selectPsUserGeneralInformationById" parameterType="java.lang.Integer" resultType="PsUser">
+        SELECT
+            ps_user.user_id,
+            ps_user.user_nickname,
+            ps_user.user_headphoto_location,
+            COUNT(ps_watch.watch_userid) AS fan_sum
+        FROM
+            ps_user
+        INNER JOIN ps_watch ON ps_watch.watch_userid = ps_user.user_id
+        WHERE
+            ps_user.user_is_delete = 0
+        AND ps_user.user_id = #{id}
+    </select>
+
     <!--根据用户名只获取userId-->
     <select id="selectPsUserUserIdByName" resultType="java.lang.Integer">
         SELECT

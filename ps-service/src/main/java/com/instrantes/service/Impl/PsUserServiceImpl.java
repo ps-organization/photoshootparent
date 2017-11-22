@@ -61,6 +61,15 @@ public class PsUserServiceImpl implements PsUserService {
         PsUser psUser = psUserDao.selectPsUserById(id);
         return psUser;
     }
+    /**
+     *
+     * @param id 用户id
+     *@return com.instrantes.pojo.PsUser
+     *Date: 2017/11/22
+     */
+    public PsUser selectPsUserGeneralInformationById(Integer id){
+        return  psUserDao.selectPsUserGeneralInformationById(id);
+    }
 
     @Override
     public PsUser selectPsCollectionByUserid(Integer userId) {

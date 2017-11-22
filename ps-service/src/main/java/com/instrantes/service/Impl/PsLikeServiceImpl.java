@@ -1,5 +1,6 @@
 package com.instrantes.service.Impl;
 import com.instrantes.dao.PsLikeDao;
+import com.instrantes.pojo.PsLike;
 import com.instrantes.service.PsLikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,17 @@ public class PsLikeServiceImpl implements PsLikeService{
 
     public void setPsLikeDao(PsLikeDao psLikeDao) {
         this.psLikeDao = psLikeDao;
+    }
+
+    /**
+     * 查询likeStatus
+     * @param collectionId 作品的id
+     * @param userId 用户的id
+     *@return com.instrantes.pojo.PsLike
+     *Date: 2017/11/22
+     */
+    public PsLike selectStatus(Integer collectionId , Integer userId){
+        return psLikeDao.selectStatus(collectionId,userId);
     }
 
 

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.instrantes.base.ApplicationException;
 import com.instrantes.pojo.PsCollection;
 import com.instrantes.service.PsCollectionService;
+import com.instrantes.service.PsLikeService;
 import com.instrantes.service.PsUserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,6 +28,8 @@ public class PsCollectionController {
     PsCollectionService psCollectionService;
     @Autowired
     PsUserService psUserService;
+    @Autowired
+    PsLikeService psLikeService;
 
     /**
      *此处需要加入验证，验证是否找到用户ID
@@ -111,7 +114,11 @@ public class PsCollectionController {
     @RequestMapping(value = "/singleColletion", method = RequestMethod.POST)
     @ResponseBody
     public PsCollection selectSingleCollectionInfoByCollectionId(Integer collectionId) {
-        return psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
+        Integer psUserId=psUserService.getCurrentPsUserId();
+        PsCollection psCollection=psCollectionService.selectSingleCollectionInfoByCollectionId(collectionId);
+        psCollection.setPsUser(psUserService.selectPsUserGeneralInformationById(psUserId));
+        psCollection.setPsLike( psLikeService.selectStatus(collectionId,psUserId));
+        return psCollection;
     }
 
 }
