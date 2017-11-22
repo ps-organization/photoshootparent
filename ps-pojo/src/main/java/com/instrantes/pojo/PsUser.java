@@ -18,6 +18,7 @@ public class PsUser implements Serializable{
     private java.util.Date userCreatetime;
     private String userEmail;
     private PsRole psRole;
+    private Integer fansSum;
 
 
     public PsRole getPsRole() {
@@ -127,6 +128,14 @@ public class PsUser implements Serializable{
 
     public void setUserHeadphotoLocation(String userHeadphotoLocation) {
         this.userHeadphotoLocation = userHeadphotoLocation;
+    }
+
+    public Integer getFansSum() {
+        return fansSum;
+    }
+
+    public void setFansSum(Integer fansSum) {
+        this.fansSum = fansSum;
     }
 
     public String getUserEmail() {

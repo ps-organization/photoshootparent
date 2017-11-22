@@ -42,10 +42,6 @@
         <result column="collection_photointroduction" property="collectionPhotointroduction"/>
         <result column="collection_photoinformation" property="collectionPhotoinformation"/>
         <result column="like_count" property="likeCount" />
-        <association property="psUser" javaType="PsUser" >
-            <result column="user_nickname" property="userNickname" />
-            <result column="user_headphoto_location" property="userHeadphotoLocation" />
-        </association>
     </resultMap>
     <select id="selectPsCollectionByUserId" parameterType="java.lang.Integer" resultMap="collectionResultMap">
         SELECT
@@ -117,7 +113,7 @@
             ps_collection
         INNER JOIN ps_user ON ps_collection.collection_userid = ps_user.user_id
         WHERE
-            ps_collection.collection_id #{collectionId}
+            ps_collection.collection_id = #{collectionId}
     </select>
     <!--查询个人作品，图片名称，位置，发布者-->
     <select id="selectCollectionInfoByUserId" resultMap="userCollectionResultMap">

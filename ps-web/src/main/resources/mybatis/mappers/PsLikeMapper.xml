@@ -35,7 +35,7 @@
 
     <!--查询likeStatus，传入参数：collectionID,userID-->
     <!--此处picSingle.html页面有用到-->
-    <select id="selectStatus">
+    <select id="selectStatus" resultType="PsLike">
         SELECT
             ps_like.like_collectionid,
             ps_like.like_userid,
