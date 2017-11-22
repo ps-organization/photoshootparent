@@ -6,7 +6,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>pschat</module>
         <module>ps-pojo</module>
         <module>ps-dao</module>
         <module>ps-service</module>
@@ -353,7 +352,17 @@
                     <target>${jdk.version}</target>
                     <encoding>utf-8</encoding>
                     <showWarnings>true</showWarnings>
+                    <compilerArguments>
+                        <verbose />
+                        <bootclasspath>
+                            ${java.home}\lib\rt.jar;${java.home}\lib\jce.jar
+                        </bootclasspath>
+                    </compilerArguments>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
             </plugin>
             <!--<finalName>${project.artifactId}</finalName>-->
             <!--&lt;!&ndash; 资源文件拷贝插件 &ndash;&gt;-->

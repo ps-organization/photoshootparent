@@ -1,7 +1,8 @@
 package com.instrantes.Utils;
 
 import com.sun.mail.util.MailSSLSocketFactory;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+//import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import javax.mail.MessagingException;
 import javax.mail.Address;
 import javax.mail.Session;
 import javax.mail.Transport;

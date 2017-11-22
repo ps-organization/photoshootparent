@@ -4,7 +4,8 @@ import com.instrantes.Utils.SendEmailUtils;
 import com.instrantes.dao.PsUserDao;
 import com.instrantes.pojo.PsUser;
 import com.instrantes.service.PsUserService;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+//import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.method.P;
@@ -144,7 +145,7 @@ public class PsUserServiceImpl implements PsUserService {
         try {
             //发送邮箱，email:用户邮箱；emailTheme：邮箱主题；emailText：邮箱文本
             sendEmailUtils.sendEmail(email, emailTheme, emailText);
-        } catch (UnsupportedEncodingException | MessagingException | GeneralSecurityException | javax.mail.MessagingException e ) {
+        } catch (UnsupportedEncodingException  | GeneralSecurityException | javax.mail.MessagingException e ) {
             e.printStackTrace();
         }
     }

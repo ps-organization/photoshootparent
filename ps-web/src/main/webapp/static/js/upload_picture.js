@@ -69,46 +69,45 @@ $(document).ready(function () {
 //此处起初是为了清空formdata中的文件,但不起作用,其实已经通过new在事件中l解决了，但如果为空是否会被容易回收，提高性能?
 //     document.getElementById('file').value="";
     // 点击发布照片按钮触发,获取所有隐藏域
-    $('#publish-pic').on('click', function () {
-        alert();
-        var $picLocation = $('.content .left_part .photo_list li input:nth-of-type(1)');
-        var $smallPicLocation = $('.content .left_part .photo_list li input:nth-of-type(2)');
-        var picArray = new Array();
-        var smallPicArray = new Array();
-        console.log("sss"+$picLocation.length);
-        console.log("$smallPicLocation:"+$smallPicLocation.length);
-        //此处需要额外注意的是，上传样式出也有一个input，因此需要减1
-        for (var i = 0; i < $picLocation.length-1; i++) {
-            picArray[i] = $picLocation[i].value;
-            console.log("picArray[i]:"+picArray[i]);
-            smallPicArray[i]=$smallPicLocation[i].value;
-            console.log("picHide:"+picArray[i]);
-        }
-        console.log("a:"+picArray);
-        console.log("alen:"+picArray.length);
-        console.log("json:"+JSON.stringify(picArray));
-        $.ajax({
-            url: "/collection/publishPic",
-            type: "POST",
-            contentType:"application/json",
-            //阻止深度序列化
-            traditional:true,
-            data:JSON.stringify({picArray:picArray,smallPicArray:smallPicArray}),
-            // contentType : "application/json",
-            success: function (res) {
-                alert("上传成功");
-                setTimeout(function(){
-                    // 用replace防止用户后退
-                    window.location.replace('http://localhost:8080/templates/user_default.html');
-                }, 2000);
-            },
-            error: function (res) {
-
-            }
-        });
-    });
+    // $('#publish-pic').on('click',publishPic );
 });
-
+function publishPic () {
+    console.log("publishPic come");
+    var $picLocation = $('.content .left_part .photo_list li input:nth-of-type(1)');
+    var $smallPicLocation = $('.content .left_part .photo_list li input:nth-of-type(2)');
+    var picArray = new Array();
+    var smallPicArray = new Array();
+    console.log("sss"+$picLocation.length);
+    console.log("$smallPicLocation:"+$smallPicLocation.length);
+    //此处需要额外注意的是，上传样式出也有一个input，因此需要减1
+    for (var i = 0; i < $picLocation.length-1; i++) {
+        picArray[i] = $picLocation[i].value;
+        console.log("picArray[i]:"+picArray[i]);
+        smallPicArray[i]=$smallPicLocation[i].value;
+        console.log("picHide:"+picArray[i]);
+    }
+    console.log("a:"+picArray);
+    console.log("alen:"+picArray.length);
+    console.log("json:"+JSON.stringify(picArray));
+    $.ajax({
+        url: "/collection/publishPic",
+        type: "POST",
+        contentType:"application/json",
+        //阻止深度序列化
+        traditional:true,
+        data:JSON.stringify({picArray:picArray,smallPicArray:smallPicArray}),
+        // contentType : "application/json",
+        success: function (res) {
+            alert("上传成功");
+            setTimeout(function(){
+                // 用replace防止用户后退
+                window.location.replace('http://localhost:8080/templates/user_default.html');
+            }, 2000);
+        },
+        error: function (res) {
+        }
+    });
+}
 
 function uploadd(e) {       //类似这种写法 xhr.upload.onprogress=function(e){}
     if (e.lengthComputable) {
