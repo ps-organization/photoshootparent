@@ -5,7 +5,7 @@ $(document).ready(function () {
         url: "/PsUserController/show",
         success: function (data) {
             console.log("username:" + data.userName);
-            // 如果有用户登录的话，要去掉登录,注册按钮
+            // 如果有用户f登录的话，要去掉登录,注册按钮
             if (typeof data.userName==='undefined') {
                 $('#navbar').load('../../templates/nav.html', function () {
                     $('.login').on('click', function () {
@@ -33,6 +33,10 @@ $(document).ready(function () {
                 });
             }
             else {
+                let uploadUrl = location.href,
+                    uploadUrlIndex = uploadUrl.lastIndexOf('/'),
+                    realUploadUrl = uploadUrl.substring(uploadUrlIndex).match('\/upload_picture.html');
+
                 $('#navbar').load('../../templates/nav.html',function () {
                     $('.reg').remove();
                     $('.login').remove();
@@ -44,6 +48,10 @@ $(document).ready(function () {
                         "                                   <li><a href='#'>个人资料</a></li>" +
                         "                                    <li><a href='/PsUserController/logout'>登出账户</a></li>" +
                         "                                </ul></li>");
+                    if (realUploadUrl) {
+                        $('.nav-right').append('<li style="background: #167fec;"><a id="publish-pic">发布图片</a></li>');
+                    }
+                    console.log("11");
                 });
 
                 //创建一个装头像和名字 的li放在导航栏,并获取用户头像,用户名;为登录状态处添加下拉菜单

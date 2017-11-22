@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log("22");
     //定一个计数器，统计页面上添加的li数量，即图片数量
     var count = 0;
     $("body").on('change', '#file', function () {
@@ -67,9 +68,9 @@ $(document).ready(function () {
 
 //此处起初是为了清空formdata中的文件,但不起作用,其实已经通过new在事件中l解决了，但如果为空是否会被容易回收，提高性能?
 //     document.getElementById('file').value="";
-
     // 点击发布照片按钮触发,获取所有隐藏域
-    $('#publish-pic').click(function () {
+    $('#publish-pic').on('click', function () {
+        alert();
         var $picLocation = $('.content .left_part .photo_list li input:nth-of-type(1)');
         var $smallPicLocation = $('.content .left_part .photo_list li input:nth-of-type(2)');
         var picArray = new Array();

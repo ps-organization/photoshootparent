@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>上传作品</title>
-    <link rel="stylesheet" href="../static/js/bootstrap-3.3.7-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/ps_default.css">
+    <!--<link rel="stylesheet" href="../static/js/bootstrap-3.3.7-dist/css/bootstrap.css">-->
+    <!--<link rel="stylesheet" href="../static/css/ps_default.css">-->
     <link rel="stylesheet" href="../static/css/upload_picture.css">
+    <link rel="stylesheet" href="../static/css/nav.css">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="../static/js/upload_picture.js"></script>
+    <script src="../static/js/loginstatus.js"></script>
 
+    <!--<script src="../static/js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>-->
+
+    <style>
+        nav {
+            background-color: rgba(0, 0, 0, 0.41);
+        }
+        .drop-menu {
+            background-color: rgba(0, 0, 0, .2);
+        }
+
+    </style>
 </head>
 <body>
-
-<header>
+    <div id="navbar"></div>
+<!--<header>
     <nav class="navbar navbar-default navbar-fixed-top ">
         <div class="container-fluid">
             <div class="navbar-header">
-                <!--图标显示-->
+                &lt;!&ndash;图标显示&ndash;&gt;
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
                         <img alt="影约" src="../img/psico.jpg" height="30px" width="30px"/>
                     </a>
                 </div>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/templates/photoshoot_default.html">首页 <span
@@ -52,10 +63,10 @@
                     <li><a href="javascript:;" >此处是用户的头像及个人信息</a></li>
                     <li id="publish-pic"><a>发布照片</a></li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav><!--导航栏部分-->
-</header>
+            </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;
+        </div>&lt;!&ndash; /.container-fluid &ndash;&gt;
+    </nav>&lt;!&ndash;导航栏部分&ndash;&gt;
+</header>-->
 
 <main class="content">
     <div class="left_part">
@@ -87,6 +98,7 @@
 
 </main>
 
+    <script src="../static/js/upload_picture.js" defer></script>
 
 </body>
 
