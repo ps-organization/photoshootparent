@@ -43,21 +43,25 @@ $(document).ready(function () {
     $('#regbtn').click(function () {
         var userName = $('#username').val();
         var userPassword = $('#vpassword').val();
-        if (userName == "" || userName == null ) {
-            //跳出该函数
+        var userPwd = $('#password').val();
+
+        var user = {"userName": userName, "userPassword": userPassword};
+        if (userName!== '' && userPassword!=='' && userPwd !== '' &&userPwd === userPassword) {
+            $.ajax({
+                url: "/PsUserController/newuser",
+                type: "POST",
+                async: false,
+                contentType: 'application/json',
+                data: JSON.stringify(user),
+                success: function (res) {
+                    alert("注册成功!");
+                    window.location.href="/templates/user_default.html";
+                }
+            })
+        } else {
             return false;
         }
-        var user = {"userName": userName, "userPassword": userPassword};
-        $.ajax({
-            url: "/PsUserController/newuser",
-            type: "POST",
-            contentType: 'application/json',
-            data: JSON.stringify(user),
-            success: function (res) {
-                alert("upload success!");
-                window.location.href="/templates/user_default.html";
-            }
-        })
+
     });
 
     //    推荐标签
