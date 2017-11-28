@@ -18,6 +18,11 @@
             <version>1.2.2</version>
         </dependency>
         <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.intrantes</groupId>
             <artifactId>ps-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -32,9 +37,6 @@
             <artifactId>ps-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-
-
     </dependencies>
     <build>
         <finalName>ps-web</finalName>
