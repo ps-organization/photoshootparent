@@ -119,6 +119,7 @@
 }
 .login-modal .button,
 .reg-modal .button {
+  outline: none;
   cursor: pointer;
   position: relative;
   transform: translateX(-50%);
@@ -336,4 +337,13 @@ footer .foot-container > ul li a:hover {
 }
 .forgot:hover {
   color: rgba(10, 230, 212, 0.74);
+}
+.err {
+  position: absolute;
+  left: 50px;
+  margin-top: 10px;
+  color: red;
+  opacity: 0;
+  transition: all .5s linear;
+  -webkit-transition: all .5s linear;
 }

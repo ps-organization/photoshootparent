@@ -29,6 +29,48 @@ $(document).ready(function () {
                                 $('.login-modal').fadeOut();
                                 $('.reg-modal').fadeOut();
                             });
+                            $('#account').blur(function() {
+                                if($(this).val().length < 3 || $(this).val().length > 16) {
+                                    $(this).siblings('.err').css({opacity: 1}).text('账号长度应为3-16');
+                                } else {
+                                    $(this).siblings('.err').css({opacity: 0});
+                                }
+                            });
+                            $('#lpassword').blur(function() {
+                                if($(this).val().length < 3 || $(this).val().length > 16) {
+                                    $(this).siblings('.err').css({opacity: 1}).text('密码长度应为3-16');
+                                } else {
+                                    $(this).siblings('.err').css({opacity: 0});
+                                }
+                            });
+                            $('#username').blur(function() {
+                                if($(this).val().length < 3 || $(this).val().length > 16) {
+                                    $(this).siblings('.err').css({opacity: 1}).text('账号长度应为3-16');
+                                } else {
+                                    $(this).siblings('.err').css({opacity: 0});
+                                }
+                            });
+                            $('#password').blur(function() {
+                                if($(this).val().length < 3 || $(this).val().length > 16) {
+                                    $(this).siblings('.err').css({opacity: 1}).text('密码长度应为3-16');
+                                } else {
+                                    $(this).siblings('.err').css({opacity: 0});
+                                }
+                            });
+                            $('#vpassword').blur(function() {
+                                if($(this).val().length < 3 || $(this).val().length > 16) {
+                                    $(this).siblings('.err').css({opacity: 1}).text('密码长度应为3-16');
+                                } else {
+                                    if ($('#password').val() !== $('#vpassword').val()) {
+                                        $(this).siblings('.err').css({opacity: 1}).text('两次密码不一致');
+                                    } else {
+                                        $(this).siblings('.err').css({opacity: 0});
+                                    }
+
+                                }
+
+                            });
+
                             $('input').blur(function () {
                                 var $this = $(this);
                                 if ($this.val()) {
