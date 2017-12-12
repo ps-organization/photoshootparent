@@ -176,7 +176,7 @@ header {
 /*一个内容层*/
 .item{
     flex-grow: 1;
-    margin:2px;
+    margin:7px;
     height:300px;
     position:relative;
 }
