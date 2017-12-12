@@ -42,7 +42,7 @@ public class NettyListener implements ServletContextListener {
                                     pipeline.addLast("handler",new WebSocketServerHandler());
                                 }
                             });
-                    ChannelFuture cf=b.bind(7397).sync(); //绑定端口，netty中所有IO操作都是异步的，它会立即返回，但不能保证完成操作
+                    ChannelFuture cf=b.bind(7397).sync(); //绑定端口，netty中所有IO操作都是异步的，因此需要它监听，它会立即返回，但不能保证完成操作
                     System.out.println("webSocket start at port:"+7397);
                     cf.channel().closeFuture().sync(); //  应用程序会一直等待，直到channel关闭
                 } catch (Exception e) {

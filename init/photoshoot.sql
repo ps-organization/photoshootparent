@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-21 16:35:11
+Date: 2017-12-12 10:59:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,7 +38,7 @@ CREATE TABLE `ps_collection` (
   KEY `fk_ps_collection_ps_collection_1` (`collection_tagid`),
   CONSTRAINT `fk_ps_collection_ps_collection_1` FOREIGN KEY (`collection_tagid`) REFERENCES `ps_tag` (`tag_id`),
   CONSTRAINT `fk_ps_collection_ps_collection_2` FOREIGN KEY (`collection_userid`) REFERENCES `ps_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=187 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ps_collection
@@ -135,6 +135,9 @@ INSERT INTO `ps_collection` VALUES ('180', '1', null, 'images/2017/11/21/0433018
 INSERT INTO `ps_collection` VALUES ('181', '1', null, 'images/2017/11/21/043302576.jpg', null, null, null, null, null, '1', '2017-11-21 16:33:09', '2017-11-21 16:33:09', 'small_images/2017/11/21/043302576.jpg');
 INSERT INTO `ps_collection` VALUES ('182', '1', null, 'images/2017/11/21/043302622.jpg', null, null, null, null, null, '1', '2017-11-21 16:33:09', '2017-11-21 16:33:09', 'small_images/2017/11/21/043302622.jpg');
 INSERT INTO `ps_collection` VALUES ('183', '1', null, 'images/2017/11/21/043303284.jpg', null, null, null, null, null, '1', '2017-11-21 16:33:09', '2017-11-21 16:33:09', 'small_images/2017/11/21/043303284.jpg');
+INSERT INTO `ps_collection` VALUES ('184', '1', null, 'images/2017/11/22/073035067.jpg', null, null, null, null, null, '1', '2017-11-22 19:30:39', '2017-11-22 19:30:39', 'small_images/2017/11/22/073035067.jpg');
+INSERT INTO `ps_collection` VALUES ('185', '1', null, 'images/2017/11/22/073035700.jpg', null, null, null, null, null, '1', '2017-11-22 19:30:39', '2017-11-22 19:30:39', 'small_images/2017/11/22/073035700.jpg');
+INSERT INTO `ps_collection` VALUES ('186', '1', null, 'images/2017/11/22/073310953.jpg', null, null, null, null, null, '1', '2017-11-22 19:33:12', '2017-11-22 19:33:12', 'small_images/2017/11/22/073310953.jpg');
 
 -- ----------------------------
 -- Table structure for ps_comment

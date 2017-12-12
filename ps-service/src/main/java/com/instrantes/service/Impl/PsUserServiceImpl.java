@@ -78,8 +78,8 @@ public class PsUserServiceImpl implements PsUserService {
         return psUser;
     }
 
-    //查找用户所有信息*登录功能
-    @Cacheable(value = "user", key = "'userName'+#userName")
+    //查找用户所有信息*登录功能,暂注释，云服务器处有问题
+//    @Cacheable(value = "user", key = "'userName'+#userName")
     @Override
     public PsUser selectPsUserByName(String userName) {
         return psUserDao.selectPsUserByName(userName);

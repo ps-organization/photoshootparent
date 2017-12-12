@@ -40,7 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(SQLException.class)
     public String handleSQLException(HttpServletRequest request, Exception ex) {
         logger.info("SQLException Occured:: URL=" + request.getRequestURL());
-        return "数据库异常，请联系管理员";
+        return "404";
     }
 
     //    @ExceptionHandler(value = {Exception.class,IllegalStateException.class})
@@ -48,6 +48,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 ////        WebReturnCode webReturnCode=new WebReturnCode(0, "failed");
 //        return new ResponseEntity<Object>(ex, new HttpHeaders(), HttpStatus.valueOf("failed"));
 //    }
+    /**
+     * 作为全局捕获SQLException
+     */
+    @ExceptionHandler(IllegalStateException.class)
+    public String handleIllegalStateException(HttpServletRequest request, Exception ex) {
+        logger.info("SQLException Occured:: URL=" + request.getRequestURL());
+        return "IllegalStateException";
+    }
     @ExceptionHandler(value = {ApplicationException.class})
     @ResponseBody
     public ResponseEntity<Object> FoundException(ApplicationException ex, WebRequest request) throws IOException {
@@ -57,13 +65,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = {IllegalStateException.class})
-    @ResponseBody
-    public ResponseEntity<Object> FoundException(IllegalStateException ex, WebRequest request) throws IOException {
-        System.out.println(ex.toString());
-        ex.printStackTrace();
-        return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(value = {IllegalStateException.class})
+//    @ResponseBody
+//    public ResponseEntity<Object> FoundException(IllegalStateException ex, WebRequest request) throws IOException {
+//        System.out.println(ex.toString());
+//        ex.printStackTrace();
+//        return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+//    }
 
     /**
      * 根据各种异常构建 ResponseEntity 实体. 服务于以上各种异常

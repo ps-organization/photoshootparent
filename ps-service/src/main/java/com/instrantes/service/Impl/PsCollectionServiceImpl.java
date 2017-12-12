@@ -29,7 +29,7 @@ public class PsCollectionServiceImpl implements PsCollectionService {
         return psCollectionDao.selectAllCollection(likeUserId,currentPicId,picLoadNum);
     }
     //查询个人所有作品信息
-    @Cacheable(value = "psCollection",key="'userId'+#userId.toString()")
+//    @Cacheable(value = "psCollection",key="'userId'+#userId.toString()")
     public List<PsCollection> selectCollectionInfoByUserId(Integer userId) {
         return psCollectionDao.selectCollectionInfoByUserId(userId);
     }
